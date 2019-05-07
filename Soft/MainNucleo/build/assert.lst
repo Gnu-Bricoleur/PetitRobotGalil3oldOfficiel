@@ -1,0 +1,213 @@
+ARM GAS  /tmp/cc1ZEGmb.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"assert.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.global	__aeabi_f2d
+  21              		.global	__aeabi_ddiv
+  22              		.global	__aeabi_dadd
+  23              		.global	__aeabi_dmul
+  24              		.section	.text.updatePos,"ax",%progbits
+  25              		.align	2
+  26              		.global	updatePos
+  27              		.thumb
+  28              		.thumb_func
+  30              	updatePos:
+  31              	.LFB123:
+  32              		.file 1 "Src/assert.c"
+   1:Src/assert.c  **** #include "assert.h"
+   2:Src/assert.c  **** 
+   3:Src/assert.c  **** 
+   4:Src/assert.c  **** 
+   5:Src/assert.c  **** void updatePos(int tickRight, int tickGauche, double* positionX, double* positionY, double* angle)
+   6:Src/assert.c  **** {
+  33              		.loc 1 6 0
+  34              		.cfi_startproc
+  35              		@ args = 4, pretend = 0, frame = 0
+  36              		@ frame_needed = 0, uses_anonymous_args = 0
+  37              	.LVL0:
+  38 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 32
+  41              		.cfi_offset 4, -32
+  42              		.cfi_offset 5, -28
+  43              		.cfi_offset 6, -24
+  44              		.cfi_offset 7, -20
+  45              		.cfi_offset 8, -16
+  46              		.cfi_offset 9, -12
+  47              		.cfi_offset 10, -8
+  48              		.cfi_offset 14, -4
+  49 0004 2DED028B 		fstmfdd	sp!, {d8}
+  50              	.LCFI1:
+  51              		.cfi_def_cfa_offset 40
+  52              		.cfi_offset 80, -40
+ARM GAS  /tmp/cc1ZEGmb.s 			page 2
+
+
+  53              		.cfi_offset 81, -36
+  54 0008 8046     		mov	r8, r0
+  55 000a 8A46     		mov	r10, r1
+  56 000c 1546     		mov	r5, r2
+  57 000e 1C46     		mov	r4, r3
+  58 0010 DDF82890 		ldr	r9, [sp, #40]
+   7:Src/assert.c  **** 
+   8:Src/assert.c  ****   // instant angle and distance
+   9:Src/assert.c  ****   double dDist = (tickRight + tickGauche) / 2.0f;
+  59              		.loc 1 9 0
+  60 0014 4318     		adds	r3, r0, r1
+  61              	.LVL1:
+  62 0016 07EE903A 		fmsr	s15, r3	@ int
+  63 001a F8EEE77A 		fsitos	s15, s15
+  64 001e B6EE008A 		fconsts	s16, #96
+  65 0022 67EE887A 		fmuls	s15, s15, s16
+  66 0026 17EE900A 		fmrs	r0, s15
+  67              	.LVL2:
+  68 002a FFF7FEFF 		bl	__aeabi_f2d
+  69              	.LVL3:
+  70 002e 0646     		mov	r6, r0
+  71 0030 0F46     		mov	r7, r1
+  72              	.LVL4:
+  10:Src/assert.c  ****   double dTheta = (tickRight - tickGauche) / 2.0f;
+  73              		.loc 1 10 0
+  74 0032 CAEB0808 		rsb	r8, r10, r8
+  75              	.LVL5:
+  76 0036 07EE908A 		fmsr	s15, r8	@ int
+  77 003a F8EEE77A 		fsitos	s15, s15
+  78 003e 67EE887A 		fmuls	s15, s15, s16
+  79 0042 17EE900A 		fmrs	r0, s15
+  80 0046 FFF7FEFF 		bl	__aeabi_f2d
+  81              	.LVL6:
+  11:Src/assert.c  **** 
+  12:Src/assert.c  ****   // new angle
+  13:Src/assert.c  ****   *angle += dTheta / ((AXISLENGTH*TICKSPERMM)/2);
+  82              		.loc 1 13 0
+  83 004a 24A3     		adr	r3, .L3+4
+  84 004c D3E90023 		ldrd	r2, [r3]
+  85 0050 FFF7FEFF 		bl	__aeabi_ddiv
+  86              	.LVL7:
+  87 0054 D9E90023 		ldrd	r2, [r9]
+  88 0058 FFF7FEFF 		bl	__aeabi_dadd
+  89              	.LVL8:
+  90 005c 41EC180B 		fmdrr	d8, r0, r1
+  91 0060 C9E90001 		strd	r0, [r9]
+  14:Src/assert.c  **** 
+  15:Src/assert.c  ****   // New X Y
+  16:Src/assert.c  ****   double dX = dDist * cos(*angle);
+  92              		.loc 1 16 0
+  93 0064 41EC100B 		fmdrr	d0, r0, r1
+  94 0068 FFF7FEFF 		bl	cos
+  95              	.LVL9:
+  96 006c 51EC100B 		fmrrd	r0, r1, d0
+  97 0070 3246     		mov	r2, r6
+  98 0072 3B46     		mov	r3, r7
+  99 0074 FFF7FEFF 		bl	__aeabi_dmul
+ARM GAS  /tmp/cc1ZEGmb.s 			page 3
+
+
+ 100              	.LVL10:
+ 101 0078 8046     		mov	r8, r0
+ 102 007a 8946     		mov	r9, r1
+ 103              	.LVL11:
+  17:Src/assert.c  ****   double dY = dDist * sin(*angle);
+ 104              		.loc 1 17 0
+ 105 007c B0EE480A 		fcpys	s0, s16
+ 106 0080 F0EE680A 		fcpys	s1, s17
+ 107 0084 FFF7FEFF 		bl	sin
+ 108              	.LVL12:
+ 109 0088 51EC100B 		fmrrd	r0, r1, d0
+ 110 008c 3246     		mov	r2, r6
+ 111 008e 3B46     		mov	r3, r7
+ 112 0090 FFF7FEFF 		bl	__aeabi_dmul
+ 113              	.LVL13:
+ 114 0094 0646     		mov	r6, r0
+ 115              	.LVL14:
+ 116 0096 0F46     		mov	r7, r1
+ 117              	.LVL15:
+  18:Src/assert.c  ****   *positionX += dX / TICKSPERMM;
+ 118              		.loc 1 18 0
+ 119 0098 4046     		mov	r0, r8
+ 120 009a 4946     		mov	r1, r9
+ 121 009c 0022     		movs	r2, #0
+ 122 009e 0E4B     		ldr	r3, .L3
+ 123 00a0 FFF7FEFF 		bl	__aeabi_ddiv
+ 124              	.LVL16:
+ 125 00a4 0246     		mov	r2, r0
+ 126 00a6 0B46     		mov	r3, r1
+ 127 00a8 D5E90001 		ldrd	r0, [r5]
+ 128 00ac FFF7FEFF 		bl	__aeabi_dadd
+ 129              	.LVL17:
+ 130 00b0 C5E90001 		strd	r0, [r5]
+  19:Src/assert.c  ****   *positionY += dY / TICKSPERMM;
+ 131              		.loc 1 19 0
+ 132 00b4 3046     		mov	r0, r6
+ 133 00b6 3946     		mov	r1, r7
+ 134 00b8 0022     		movs	r2, #0
+ 135 00ba 074B     		ldr	r3, .L3
+ 136 00bc FFF7FEFF 		bl	__aeabi_ddiv
+ 137              	.LVL18:
+ 138 00c0 0246     		mov	r2, r0
+ 139 00c2 0B46     		mov	r3, r1
+ 140 00c4 D4E90001 		ldrd	r0, [r4]
+ 141 00c8 FFF7FEFF 		bl	__aeabi_dadd
+ 142              	.LVL19:
+ 143 00cc C4E90001 		strd	r0, [r4]
+  20:Src/assert.c  **** }
+ 144              		.loc 1 20 0
+ 145 00d0 BDEC028B 		fldmfdd	sp!, {d8}
+ 146              	.LCFI2:
+ 147              		.cfi_restore 80
+ 148              		.cfi_restore 81
+ 149              		.cfi_def_cfa_offset 32
+ 150 00d4 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 151              	.LVL20:
+ 152              	.L4:
+ARM GAS  /tmp/cc1ZEGmb.s 			page 4
+
+
+ 153              		.align	3
+ 154              	.L3:
+ 155 00d8 00004640 		.word	1078329344
+ 156 00dc 00000000 		.word	0
+ 157 00e0 005CAC40 		.word	1085037568
+ 158              		.cfi_endproc
+ 159              	.LFE123:
+ 161              		.text
+ 162              	.Letext0:
+ 163              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 164              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 165              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 166              		.file 5 "/usr/include/newlib/math.h"
+ARM GAS  /tmp/cc1ZEGmb.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 assert.c
+     /tmp/cc1ZEGmb.s:25     .text.updatePos:0000000000000000 $t
+     /tmp/cc1ZEGmb.s:30     .text.updatePos:0000000000000000 updatePos
+     /tmp/cc1ZEGmb.s:155    .text.updatePos:00000000000000d8 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_ddiv
+__aeabi_dadd
+__aeabi_dmul
+cos
+sin

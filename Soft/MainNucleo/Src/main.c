@@ -43,7 +43,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "assert.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,7 +53,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define DEBUG 1
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -82,11 +82,15 @@ static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);
 /* USER CODE BEGIN PFP */
-
+void moteurDroit(int PWM, int direction);
+void moteurGauche(int PWM, int direction);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+double positionX = 0.0;
+double positionY = 0.0;
+double angle = 0.0;
 
 /* USER CODE END 0 */
 
@@ -133,19 +137,47 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !", sizeof("Atttenzion, zest barti !"), HAL_MAX_DELAY);
+  uint32_t oldTicks = HAL_GetTick();
+  int debug = 0;
+  char buffer[50] = "";
+  TIM4->CNT = 30000;
+  TIM5->CNT = 30000;
   while (1)
   {
-    htim2.Instance->CCR2 = 1000;
-    htim3.Instance->CCR1 = 1000;
-    HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_SET);
-    HAL_Delay(50);
-    HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
-    HAL_Delay(50);
-    char buffer[16] = "";
-    sprintf(buffer, "%d;%d\n", TIM4->CNT, TIM5->CNT);
-    HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+    //htim2.Instance->CCR2 = 1000;
+    //htim3.Instance->CCR1 = 1000;
+    //HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_SET);
+    //HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_SET);
+    //HAL_Delay(50);
+    //HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_RESET);
+    //HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
+    //moteurGauche(2000, 1);
+    //HAL_Delay(5000);
+    //moteurDroit(2000, 1);
+    //HAL_Delay(5000);
+    //char buffer[16] = "";
+    //sprintf(buffer, "%d;%d\n", TIM4->CNT, TIM5->CNT);
+    //HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+    while(HAL_GetTick() - oldTicks < 5)
+    {}
+    oldTicks = HAL_GetTick();
+    
+    updatePos(TIM4->CNT-30000, -TIM5->CNT+30000, &positionX, &positionY, &angle);
+    TIM4->CNT = 30000;
+    TIM5->CNT = 30000;
+    
+    debug += 1;
+    if (DEBUG)
+    {
+        if (debug == 100)
+        {
+            sprintf(buffer, "%d / %d / %d\n",(int)positionX, (int)positionY, (int)(angle*1000));
+            HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+            debug = 0;
+        }
+    }
+    
+    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -465,6 +497,32 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void moteurDroit(int PWM, int direction)
+{
+    if(direction == 0)
+    {
+        HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_SET);
+    }
+    else
+    {
+        HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_RESET);
+    }
+    htim2.Instance->CCR2 = PWM;
+}
+
+
+void moteurGauche(int PWM, int direction)
+{
+    if(direction == 0)
+    {
+        HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
+    }
+    else
+    {
+        HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_SET);
+    }
+    htim3.Instance->CCR1 = PWM;
+}
 
 /* USER CODE END 4 */
 
