@@ -82,8 +82,8 @@ static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);
 /* USER CODE BEGIN PFP */
-void moteurDroit(int PWM, int direction);
-void moteurGauche(int PWM, int direction);
+void moteurDroit(int PWM);
+void moteurGauche(int PWM);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -136,48 +136,86 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !", sizeof("Atttenzion, zest barti !"), HAL_MAX_DELAY);
+  HAL_Delay(1000);
   uint32_t oldTicks = HAL_GetTick();
   int debug = 0;
   char buffer[50] = "";
+  char buffer2[50] = "";
+  int tim4tot= 0;
+  int tim5tot=0;
+  int tim4 = 0;
+  int tim5 = 0;
+  int oldtim4err = 0;
+  int tim4err = 0;
   TIM4->CNT = 30000;
   TIM5->CNT = 30000;
+  int timeTracking = 0;
+  float P, I, D, consigne;
+  P=50;
+  I=0;
+  D=0;
+  moteurDroit(2000);
+  //moteurGauche(2000);
+
   while (1)
   {
-    //htim2.Instance->CCR2 = 1000;
-    //htim3.Instance->CCR1 = 1000;
-    //HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_SET);
-    //HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_SET);
-    //HAL_Delay(50);
-    //HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_RESET);
-    //HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
-    //moteurGauche(2000, 1);
-    //HAL_Delay(5000);
-    //moteurDroit(2000, 1);
-    //HAL_Delay(5000);
-    //char buffer[16] = "";
-    //sprintf(buffer, "%d;%d\n", TIM4->CNT, TIM5->CNT);
-    //HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
     while(HAL_GetTick() - oldTicks < 5)
     {}
     oldTicks = HAL_GetTick();
+    tim4 = (TIM4->CNT-30000);
+    tim5 = -TIM5->CNT+30000;
     
-    updatePos(TIM4->CNT-30000, -TIM5->CNT+30000, &positionX, &positionY, &angle);
-    TIM4->CNT = 30000;
-    TIM5->CNT = 30000;
+    updatePos(tim4, tim5, &positionX, &positionY, &angle);
+    tim4tot += tim4;
+    tim5tot += tim5;
+
+    consigne = 50;
+    tim4err = consigne - tim5;
+    float blable = P*tim4err + D*(tim4err - oldtim4err);
+    moteurDroit(1500);
+    oldtim4err = tim4err;
+    
+
     
     debug += 1;
     if (DEBUG)
     {
         if (debug == 100)
         {
-            sprintf(buffer, "%d / %d / %d\n",(int)positionX, (int)positionY, (int)(angle*1000));
-            HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+            //sprintf(buffer, "%d / %d / %d\n",(int)positionX, (int)positionY, (int)(angle*1000));
+            //HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+            sprintf(buffer2, "%d / %d / %d / %d\n",(int)tim4tot, (int)tim5tot, (int)blable, tim5);
+            HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), HAL_MAX_DELAY);
             debug = 0;
         }
     }
     
     
+    
+    
+    
+    /*
+    if(timeTracking < 1000)
+    {	
+		sprintf(buffer2, "##############################################\n");
+		if (timeTracking ==1){ HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), HAL_MAX_DELAY);}
+        //moteurGauche(2000, 1);
+        //moteurDroit(2000, 1);
+    }
+    else
+    {
+		sprintf(buffer2, "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
+        if(timeTracking == 1000 ){ HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), HAL_MAX_DELAY);}
+        //moteurGauche(0, 1);
+        //moteurDroit(0, 1);
+    }
+    if (timeTracking > 3000)
+    {
+        timeTracking = 0;
+    }
+    timeTracking += 1;*/
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -351,11 +389,11 @@ static void MX_TIM4_Init(void)
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
-  sConfig.IC1Filter = 0;
+  sConfig.IC1Filter = 5;
   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
-  sConfig.IC2Filter = 0;
+  sConfig.IC2Filter = 5;
   if (HAL_TIM_Encoder_Init(&htim4, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -399,11 +437,11 @@ static void MX_TIM5_Init(void)
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
-  sConfig.IC1Filter = 0;
+  sConfig.IC1Filter = 5;
   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
-  sConfig.IC2Filter = 0;
+  sConfig.IC2Filter = 5;
   if (HAL_TIM_Encoder_Init(&htim5, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -497,32 +535,47 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void moteurDroit(int PWM, int direction)
+void moteurDroit(int PWM)
 {
-    if(direction == 0)
-    {
-        HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_SET);
-    }
-    else
+    if(PWM == abs(PWM))
     {
         HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_RESET);
     }
-    htim2.Instance->CCR2 = PWM;
+    else
+    {
+        HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_SET);
+    }
+    if (abs(PWM) > 5000)
+    {
+		htim2.Instance->CCR2 = 5000;
+    }
+    else 
+    {
+		htim2.Instance->CCR2 = abs(PWM);
+	}
 }
 
 
-void moteurGauche(int PWM, int direction)
+void moteurGauche(int PWM)
 {
-    if(direction == 0)
-    {
-        HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
-    }
-    else
+    if(PWM == abs(PWM))
     {
         HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_SET);
     }
-    htim3.Instance->CCR1 = PWM;
+    else
+    {
+        HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
+    }
+    if (abs(PWM) > 5000)
+    {
+		htim3.Instance->CCR1 = 5000;
+    }
+    else 
+    {
+		htim3.Instance->CCR1 = abs(PWM);
+	}
 }
+
 
 /* USER CODE END 4 */
 

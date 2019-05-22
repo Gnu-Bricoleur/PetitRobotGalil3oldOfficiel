@@ -1,0 +1,591 @@
+ARM GAS  /tmp/ccM7XPdD.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"assert.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.global	__aeabi_f2d
+  21              		.global	__aeabi_ddiv
+  22              		.global	__aeabi_dadd
+  23              		.global	__aeabi_dmul
+  24              		.section	.text.updatePos,"ax",%progbits
+  25              		.align	2
+  26              		.global	updatePos
+  27              		.thumb
+  28              		.thumb_func
+  30              	updatePos:
+  31              	.LFB123:
+  32              		.file 1 "Src/assert.c"
+   1:Src/assert.c  **** #include "assert.h"
+   2:Src/assert.c  **** 
+   3:Src/assert.c  **** 
+   4:Src/assert.c  **** 
+   5:Src/assert.c  **** void updatePos(int tickRight, int tickGauche, double* positionX, double* positionY, double* angle)
+   6:Src/assert.c  **** {
+  33              		.loc 1 6 0
+  34              		.cfi_startproc
+  35              		@ args = 4, pretend = 0, frame = 0
+  36              		@ frame_needed = 0, uses_anonymous_args = 0
+  37              	.LVL0:
+  38 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 32
+  41              		.cfi_offset 4, -32
+  42              		.cfi_offset 5, -28
+  43              		.cfi_offset 6, -24
+  44              		.cfi_offset 7, -20
+  45              		.cfi_offset 8, -16
+  46              		.cfi_offset 9, -12
+  47              		.cfi_offset 10, -8
+  48              		.cfi_offset 14, -4
+  49 0004 2DED028B 		fstmfdd	sp!, {d8}
+  50              	.LCFI1:
+  51              		.cfi_def_cfa_offset 40
+  52              		.cfi_offset 80, -40
+ARM GAS  /tmp/ccM7XPdD.s 			page 2
+
+
+  53              		.cfi_offset 81, -36
+  54 0008 8046     		mov	r8, r0
+  55 000a 8A46     		mov	r10, r1
+  56 000c 1546     		mov	r5, r2
+  57 000e 1C46     		mov	r4, r3
+  58 0010 DDF82890 		ldr	r9, [sp, #40]
+   7:Src/assert.c  **** 
+   8:Src/assert.c  ****   // instant angle and distance
+   9:Src/assert.c  ****   double dDist = (tickRight + tickGauche) / 2.0f;
+  59              		.loc 1 9 0
+  60 0014 4318     		adds	r3, r0, r1
+  61              	.LVL1:
+  62 0016 07EE903A 		fmsr	s15, r3	@ int
+  63 001a F8EEE77A 		fsitos	s15, s15
+  64 001e B6EE008A 		fconsts	s16, #96
+  65 0022 67EE887A 		fmuls	s15, s15, s16
+  66 0026 17EE900A 		fmrs	r0, s15
+  67              	.LVL2:
+  68 002a FFF7FEFF 		bl	__aeabi_f2d
+  69              	.LVL3:
+  70 002e 0646     		mov	r6, r0
+  71 0030 0F46     		mov	r7, r1
+  72              	.LVL4:
+  10:Src/assert.c  ****   double dTheta = (tickRight - tickGauche) / 2.0f;
+  73              		.loc 1 10 0
+  74 0032 CAEB0808 		rsb	r8, r10, r8
+  75              	.LVL5:
+  76 0036 07EE908A 		fmsr	s15, r8	@ int
+  77 003a F8EEE77A 		fsitos	s15, s15
+  78 003e 67EE887A 		fmuls	s15, s15, s16
+  79 0042 17EE900A 		fmrs	r0, s15
+  80 0046 FFF7FEFF 		bl	__aeabi_f2d
+  81              	.LVL6:
+  11:Src/assert.c  **** 
+  12:Src/assert.c  ****   // new angle
+  13:Src/assert.c  ****   *angle += dTheta / ((AXISLENGTH*TICKSPERMM)/2);
+  82              		.loc 1 13 0
+  83 004a 24A3     		adr	r3, .L3+4
+  84 004c D3E90023 		ldrd	r2, [r3]
+  85 0050 FFF7FEFF 		bl	__aeabi_ddiv
+  86              	.LVL7:
+  87 0054 D9E90023 		ldrd	r2, [r9]
+  88 0058 FFF7FEFF 		bl	__aeabi_dadd
+  89              	.LVL8:
+  90 005c 41EC180B 		fmdrr	d8, r0, r1
+  91 0060 C9E90001 		strd	r0, [r9]
+  14:Src/assert.c  **** 
+  15:Src/assert.c  ****   // New X Y
+  16:Src/assert.c  ****   double dX = dDist * cos(*angle);
+  92              		.loc 1 16 0
+  93 0064 41EC100B 		fmdrr	d0, r0, r1
+  94 0068 FFF7FEFF 		bl	cos
+  95              	.LVL9:
+  96 006c 51EC100B 		fmrrd	r0, r1, d0
+  97 0070 3246     		mov	r2, r6
+  98 0072 3B46     		mov	r3, r7
+  99 0074 FFF7FEFF 		bl	__aeabi_dmul
+ARM GAS  /tmp/ccM7XPdD.s 			page 3
+
+
+ 100              	.LVL10:
+ 101 0078 8046     		mov	r8, r0
+ 102 007a 8946     		mov	r9, r1
+ 103              	.LVL11:
+  17:Src/assert.c  ****   double dY = dDist * sin(*angle);
+ 104              		.loc 1 17 0
+ 105 007c B0EE480A 		fcpys	s0, s16
+ 106 0080 F0EE680A 		fcpys	s1, s17
+ 107 0084 FFF7FEFF 		bl	sin
+ 108              	.LVL12:
+ 109 0088 51EC100B 		fmrrd	r0, r1, d0
+ 110 008c 3246     		mov	r2, r6
+ 111 008e 3B46     		mov	r3, r7
+ 112 0090 FFF7FEFF 		bl	__aeabi_dmul
+ 113              	.LVL13:
+ 114 0094 0646     		mov	r6, r0
+ 115              	.LVL14:
+ 116 0096 0F46     		mov	r7, r1
+ 117              	.LVL15:
+  18:Src/assert.c  ****   *positionX += dX / TICKSPERMM;
+ 118              		.loc 1 18 0
+ 119 0098 4046     		mov	r0, r8
+ 120 009a 4946     		mov	r1, r9
+ 121 009c 0022     		movs	r2, #0
+ 122 009e 0E4B     		ldr	r3, .L3
+ 123 00a0 FFF7FEFF 		bl	__aeabi_ddiv
+ 124              	.LVL16:
+ 125 00a4 0246     		mov	r2, r0
+ 126 00a6 0B46     		mov	r3, r1
+ 127 00a8 D5E90001 		ldrd	r0, [r5]
+ 128 00ac FFF7FEFF 		bl	__aeabi_dadd
+ 129              	.LVL17:
+ 130 00b0 C5E90001 		strd	r0, [r5]
+  19:Src/assert.c  ****   *positionY += dY / TICKSPERMM;
+ 131              		.loc 1 19 0
+ 132 00b4 3046     		mov	r0, r6
+ 133 00b6 3946     		mov	r1, r7
+ 134 00b8 0022     		movs	r2, #0
+ 135 00ba 074B     		ldr	r3, .L3
+ 136 00bc FFF7FEFF 		bl	__aeabi_ddiv
+ 137              	.LVL18:
+ 138 00c0 0246     		mov	r2, r0
+ 139 00c2 0B46     		mov	r3, r1
+ 140 00c4 D4E90001 		ldrd	r0, [r4]
+ 141 00c8 FFF7FEFF 		bl	__aeabi_dadd
+ 142              	.LVL19:
+ 143 00cc C4E90001 		strd	r0, [r4]
+  20:Src/assert.c  **** }
+ 144              		.loc 1 20 0
+ 145 00d0 BDEC028B 		fldmfdd	sp!, {d8}
+ 146              	.LCFI2:
+ 147              		.cfi_restore 80
+ 148              		.cfi_restore 81
+ 149              		.cfi_def_cfa_offset 32
+ 150 00d4 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 151              	.LVL20:
+ 152              	.L4:
+ARM GAS  /tmp/ccM7XPdD.s 			page 4
+
+
+ 153              		.align	3
+ 154              	.L3:
+ 155 00d8 00004640 		.word	1078329344
+ 156 00dc 00000000 		.word	0
+ 157 00e0 005CAC40 		.word	1085037568
+ 158              		.cfi_endproc
+ 159              	.LFE123:
+ 161              		.global	__aeabi_dsub
+ 162              		.global	__aeabi_dcmpgt
+ 163              		.global	__aeabi_dcmplt
+ 164              		.section	.text.modulo,"ax",%progbits
+ 165              		.align	2
+ 166              		.global	modulo
+ 167              		.thumb
+ 168              		.thumb_func
+ 170              	modulo:
+ 171              	.LFB124:
+  21:Src/assert.c  **** 
+  22:Src/assert.c  **** 
+  23:Src/assert.c  **** double modulo(double Cap)
+  24:Src/assert.c  **** {
+ 172              		.loc 1 24 0
+ 173              		.cfi_startproc
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 176              	.LVL21:
+ 177 0000 38B5     		push	{r3, r4, r5, lr}
+ 178              	.LCFI3:
+ 179              		.cfi_def_cfa_offset 16
+ 180              		.cfi_offset 3, -16
+ 181              		.cfi_offset 4, -12
+ 182              		.cfi_offset 5, -8
+ 183              		.cfi_offset 14, -4
+ 184 0002 55EC104B 		fmrrd	r4, r5, d0
+  25:Src/assert.c  ****     while (Cap > PI)
+ 185              		.loc 1 25 0
+ 186 0006 08E0     		b	.L6
+ 187              	.LVL22:
+ 188              	.L7:
+  26:Src/assert.c  ****     {
+  27:Src/assert.c  ****         Cap -= 2*PI;
+ 189              		.loc 1 27 0
+ 190 0008 2046     		mov	r0, r4
+ 191 000a 2946     		mov	r1, r5
+ 192 000c 12A3     		adr	r3, .L11
+ 193 000e D3E90023 		ldrd	r2, [r3]
+ 194 0012 FFF7FEFF 		bl	__aeabi_dsub
+ 195              	.LVL23:
+ 196 0016 0446     		mov	r4, r0
+ 197              	.LVL24:
+ 198 0018 0D46     		mov	r5, r1
+ 199              	.LVL25:
+ 200              	.L6:
+  25:Src/assert.c  ****     while (Cap > PI)
+ 201              		.loc 1 25 0
+ 202 001a 2046     		mov	r0, r4
+ 203 001c 2946     		mov	r1, r5
+ARM GAS  /tmp/ccM7XPdD.s 			page 5
+
+
+ 204 001e 10A3     		adr	r3, .L11+8
+ 205 0020 D3E90023 		ldrd	r2, [r3]
+ 206 0024 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 207              	.LVL26:
+ 208 0028 0028     		cmp	r0, #0
+ 209 002a EDD1     		bne	.L7
+ 210 002c 08E0     		b	.L8
+ 211              	.L9:
+  28:Src/assert.c  ****     }
+  29:Src/assert.c  ****     
+  30:Src/assert.c  ****     while (Cap < -PI)
+  31:Src/assert.c  ****     {
+  32:Src/assert.c  ****         Cap += 2*PI;
+ 212              		.loc 1 32 0
+ 213 002e 2046     		mov	r0, r4
+ 214 0030 2946     		mov	r1, r5
+ 215 0032 09A3     		adr	r3, .L11
+ 216 0034 D3E90023 		ldrd	r2, [r3]
+ 217 0038 FFF7FEFF 		bl	__aeabi_dadd
+ 218              	.LVL27:
+ 219 003c 0446     		mov	r4, r0
+ 220              	.LVL28:
+ 221 003e 0D46     		mov	r5, r1
+ 222              	.LVL29:
+ 223              	.L8:
+  30:Src/assert.c  ****     {
+ 224              		.loc 1 30 0
+ 225 0040 2046     		mov	r0, r4
+ 226 0042 2946     		mov	r1, r5
+ 227 0044 08A3     		adr	r3, .L11+16
+ 228 0046 D3E90023 		ldrd	r2, [r3]
+ 229 004a FFF7FEFF 		bl	__aeabi_dcmplt
+ 230              	.LVL30:
+ 231 004e 0028     		cmp	r0, #0
+ 232 0050 EDD1     		bne	.L9
+  33:Src/assert.c  ****     }
+  34:Src/assert.c  ****     return Cap;
+  35:Src/assert.c  **** }
+ 233              		.loc 1 35 0
+ 234 0052 45EC104B 		fmdrr	d0, r4, r5
+ 235 0056 38BD     		pop	{r3, r4, r5, pc}
+ 236              	.LVL31:
+ 237              	.L12:
+ 238              		.align	3
+ 239              	.L11:
+ 240 0058 282D4454 		.word	1413754152
+ 241 005c FB211940 		.word	1075388923
+ 242 0060 282D4454 		.word	1413754152
+ 243 0064 FB210940 		.word	1074340347
+ 244 0068 282D4454 		.word	1413754152
+ 245 006c FB2109C0 		.word	-1073143301
+ 246              		.cfi_endproc
+ 247              	.LFE124:
+ 249              		.section	.text.PID,"ax",%progbits
+ 250              		.align	2
+ 251              		.global	PID
+ 252              		.thumb
+ARM GAS  /tmp/ccM7XPdD.s 			page 6
+
+
+ 253              		.thumb_func
+ 255              	PID:
+ 256              	.LFB125:
+  36:Src/assert.c  **** 
+  37:Src/assert.c  **** 
+  38:Src/assert.c  **** 
+  39:Src/assert.c  **** void PID(double* X0, double* Y0, double* T0, int* moteurR, int* dirR, int* moteurL, int* dirL, doub
+  40:Src/assert.c  **** { 
+ 257              		.loc 1 40 0
+ 258              		.cfi_startproc
+ 259              		@ args = 16, pretend = 0, frame = 0
+ 260              		@ frame_needed = 0, uses_anonymous_args = 0
+ 261              	.LVL32:
+ 262 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 263              	.LCFI4:
+ 264              		.cfi_def_cfa_offset 32
+ 265              		.cfi_offset 4, -32
+ 266              		.cfi_offset 5, -28
+ 267              		.cfi_offset 6, -24
+ 268              		.cfi_offset 7, -20
+ 269              		.cfi_offset 8, -16
+ 270              		.cfi_offset 9, -12
+ 271              		.cfi_offset 10, -8
+ 272              		.cfi_offset 14, -4
+ 273 0004 0C46     		mov	r4, r1
+ 274 0006 9246     		mov	r10, r2
+ 275 0008 57EC116B 		fmrrd	r6, r7, d1
+  41:Src/assert.c  ****     // CONSIGNES
+  42:Src/assert.c  ****     
+  43:Src/assert.c  ****     double Xerr, Yerr, Terr;
+  44:Src/assert.c  ****     Xerr = X2-(*X0);
+ 276              		.loc 1 44 0
+ 277 000c D0E90023 		ldrd	r2, [r0]
+ 278              	.LVL33:
+ 279 0010 51EC100B 		fmrrd	r0, r1, d0
+ 280              	.LVL34:
+ 281 0014 FFF7FEFF 		bl	__aeabi_dsub
+ 282              	.LVL35:
+ 283 0018 8046     		mov	r8, r0
+ 284 001a 8946     		mov	r9, r1
+ 285              	.LVL36:
+  45:Src/assert.c  ****     Yerr = Y2-(*Y0);
+ 286              		.loc 1 45 0
+ 287 001c 3046     		mov	r0, r6
+ 288 001e 3946     		mov	r1, r7
+ 289 0020 D4E90023 		ldrd	r2, [r4]
+ 290 0024 FFF7FEFF 		bl	__aeabi_dsub
+ 291              	.LVL37:
+ 292 0028 0446     		mov	r4, r0
+ 293              	.LVL38:
+ 294 002a 0D46     		mov	r5, r1
+ 295              	.LVL39:
+  46:Src/assert.c  ****     Terr = T2-(*T0);
+  47:Src/assert.c  ****     double Dist = sqrt(Xerr*Xerr + Yerr*Yerr);
+ 296              		.loc 1 47 0
+ 297 002c 4046     		mov	r0, r8
+ 298 002e 4946     		mov	r1, r9
+ARM GAS  /tmp/ccM7XPdD.s 			page 7
+
+
+ 299 0030 4246     		mov	r2, r8
+ 300 0032 4B46     		mov	r3, r9
+ 301 0034 FFF7FEFF 		bl	__aeabi_dmul
+ 302              	.LVL40:
+ 303 0038 0646     		mov	r6, r0
+ 304              	.LVL41:
+ 305 003a 0F46     		mov	r7, r1
+ 306 003c 2046     		mov	r0, r4
+ 307 003e 2946     		mov	r1, r5
+ 308 0040 2246     		mov	r2, r4
+ 309 0042 2B46     		mov	r3, r5
+ 310 0044 FFF7FEFF 		bl	__aeabi_dmul
+ 311              	.LVL42:
+ 312 0048 0246     		mov	r2, r0
+ 313 004a 0B46     		mov	r3, r1
+ 314 004c 3046     		mov	r0, r6
+ 315 004e 3946     		mov	r1, r7
+ 316 0050 FFF7FEFF 		bl	__aeabi_dadd
+ 317              	.LVL43:
+ 318 0054 41EC100B 		fmdrr	d0, r0, r1
+ 319 0058 FFF7FEFF 		bl	sqrt
+ 320              	.LVL44:
+ 321 005c 57EC106B 		fmrrd	r6, r7, d0
+ 322              	.LVL45:
+  48:Src/assert.c  ****     double Cap = atan(Yerr/Xerr) - (*T0);
+ 323              		.loc 1 48 0
+ 324 0060 2046     		mov	r0, r4
+ 325 0062 2946     		mov	r1, r5
+ 326 0064 4246     		mov	r2, r8
+ 327 0066 4B46     		mov	r3, r9
+ 328 0068 FFF7FEFF 		bl	__aeabi_ddiv
+ 329              	.LVL46:
+ 330 006c 41EC100B 		fmdrr	d0, r0, r1
+ 331 0070 FFF7FEFF 		bl	atan
+ 332              	.LVL47:
+ 333 0074 51EC100B 		fmrrd	r0, r1, d0
+ 334 0078 DAE90023 		ldrd	r2, [r10]
+ 335 007c FFF7FEFF 		bl	__aeabi_dsub
+ 336              	.LVL48:
+  49:Src/assert.c  ****     
+  50:Src/assert.c  ****     static double oldDist = 0;// better initialization 
+  51:Src/assert.c  ****     static double oldCap = 0;
+  52:Src/assert.c  ****     
+  53:Src/assert.c  ****     Cap = modulo(Cap);
+ 337              		.loc 1 53 0
+ 338 0080 41EC100B 		fmdrr	d0, r0, r1
+ 339 0084 FFF7FEFF 		bl	modulo
+ 340              	.LVL49:
+ 341 0088 55EC104B 		fmrrd	r4, r5, d0
+ 342              	.LVL50:
+  54:Src/assert.c  ****     
+  55:Src/assert.c  ****     if (Cap > PI/2 || Cap < -PI/2)
+ 343              		.loc 1 55 0
+ 344 008c 10EE100A 		fmrs	r0, s0	@ int
+ 345 0090 2946     		mov	r1, r5
+ 346 0092 1BA3     		adr	r3, .L18+8
+ 347 0094 D3E90023 		ldrd	r2, [r3]
+ARM GAS  /tmp/ccM7XPdD.s 			page 8
+
+
+ 348 0098 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 349              	.LVL51:
+ 350 009c 38B9     		cbnz	r0, .L14
+ 351              		.loc 1 55 0 is_stmt 0 discriminator 1
+ 352 009e 2046     		mov	r0, r4
+ 353 00a0 2946     		mov	r1, r5
+ 354 00a2 19A3     		adr	r3, .L18+16
+ 355 00a4 D3E90023 		ldrd	r2, [r3]
+ 356 00a8 FFF7FEFF 		bl	__aeabi_dcmplt
+ 357              	.LVL52:
+ 358 00ac 78B1     		cbz	r0, .L15
+ 359              	.L14:
+  56:Src/assert.c  ****     {
+  57:Src/assert.c  ****         Dist = -Dist;
+ 360              		.loc 1 57 0 is_stmt 1
+ 361 00ae 07F10043 		add	r3, r7, #-2147483648
+ 362 00b2 1F46     		mov	r7, r3
+ 363              	.LVL53:
+  58:Src/assert.c  ****         Cap += PI;
+ 364              		.loc 1 58 0
+ 365 00b4 2046     		mov	r0, r4
+ 366 00b6 2946     		mov	r1, r5
+ 367 00b8 15A3     		adr	r3, .L18+24
+ 368 00ba D3E90023 		ldrd	r2, [r3]
+ 369 00be FFF7FEFF 		bl	__aeabi_dadd
+ 370              	.LVL54:
+  59:Src/assert.c  ****         Cap = modulo(Cap);
+ 371              		.loc 1 59 0
+ 372 00c2 41EC100B 		fmdrr	d0, r0, r1
+ 373 00c6 FFF7FEFF 		bl	modulo
+ 374              	.LVL55:
+ 375 00ca 55EC104B 		fmrrd	r4, r5, d0
+ 376              	.LVL56:
+ 377              	.L15:
+  60:Src/assert.c  ****     }
+  61:Src/assert.c  ****     
+  62:Src/assert.c  ****     // RAMPES
+  63:Src/assert.c  ****     
+  64:Src/assert.c  ****     double Vrob = (oldDist-Dist)/dt;
+ 378              		.loc 1 64 0
+ 379 00ce DFF84880 		ldr	r8, .L18+32
+ 380              	.LVL57:
+  65:Src/assert.c  ****     
+  66:Src/assert.c  ****     double Dfrein = (Vrob*Vrob) / (2 * Afrein);
+  67:Src/assert.c  ****     if (Dist < Dfrein)
+  68:Src/assert.c  ****     {
+  69:Src/assert.c  ****         double Vconsigne = Vrob - (Afrein * dt);//Freinage !!!
+  70:Src/assert.c  ****     }
+  71:Src/assert.c  ****     else if (Vrob < Vmax)
+  72:Src/assert.c  ****     {
+  73:Src/assert.c  ****         double Vconsigne = Vrob + (Amax * dt); //Acceleration
+  74:Src/assert.c  ****     }
+  75:Src/assert.c  ****     else
+  76:Src/assert.c  ****     {
+  77:Src/assert.c  ****          double Vconsigne = Vmax;//full speed !!!
+  78:Src/assert.c  ****     }
+  79:Src/assert.c  ****     
+ARM GAS  /tmp/ccM7XPdD.s 			page 9
+
+
+  80:Src/assert.c  ****     //rampes for the angle ???
+  81:Src/assert.c  ****     double VCap = Cap*1;
+  82:Src/assert.c  ****     
+  83:Src/assert.c  ****     
+  84:Src/assert.c  ****     
+  85:Src/assert.c  ****     // PID
+  86:Src/assert.c  ****     //assert en vitesse ??
+  87:Src/assert.c  ****     double Erreur = Dist-oldDist;
+ 381              		.loc 1 87 0
+ 382 00d2 3046     		mov	r0, r6
+ 383 00d4 3946     		mov	r1, r7
+ 384 00d6 D8E90023 		ldrd	r2, [r8]
+ 385 00da FFF7FEFF 		bl	__aeabi_dsub
+ 386              	.LVL58:
+  88:Src/assert.c  ****     static double oldErreur = 0;
+  89:Src/assert.c  ****     double TargetDistance = Erreur * P + ( Erreur - oldErreur ) * D;
+  90:Src/assert.c  ****     
+  91:Src/assert.c  ****     
+  92:Src/assert.c  ****     
+  93:Src/assert.c  ****     oldErreur = Erreur;
+ 387              		.loc 1 93 0
+ 388 00de 064B     		ldr	r3, .L18
+ 389 00e0 C3E90001 		strd	r0, [r3]
+  94:Src/assert.c  ****     oldCap = Cap;
+ 390              		.loc 1 94 0
+ 391 00e4 054B     		ldr	r3, .L18+4
+ 392 00e6 C3E90045 		strd	r4, [r3]
+  95:Src/assert.c  ****     oldDist = Dist;
+ 393              		.loc 1 95 0
+ 394 00ea C8E90067 		strd	r6, [r8]
+ 395 00ee BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 396              	.LVL59:
+ 397              	.L19:
+ 398 00f2 00BFAFF3 		.align	3
+ 398      0080
+ 399              	.L18:
+ 400 00f8 00000000 		.word	.LANCHOR1
+ 401 00fc 00000000 		.word	.LANCHOR2
+ 402 0100 282D4454 		.word	1413754152
+ 403 0104 FB21F93F 		.word	1073291771
+ 404 0108 282D4454 		.word	1413754152
+ 405 010c FB21F9BF 		.word	-1074191877
+ 406 0110 282D4454 		.word	1413754152
+ 407 0114 FB210940 		.word	1074340347
+ 408 0118 00000000 		.word	.LANCHOR0
+ 409              		.cfi_endproc
+ 410              	.LFE125:
+ 412              		.section	.bss.oldErreur.7918,"aw",%nobits
+ 413              		.align	3
+ 414              		.set	.LANCHOR1,. + 0
+ 417              	oldErreur.7918:
+ 418 0000 00000000 		.space	8
+ 418      00000000 
+ 419              		.section	.bss.oldCap.7910,"aw",%nobits
+ 420              		.align	3
+ 421              		.set	.LANCHOR2,. + 0
+ 424              	oldCap.7910:
+ARM GAS  /tmp/ccM7XPdD.s 			page 10
+
+
+ 425 0000 00000000 		.space	8
+ 425      00000000 
+ 426              		.section	.bss.oldDist.7909,"aw",%nobits
+ 427              		.align	3
+ 428              		.set	.LANCHOR0,. + 0
+ 431              	oldDist.7909:
+ 432 0000 00000000 		.space	8
+ 432      00000000 
+ 433              		.text
+ 434              	.Letext0:
+ 435              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 436              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 437              		.file 4 "/usr/include/newlib/math.h"
+ 438              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ARM GAS  /tmp/ccM7XPdD.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 assert.c
+     /tmp/ccM7XPdD.s:25     .text.updatePos:0000000000000000 $t
+     /tmp/ccM7XPdD.s:30     .text.updatePos:0000000000000000 updatePos
+     /tmp/ccM7XPdD.s:155    .text.updatePos:00000000000000d8 $d
+     /tmp/ccM7XPdD.s:165    .text.modulo:0000000000000000 $t
+     /tmp/ccM7XPdD.s:170    .text.modulo:0000000000000000 modulo
+     /tmp/ccM7XPdD.s:240    .text.modulo:0000000000000058 $d
+     /tmp/ccM7XPdD.s:250    .text.PID:0000000000000000 $t
+     /tmp/ccM7XPdD.s:255    .text.PID:0000000000000000 PID
+     /tmp/ccM7XPdD.s:400    .text.PID:00000000000000f8 $d
+     /tmp/ccM7XPdD.s:413    .bss.oldErreur.7918:0000000000000000 $d
+     /tmp/ccM7XPdD.s:417    .bss.oldErreur.7918:0000000000000000 oldErreur.7918
+     /tmp/ccM7XPdD.s:420    .bss.oldCap.7910:0000000000000000 $d
+     /tmp/ccM7XPdD.s:424    .bss.oldCap.7910:0000000000000000 oldCap.7910
+     /tmp/ccM7XPdD.s:427    .bss.oldDist.7909:0000000000000000 $d
+     /tmp/ccM7XPdD.s:431    .bss.oldDist.7909:0000000000000000 oldDist.7909
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_ddiv
+__aeabi_dadd
+__aeabi_dmul
+cos
+sin
+__aeabi_dsub
+__aeabi_dcmpgt
+__aeabi_dcmplt
+sqrt
+atan
