@@ -53,7 +53,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define DEBUG 1
+
+#define DEBUG 1       //print all the debug info
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -91,6 +93,20 @@ void moteurGauche(int PWM);
 double positionX = 0.0;
 double positionY = 0.0;
 double angle = 0.0;
+
+int consigneDroit = 0;
+int consigneGauche = 0;
+
+int debugCounter = 0;
+
+int tim4Tot= 0;
+int tim5Tot=0;
+
+char buffer[50] = "";
+char buffer2[50] = "";
+
+int fixedFrequency = 2;//frequency of the loop in ms
+int debugMessageFrequency = 500;//in number of loop
 
 /* USER CODE END 0 */
 
@@ -139,83 +155,48 @@ int main(void)
 
   HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !", sizeof("Atttenzion, zest barti !"), HAL_MAX_DELAY);
   HAL_Delay(1000);
-  uint32_t oldTicks = HAL_GetTick();
-  int debug = 0;
-  char buffer[50] = "";
-  char buffer2[50] = "";
-  int tim4tot= 0;
-  int tim5tot=0;
-  int tim4 = 0;
-  int tim5 = 0;
-  int oldtim4err = 0;
-  int tim4err = 0;
+  uint32_t oldTicks = HAL_GetTick(); //init the time tracking variable for the fixed frequency PID 
+
+
+
+  //center the encoder values
   TIM4->CNT = 30000;
   TIM5->CNT = 30000;
-  int timeTracking = 0;
-  float P, I, D, consigne;
-  P=50;
-  I=0;
-  D=0;
-  moteurDroit(2000);
-  //moteurGauche(2000);
+
 
   while (1)
   {
-    while(HAL_GetTick() - oldTicks < 5)
+    while(HAL_GetTick() - oldTicks < fixedFrequency)
     {}
     oldTicks = HAL_GetTick();
-    tim4 = (TIM4->CNT-30000);
-    tim5 = -TIM5->CNT+30000;
+    int tim4 = (TIM4->CNT-30000);
+    int tim5 = -TIM5->CNT+30000;
     
     updatePos(tim4, tim5, &positionX, &positionY, &angle);
-    tim4tot += tim4;
-    tim5tot += tim5;
-
-    consigne = 50;
-    tim4err = consigne - tim5;
-    float blable = P*tim4err + D*(tim4err - oldtim4err);
-    moteurDroit(1500);
-    oldtim4err = tim4err;
+    tim4Tot += tim4;//for debug
+    tim5Tot += tim5;
     
+    stateMachine(&consigneDroit, &consigneGauche, positionX, positionY, angle, tim4, tim5);
+    
+    moteurGauche(consigneGauche);
+    moteurDroit(consigneDroit);
 
     
-    debug += 1;
+
+    
+    debugCounter += 1;
     if (DEBUG)
     {
-        if (debug == 100)
+        if (debugCounter == debugMessageFrequency)
         {
             //sprintf(buffer, "%d / %d / %d\n",(int)positionX, (int)positionY, (int)(angle*1000));
             //HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
-            sprintf(buffer2, "%d / %d / %d / %d\n",(int)tim4tot, (int)tim5tot, (int)blable, tim5);
+            sprintf(buffer2, "%d / %d / %d\n",(int)tim4Tot, (int)tim5Tot, tim5);
             HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), HAL_MAX_DELAY);
-            debug = 0;
+            debugCounter = 0;
         }
     }
-    
-    
-    
-    
-    
-    /*
-    if(timeTracking < 1000)
-    {	
-		sprintf(buffer2, "##############################################\n");
-		if (timeTracking ==1){ HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), HAL_MAX_DELAY);}
-        //moteurGauche(2000, 1);
-        //moteurDroit(2000, 1);
-    }
-    else
-    {
-		sprintf(buffer2, "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
-        if(timeTracking == 1000 ){ HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), HAL_MAX_DELAY);}
-        //moteurGauche(0, 1);
-        //moteurDroit(0, 1);
-    }
-    if (timeTracking > 3000)
-    {
-        timeTracking = 0;
-    }
-    timeTracking += 1;*/
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -545,9 +526,9 @@ void moteurDroit(int PWM)
     {
         HAL_GPIO_WritePin(DIR1_GPIO_Port, DIR1_Pin, GPIO_PIN_SET);
     }
-    if (abs(PWM) > 5000)
+    if (abs(PWM) > 10000)
     {
-		htim2.Instance->CCR2 = 5000;
+		htim2.Instance->CCR2 = 10000;
     }
     else 
     {
@@ -566,9 +547,9 @@ void moteurGauche(int PWM)
     {
         HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
     }
-    if (abs(PWM) > 5000)
+    if (abs(PWM) > 10000)
     {
-		htim3.Instance->CCR1 = 5000;
+		htim3.Instance->CCR1 = 10000;
     }
     else 
     {
