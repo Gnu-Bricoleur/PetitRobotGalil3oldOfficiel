@@ -88,6 +88,8 @@ void Error_Handler(void);
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define DebugTiming_Pin GPIO_PIN_4
+#define DebugTiming_GPIO_Port GPIOC
 #define DIR1_Pin GPIO_PIN_10
 #define DIR1_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
