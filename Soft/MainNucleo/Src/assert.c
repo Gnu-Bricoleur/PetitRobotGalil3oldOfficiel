@@ -11,9 +11,9 @@
 
 #define Kp_Angle 1000
 
-char consignes[] = {'M','E'};
-double val1[] = { 2000, 0 };
-double val2[] = { 0, 0 };
+char consignes[] = {'M','A','M', 'A', 'M','E'};
+double val1[] = { 10, 0.5, 10, -1.0,10, 0 };
+double val2[] = { 0, 0, 0 ,0, 0, 0 };
 
 int endOfMvt = 0;
 
@@ -44,6 +44,7 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
     {
         endOfMvt = 0;
         state += 1;
+        HAL_UART_Transmit(&huart2, "Fin de l'action\n", sizeof("Fin de l'action\n"), HAL_MAX_DELAY);
     }
     
     switch(consignes[state])
@@ -54,16 +55,45 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
 		//sprintf(buffer, " move %d / %d blbl\n",(int)val1[state], (int)val2[state]);
 		//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
         break;
+        
+      case 'A':
+		turn(consigneDroit, consigneGauche, positionX, positionY, angle, val1[state], val2[state], tim4, tim5, huart2);
+		break;
 
       case 'E':  //end of the match
-        HAL_UART_Transmit(&huart2, "Fin de match", sizeof("Fin de match"), HAL_MAX_DELAY);
+        HAL_UART_Transmit(&huart2, "Fin de match\n", sizeof("Fin de match\n"), HAL_MAX_DELAY);
         while(1){}
         break;
 }
 }
 
 
-
+void turn(int* consigneDroit, int* consigneGauche, double positionX, double positionY, double angle, double targetX, double targetY, int tim4, int tim5, UART_HandleTypeDef huart2)
+{
+	//char buffer[50] = "";
+	//sprintf(buffer, "%g / %g / %g\n",targetX, angle, absPerso(angle - targetX));
+	//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+	
+	if ( absPerso(angle) < absPerso(targetX))
+    {
+		if(targetX > 0)
+		{
+			*consigneGauche = 1000;
+			*consigneDroit = -1000;
+		}
+		else
+		{
+			*consigneGauche = -1000;
+			*consigneDroit = 1000;
+		}
+	}
+	else
+	{
+		*consigneGauche = 0;
+		*consigneDroit = 0;
+		endOfMvt = 1;
+    }
+}
 
 
 void move(int* consigneDroit, int* consigneGauche, double positionX, double positionY, double angle, double targetX, double targetY, int tim4, int tim5, UART_HandleTypeDef huart2)
@@ -74,6 +104,7 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
     static int oldErrorGauche = 0;
     static int errorSumGauche = 0;
     
+    
     if ((absPerso(positionX - targetX) < 50) && (absPerso(positionY - targetY) < 50))
     {
 		//char buffer[50] = "";
@@ -81,39 +112,43 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
 		//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
         isMvtDone += 1;
     }
-    if(isMvtDone > 500)
+    if(isMvtDone > 5)
     {
         isMvtDone = 0;
         endOfMvt = 1;
+        *consigneDroit = 0;
+        *consigneGauche = 0;
     }
-    
-    //No ramps for the time being :/ refer to MainNucleoOLD for implementation
-    
-    
-    //need to modify the target sppeed for positionning
-    int targetSpeed = 170; //tick per ms
-    
-    int errorDroite = targetSpeed - tim5;
-    errorSumDroite += errorDroite;
-    /*//circular buffer
-    int errorSumDroite = 0;
-    static int indexBuffer = 0;
-    static int circularBuffer[100] = {0};
-    for (int i = 0; i < 100; i++) {errorSumDroite += circularBuffer[i];}
-    circularBuffer[indexBuffer] = errorDroite;
-    indexBuffer += 1;
-    if(indexBuffer > 100){indexBuffer = 0;}
-    */
-    int errorVariationDroite = errorDroite - oldErrorDroite;
-    *consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariationDroite + Kp_Angle * angle;
-    oldErrorDroite = errorDroite;
-    
-    
-    int errorGauche = targetSpeed - tim4;
-    errorSumGauche += errorGauche;
-    int errorVariationGauche = errorGauche - oldErrorGauche;
-    *consigneGauche = Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVariationGauche - Kp_Angle * angle;
-    oldErrorGauche = errorGauche;
+    else
+    {
+		//No ramps for the time being :/ refer to MainNucleoOLD for implementation
+		
+		
+		//need to modify the target sppeed for positionning
+		int targetSpeed = 170; //tick per ms
+		
+		int errorDroite = targetSpeed - tim5;
+		errorSumDroite += errorDroite;
+		/*//circular buffer
+		int errorSumDroite = 0;
+		static int indexBuffer = 0;
+		static int circularBuffer[100] = {0};
+		for (int i = 0; i < 100; i++) {errorSumDroite += circularBuffer[i];}
+		circularBuffer[indexBuffer] = errorDroite;
+		indexBuffer += 1;
+		if(indexBuffer > 100){indexBuffer = 0;}
+		*/
+		int errorVariationDroite = errorDroite - oldErrorDroite;
+		*consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariationDroite + Kp_Angle * angle;
+		oldErrorDroite = errorDroite;
+		
+		
+		int errorGauche = targetSpeed - tim4;
+		errorSumGauche += errorGauche;
+		int errorVariationGauche = errorGauche - oldErrorGauche;
+		*consigneGauche = Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVariationGauche - Kp_Angle * angle;
+		oldErrorGauche = errorGauche;
+	}
     
 }
 

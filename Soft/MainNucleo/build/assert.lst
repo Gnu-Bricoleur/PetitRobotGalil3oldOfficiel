@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccb54Pgm.s 			page 1
+ARM GAS  /tmp/ccgp9pkP.s 			page 1
 
 
    1              		.syntax unified
@@ -45,9 +45,9 @@ ARM GAS  /tmp/ccb54Pgm.s 			page 1
   11:Src/assert.c  **** 
   12:Src/assert.c  **** #define Kp_Angle 1000
   13:Src/assert.c  **** 
-  14:Src/assert.c  **** char consignes[] = {'M','E'};
-  15:Src/assert.c  **** double val1[] = { 2000, 0 };
-  16:Src/assert.c  **** double val2[] = { 0, 0 };
+  14:Src/assert.c  **** char consignes[] = {'M','A','M', 'A', 'M','E'};
+  15:Src/assert.c  **** double val1[] = { 10, 0.5, 10, -1.0,10, 0 };
+  16:Src/assert.c  **** double val2[] = { 0, 0, 0 ,0, 0, 0 };
   17:Src/assert.c  **** 
   18:Src/assert.c  **** int endOfMvt = 0;
   19:Src/assert.c  **** 
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccb54Pgm.s 			page 1
   34              		.cfi_startproc
   35              		@ args = 4, pretend = 0, frame = 0
   36              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccb54Pgm.s 			page 2
+ARM GAS  /tmp/ccgp9pkP.s 			page 2
 
 
   37              	.LVL0:
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccb54Pgm.s 			page 1
   85 0050 FFF7FEFF 		bl	__aeabi_ddiv
   86              	.LVL7:
   87 0054 D9E90023 		ldrd	r2, [r9]
-ARM GAS  /tmp/ccb54Pgm.s 			page 3
+ARM GAS  /tmp/ccgp9pkP.s 			page 3
 
 
   88 0058 FFF7FEFF 		bl	__aeabi_dadd
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccb54Pgm.s 			page 1
  136 00bc FFF7FEFF 		bl	__aeabi_ddiv
  137              	.LVL18:
  138 00c0 0246     		mov	r2, r0
-ARM GAS  /tmp/ccb54Pgm.s 			page 4
+ARM GAS  /tmp/ccgp9pkP.s 			page 4
 
 
  139 00c2 0B46     		mov	r3, r1
@@ -210,7 +210,7 @@ ARM GAS  /tmp/ccb54Pgm.s 			page 1
  165              		.thumb
  166              		.thumb_func
  168              	absPerso:
- 169              	.LFB126:
+ 169              	.LFB127:
   36:Src/assert.c  **** 
   37:Src/assert.c  **** 
   38:Src/assert.c  **** 
@@ -222,88 +222,123 @@ ARM GAS  /tmp/ccb54Pgm.s 			page 1
   44:Src/assert.c  ****     {
   45:Src/assert.c  ****         endOfMvt = 0;
   46:Src/assert.c  ****         state += 1;
-  47:Src/assert.c  ****     }
-  48:Src/assert.c  ****     
-  49:Src/assert.c  ****     switch(consignes[state])
-  50:Src/assert.c  ****     {
-  51:Src/assert.c  ****       case 'M':
-  52:Src/assert.c  ****         move(consigneDroit, consigneGauche, positionX, positionY, angle, val1[state], val2[state], 
-  53:Src/assert.c  ****         //char buffer[50] = "";
-  54:Src/assert.c  **** 		//sprintf(buffer, " move %d / %d blbl\n",(int)val1[state], (int)val2[state]);
-  55:Src/assert.c  **** 		//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
-  56:Src/assert.c  ****         break;
-  57:Src/assert.c  **** 
-  58:Src/assert.c  ****       case 'E':  //end of the match
-  59:Src/assert.c  ****         HAL_UART_Transmit(&huart2, "Fin de match", sizeof("Fin de match"), HAL_MAX_DELAY);
-  60:Src/assert.c  ****         while(1){}
-  61:Src/assert.c  ****         break;
-  62:Src/assert.c  **** }
-ARM GAS  /tmp/ccb54Pgm.s 			page 5
+  47:Src/assert.c  ****         HAL_UART_Transmit(&huart2, "Fin de l'action\n", sizeof("Fin de l'action\n"), HAL_MAX_DELAY)
+  48:Src/assert.c  ****     }
+  49:Src/assert.c  ****     
+  50:Src/assert.c  ****     switch(consignes[state])
+  51:Src/assert.c  ****     {
+  52:Src/assert.c  ****       case 'M':
+  53:Src/assert.c  ****         move(consigneDroit, consigneGauche, positionX, positionY, angle, val1[state], val2[state], 
+  54:Src/assert.c  ****         //char buffer[50] = "";
+  55:Src/assert.c  **** 		//sprintf(buffer, " move %d / %d blbl\n",(int)val1[state], (int)val2[state]);
+  56:Src/assert.c  **** 		//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+  57:Src/assert.c  ****         break;
+  58:Src/assert.c  ****         
+  59:Src/assert.c  ****       case 'A':
+  60:Src/assert.c  **** 		turn(consigneDroit, consigneGauche, positionX, positionY, angle, val1[state], val2[state], tim4, 
+  61:Src/assert.c  **** 		break;
+  62:Src/assert.c  **** 
+ARM GAS  /tmp/ccgp9pkP.s 			page 5
 
 
-  63:Src/assert.c  **** }
-  64:Src/assert.c  **** 
-  65:Src/assert.c  **** 
-  66:Src/assert.c  **** 
-  67:Src/assert.c  **** 
-  68:Src/assert.c  **** 
-  69:Src/assert.c  **** void move(int* consigneDroit, int* consigneGauche, double positionX, double positionY, double angle
-  70:Src/assert.c  **** {
-  71:Src/assert.c  ****     static int isMvtDone = 0;
-  72:Src/assert.c  ****     static int oldErrorDroite = 0;
-  73:Src/assert.c  ****     static int errorSumDroite = 0;
-  74:Src/assert.c  ****     static int oldErrorGauche = 0;
-  75:Src/assert.c  ****     static int errorSumGauche = 0;
-  76:Src/assert.c  ****     
-  77:Src/assert.c  ****     if ((absPerso(positionX - targetX) < 50) && (absPerso(positionY - targetY) < 50))
+  63:Src/assert.c  ****       case 'E':  //end of the match
+  64:Src/assert.c  ****         HAL_UART_Transmit(&huart2, "Fin de match\n", sizeof("Fin de match\n"), HAL_MAX_DELAY);
+  65:Src/assert.c  ****         while(1){}
+  66:Src/assert.c  ****         break;
+  67:Src/assert.c  **** }
+  68:Src/assert.c  **** }
+  69:Src/assert.c  **** 
+  70:Src/assert.c  **** 
+  71:Src/assert.c  **** void turn(int* consigneDroit, int* consigneGauche, double positionX, double positionY, double angle
+  72:Src/assert.c  **** {
+  73:Src/assert.c  **** 	//char buffer[50] = "";
+  74:Src/assert.c  **** 	//sprintf(buffer, "%g / %g / %g\n",targetX, angle, absPerso(angle - targetX));
+  75:Src/assert.c  **** 	//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+  76:Src/assert.c  **** 	
+  77:Src/assert.c  **** 	if ( absPerso(angle) < absPerso(targetX))
   78:Src/assert.c  ****     {
-  79:Src/assert.c  **** 		//char buffer[50] = "";
-  80:Src/assert.c  **** 		//sprintf(buffer, "%d / %d\n",(int)targetX, (int)absPerso(positionY - targetY));
-  81:Src/assert.c  **** 		//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
-  82:Src/assert.c  ****         isMvtDone += 1;
-  83:Src/assert.c  ****     }
-  84:Src/assert.c  ****     if(isMvtDone > 500)
-  85:Src/assert.c  ****     {
-  86:Src/assert.c  ****         isMvtDone = 0;
-  87:Src/assert.c  ****         endOfMvt = 1;
-  88:Src/assert.c  ****     }
-  89:Src/assert.c  ****     
-  90:Src/assert.c  ****     //No ramps for the time being :/ refer to MainNucleoOLD for implementation
-  91:Src/assert.c  ****     
-  92:Src/assert.c  ****     
-  93:Src/assert.c  ****     //need to modify the target sppeed for positionning
-  94:Src/assert.c  ****     int targetSpeed = 170; //tick per ms
-  95:Src/assert.c  ****     
-  96:Src/assert.c  ****     int errorDroite = targetSpeed - tim5;
-  97:Src/assert.c  ****     errorSumDroite += errorDroite;
-  98:Src/assert.c  ****     /*//circular buffer
-  99:Src/assert.c  ****     int errorSumDroite = 0;
- 100:Src/assert.c  ****     static int indexBuffer = 0;
- 101:Src/assert.c  ****     static int circularBuffer[100] = {0};
- 102:Src/assert.c  ****     for (int i = 0; i < 100; i++) {errorSumDroite += circularBuffer[i];}
- 103:Src/assert.c  ****     circularBuffer[indexBuffer] = errorDroite;
- 104:Src/assert.c  ****     indexBuffer += 1;
- 105:Src/assert.c  ****     if(indexBuffer > 100){indexBuffer = 0;}
- 106:Src/assert.c  ****     */
- 107:Src/assert.c  ****     int errorVariationDroite = errorDroite - oldErrorDroite;
- 108:Src/assert.c  ****     *consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariat
- 109:Src/assert.c  ****     oldErrorDroite = errorDroite;
- 110:Src/assert.c  ****     
- 111:Src/assert.c  ****     
- 112:Src/assert.c  ****     int errorGauche = targetSpeed - tim4;
- 113:Src/assert.c  ****     errorSumGauche += errorGauche;
- 114:Src/assert.c  ****     int errorVariationGauche = errorGauche - oldErrorGauche;
- 115:Src/assert.c  ****     *consigneGauche = Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVaria
- 116:Src/assert.c  ****     oldErrorGauche = errorGauche;
- 117:Src/assert.c  ****     
- 118:Src/assert.c  **** }
- 119:Src/assert.c  **** 
-ARM GAS  /tmp/ccb54Pgm.s 			page 6
+  79:Src/assert.c  **** 		if(targetX > 0)
+  80:Src/assert.c  **** 		{
+  81:Src/assert.c  **** 			*consigneGauche = 1000;
+  82:Src/assert.c  **** 			*consigneDroit = -1000;
+  83:Src/assert.c  **** 		}
+  84:Src/assert.c  **** 		else
+  85:Src/assert.c  **** 		{
+  86:Src/assert.c  **** 			*consigneGauche = -1000;
+  87:Src/assert.c  **** 			*consigneDroit = 1000;
+  88:Src/assert.c  **** 		}
+  89:Src/assert.c  **** 	}
+  90:Src/assert.c  **** 	else
+  91:Src/assert.c  **** 	{
+  92:Src/assert.c  **** 		*consigneGauche = 0;
+  93:Src/assert.c  **** 		*consigneDroit = 0;
+  94:Src/assert.c  **** 		endOfMvt = 1;
+  95:Src/assert.c  ****     }
+  96:Src/assert.c  **** }
+  97:Src/assert.c  **** 
+  98:Src/assert.c  **** 
+  99:Src/assert.c  **** void move(int* consigneDroit, int* consigneGauche, double positionX, double positionY, double angle
+ 100:Src/assert.c  **** {
+ 101:Src/assert.c  ****     static int isMvtDone = 0;
+ 102:Src/assert.c  ****     static int oldErrorDroite = 0;
+ 103:Src/assert.c  ****     static int errorSumDroite = 0;
+ 104:Src/assert.c  ****     static int oldErrorGauche = 0;
+ 105:Src/assert.c  ****     static int errorSumGauche = 0;
+ 106:Src/assert.c  ****     
+ 107:Src/assert.c  ****     
+ 108:Src/assert.c  ****     if ((absPerso(positionX - targetX) < 50) && (absPerso(positionY - targetY) < 50))
+ 109:Src/assert.c  ****     {
+ 110:Src/assert.c  **** 		//char buffer[50] = "";
+ 111:Src/assert.c  **** 		//sprintf(buffer, "%d / %d\n",(int)targetX, (int)absPerso(positionY - targetY));
+ 112:Src/assert.c  **** 		//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+ 113:Src/assert.c  ****         isMvtDone += 1;
+ 114:Src/assert.c  ****     }
+ 115:Src/assert.c  ****     if(isMvtDone > 5)
+ 116:Src/assert.c  ****     {
+ 117:Src/assert.c  ****         isMvtDone = 0;
+ 118:Src/assert.c  ****         endOfMvt = 1;
+ 119:Src/assert.c  ****         *consigneDroit = 0;
+ARM GAS  /tmp/ccgp9pkP.s 			page 6
 
 
- 120:Src/assert.c  **** double absPerso(double x)
- 121:Src/assert.c  **** {
- 170              		.loc 1 121 0
+ 120:Src/assert.c  ****         *consigneGauche = 0;
+ 121:Src/assert.c  ****     }
+ 122:Src/assert.c  ****     else
+ 123:Src/assert.c  ****     {
+ 124:Src/assert.c  **** 		//No ramps for the time being :/ refer to MainNucleoOLD for implementation
+ 125:Src/assert.c  **** 		
+ 126:Src/assert.c  **** 		
+ 127:Src/assert.c  **** 		//need to modify the target sppeed for positionning
+ 128:Src/assert.c  **** 		int targetSpeed = 170; //tick per ms
+ 129:Src/assert.c  **** 		
+ 130:Src/assert.c  **** 		int errorDroite = targetSpeed - tim5;
+ 131:Src/assert.c  **** 		errorSumDroite += errorDroite;
+ 132:Src/assert.c  **** 		/*//circular buffer
+ 133:Src/assert.c  **** 		int errorSumDroite = 0;
+ 134:Src/assert.c  **** 		static int indexBuffer = 0;
+ 135:Src/assert.c  **** 		static int circularBuffer[100] = {0};
+ 136:Src/assert.c  **** 		for (int i = 0; i < 100; i++) {errorSumDroite += circularBuffer[i];}
+ 137:Src/assert.c  **** 		circularBuffer[indexBuffer] = errorDroite;
+ 138:Src/assert.c  **** 		indexBuffer += 1;
+ 139:Src/assert.c  **** 		if(indexBuffer > 100){indexBuffer = 0;}
+ 140:Src/assert.c  **** 		*/
+ 141:Src/assert.c  **** 		int errorVariationDroite = errorDroite - oldErrorDroite;
+ 142:Src/assert.c  **** 		*consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariatio
+ 143:Src/assert.c  **** 		oldErrorDroite = errorDroite;
+ 144:Src/assert.c  **** 		
+ 145:Src/assert.c  **** 		
+ 146:Src/assert.c  **** 		int errorGauche = targetSpeed - tim4;
+ 147:Src/assert.c  **** 		errorSumGauche += errorGauche;
+ 148:Src/assert.c  **** 		int errorVariationGauche = errorGauche - oldErrorGauche;
+ 149:Src/assert.c  **** 		*consigneGauche = Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVariati
+ 150:Src/assert.c  **** 		oldErrorGauche = errorGauche;
+ 151:Src/assert.c  **** 	}
+ 152:Src/assert.c  ****     
+ 153:Src/assert.c  **** }
+ 154:Src/assert.c  **** 
+ 155:Src/assert.c  **** double absPerso(double x)
+ 156:Src/assert.c  **** {
+ 170              		.loc 1 156 0
  171              		.cfi_startproc
  172              		@ args = 0, pretend = 0, frame = 0
  173              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -316,477 +351,716 @@ ARM GAS  /tmp/ccb54Pgm.s 			page 1
  180              		.cfi_offset 5, -8
  181              		.cfi_offset 14, -4
  182 0002 55EC104B 		fmrrd	r4, r5, d0
- 122:Src/assert.c  **** 	if(x < 0) x = -x; 
- 183              		.loc 1 122 0
+ 157:Src/assert.c  **** 	if(x < 0) x = -x; 
+ 183              		.loc 1 157 0
  184 0006 10EE100A 		fmrs	r0, s0	@ int
  185 000a 2946     		mov	r1, r5
  186 000c 0022     		movs	r2, #0
  187 000e 0023     		movs	r3, #0
  188 0010 FFF7FEFF 		bl	__aeabi_dcmplt
+ARM GAS  /tmp/ccgp9pkP.s 			page 7
+
+
  189              	.LVL22:
  190 0014 10B1     		cbz	r0, .L6
- 191              		.loc 1 122 0 is_stmt 0 discriminator 1
+ 191              		.loc 1 157 0 is_stmt 0 discriminator 1
  192 0016 05F10043 		add	r3, r5, #-2147483648
  193 001a 1D46     		mov	r5, r3
  194              	.LVL23:
  195              	.L6:
- 123:Src/assert.c  **** 	return x;
- 124:Src/assert.c  **** }
- 196              		.loc 1 124 0 is_stmt 1
+ 158:Src/assert.c  **** 	return x;
+ 159:Src/assert.c  **** }
+ 196              		.loc 1 159 0 is_stmt 1
  197 001c 45EC104B 		fmdrr	d0, r4, r5
  198 0020 38BD     		pop	{r3, r4, r5, pc}
  199              		.cfi_endproc
- 200              	.LFE126:
- 202              		.global	__aeabi_dsub
- 203              		.global	__aeabi_i2d
- 204              		.global	__aeabi_d2iz
- 205 0022 00BF     		.section	.text.move,"ax",%progbits
- 206              		.align	2
- 207              		.global	move
- 208              		.thumb
- 209              		.thumb_func
- 211              	move:
- 212              	.LFB125:
-  70:Src/assert.c  ****     static int isMvtDone = 0;
- 213              		.loc 1 70 0
- 214              		.cfi_startproc
- 215              		@ args = 64, pretend = 0, frame = 0
- 216              		@ frame_needed = 0, uses_anonymous_args = 0
- 217              	.LVL24:
- 218 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 219              	.LCFI4:
- 220              		.cfi_def_cfa_offset 32
- 221              		.cfi_offset 4, -32
- 222              		.cfi_offset 5, -28
-ARM GAS  /tmp/ccb54Pgm.s 			page 7
-
-
- 223              		.cfi_offset 6, -24
- 224              		.cfi_offset 7, -20
- 225              		.cfi_offset 8, -16
- 226              		.cfi_offset 9, -12
- 227              		.cfi_offset 10, -8
- 228              		.cfi_offset 14, -4
- 229 0004 2DED048B 		fstmfdd	sp!, {d8, d9}
- 230              	.LCFI5:
- 231              		.cfi_def_cfa_offset 48
- 232              		.cfi_offset 80, -48
- 233              		.cfi_offset 81, -44
- 234              		.cfi_offset 82, -40
- 235              		.cfi_offset 83, -36
- 236 0008 8246     		mov	r10, r0
- 237 000a 8846     		mov	r8, r1
- 238 000c B0EE419A 		fcpys	s18, s2
- 239 0010 F0EE619A 		fcpys	s19, s3
- 240 0014 57EC126B 		fmrrd	r6, r7, d2
- 241 0018 B0EE448A 		fcpys	s16, s8
- 242 001c F0EE648A 		fcpys	s17, s9
- 243 0020 1546     		mov	r5, r2
- 244 0022 1C46     		mov	r4, r3
+ 200              	.LFE127:
+ 202              		.global	__aeabi_dcmpgt
+ 203 0022 00BF     		.section	.text.turn,"ax",%progbits
+ 204              		.align	2
+ 205              		.global	turn
+ 206              		.thumb
+ 207              		.thumb_func
+ 209              	turn:
+ 210              	.LFB125:
+  72:Src/assert.c  **** 	//char buffer[50] = "";
+ 211              		.loc 1 72 0
+ 212              		.cfi_startproc
+ 213              		@ args = 64, pretend = 0, frame = 0
+ 214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215              	.LVL24:
+ 216 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 217              	.LCFI4:
+ 218              		.cfi_def_cfa_offset 24
+ 219              		.cfi_offset 3, -24
+ 220              		.cfi_offset 4, -20
+ 221              		.cfi_offset 5, -16
+ 222              		.cfi_offset 6, -12
+ 223              		.cfi_offset 7, -8
+ 224              		.cfi_offset 14, -4
+ 225 0002 2DED028B 		fstmfdd	sp!, {d8}
+ 226              	.LCFI5:
+ 227              		.cfi_def_cfa_offset 32
+ 228              		.cfi_offset 80, -32
+ 229              		.cfi_offset 81, -28
+ 230 0006 0446     		mov	r4, r0
+ 231 0008 0D46     		mov	r5, r1
+ 232 000a B0EE438A 		fcpys	s16, s6
+ 233 000e F0EE638A 		fcpys	s17, s7
   77:Src/assert.c  ****     {
- 245              		.loc 1 77 0
- 246 0024 51EC100B 		fmrrd	r0, r1, d0
- 247              	.LVL25:
- 248 0028 53EC132B 		fmrrd	r2, r3, d3
- 249              	.LVL26:
- 250 002c FFF7FEFF 		bl	__aeabi_dsub
- 251              	.LVL27:
- 252 0030 41EC100B 		fmdrr	d0, r0, r1
- 253 0034 FFF7FEFF 		bl	absPerso
- 254              	.LVL28:
- 255 0038 51EC100B 		fmrrd	r0, r1, d0
- 256 003c 0022     		movs	r2, #0
- 257 003e 2E4B     		ldr	r3, .L18
- 258 0040 FFF7FEFF 		bl	__aeabi_dcmplt
- 259              	.LVL29:
- 260 0044 A0B1     		cbz	r0, .L11
-  77:Src/assert.c  ****     {
- 261              		.loc 1 77 0 is_stmt 0 discriminator 1
- 262 0046 51EC190B 		fmrrd	r0, r1, d9
- 263 004a 53EC182B 		fmrrd	r2, r3, d8
- 264 004e FFF7FEFF 		bl	__aeabi_dsub
- 265              	.LVL30:
- 266 0052 41EC100B 		fmdrr	d0, r0, r1
- 267 0056 FFF7FEFF 		bl	absPerso
- 268              	.LVL31:
- 269 005a 51EC100B 		fmrrd	r0, r1, d0
- 270 005e 0022     		movs	r2, #0
- 271 0060 254B     		ldr	r3, .L18
- 272 0062 FFF7FEFF 		bl	__aeabi_dcmplt
- 273              	.LVL32:
- 274 0066 18B1     		cbz	r0, .L11
-  82:Src/assert.c  ****     }
- 275              		.loc 1 82 0 is_stmt 1
- 276 0068 244A     		ldr	r2, .L18+4
-ARM GAS  /tmp/ccb54Pgm.s 			page 8
+ 234              		.loc 1 77 0
+ 235 0012 B0EE420A 		fcpys	s0, s4
+ 236 0016 F0EE620A 		fcpys	s1, s5
+ 237              	.LVL25:
+ 238 001a FFF7FEFF 		bl	absPerso
+ 239              	.LVL26:
+ 240 001e 57EC106B 		fmrrd	r6, r7, d0
+ 241 0022 B0EE480A 		fcpys	s0, s16
+ 242 0026 F0EE680A 		fcpys	s1, s17
+ 243 002a FFF7FEFF 		bl	absPerso
+ARM GAS  /tmp/ccgp9pkP.s 			page 8
 
 
- 277 006a 1368     		ldr	r3, [r2]
- 278 006c 0133     		adds	r3, r3, #1
- 279 006e 1360     		str	r3, [r2]
- 280              	.L11:
-  84:Src/assert.c  ****     {
- 281              		.loc 1 84 0
- 282 0070 224B     		ldr	r3, .L18+4
- 283 0072 1B68     		ldr	r3, [r3]
- 284 0074 B3F5FA7F 		cmp	r3, #500
- 285 0078 05DD     		ble	.L14
-  86:Src/assert.c  ****         endOfMvt = 1;
- 286              		.loc 1 86 0
- 287 007a 0022     		movs	r2, #0
- 288 007c 1F4B     		ldr	r3, .L18+4
- 289 007e 1A60     		str	r2, [r3]
-  87:Src/assert.c  ****     }
- 290              		.loc 1 87 0
- 291 0080 0122     		movs	r2, #1
- 292 0082 1F4B     		ldr	r3, .L18+8
- 293 0084 1A60     		str	r2, [r3]
- 294              	.L14:
- 295              	.LVL33:
-  96:Src/assert.c  ****     errorSumDroite += errorDroite;
- 296              		.loc 1 96 0
- 297 0086 C4F1AA04 		rsb	r4, r4, #170
- 298              	.LVL34:
-  97:Src/assert.c  ****     /*//circular buffer
- 299              		.loc 1 97 0
- 300 008a 1E4A     		ldr	r2, .L18+12
- 301 008c 1368     		ldr	r3, [r2]
- 302 008e 2344     		add	r3, r3, r4
- 303 0090 1360     		str	r3, [r2]
- 304              	.LVL35:
- 108:Src/assert.c  ****     oldErrorDroite = errorDroite;
- 305              		.loc 1 108 0
- 306 0092 04EB8409 		add	r9, r4, r4, lsl #2
- 307 0096 4FEA4909 		lsl	r9, r9, #1
- 308 009a 3046     		mov	r0, r6
- 309 009c 3946     		mov	r1, r7
- 310 009e 0022     		movs	r2, #0
- 311 00a0 194B     		ldr	r3, .L18+16
- 312 00a2 FFF7FEFF 		bl	__aeabi_dmul
- 313              	.LVL36:
- 314 00a6 0646     		mov	r6, r0
- 315              	.LVL37:
- 316 00a8 0F46     		mov	r7, r1
- 317 00aa 4846     		mov	r0, r9
- 318 00ac FFF7FEFF 		bl	__aeabi_i2d
- 319              	.LVL38:
- 320 00b0 3246     		mov	r2, r6
- 321 00b2 3B46     		mov	r3, r7
- 322 00b4 FFF7FEFF 		bl	__aeabi_dadd
- 323              	.LVL39:
- 324 00b8 FFF7FEFF 		bl	__aeabi_d2iz
- 325              	.LVL40:
- 326 00bc CAF80000 		str	r0, [r10]
- 109:Src/assert.c  ****     
-ARM GAS  /tmp/ccb54Pgm.s 			page 9
+ 244              	.LVL27:
+ 245 002e 3046     		mov	r0, r6
+ 246 0030 3946     		mov	r1, r7
+ 247 0032 53EC102B 		fmrrd	r2, r3, d0
+ 248 0036 FFF7FEFF 		bl	__aeabi_dcmplt
+ 249              	.LVL28:
+ 250 003a 98B1     		cbz	r0, .L18
+  79:Src/assert.c  **** 		{
+ 251              		.loc 1 79 0
+ 252 003c 51EC180B 		fmrrd	r0, r1, d8
+ 253 0040 0022     		movs	r2, #0
+ 254 0042 0023     		movs	r3, #0
+ 255 0044 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 256              	.LVL29:
+ 257 0048 30B1     		cbz	r0, .L19
+  81:Src/assert.c  **** 			*consigneDroit = -1000;
+ 258              		.loc 1 81 0
+ 259 004a 4FF47A73 		mov	r3, #1000
+ 260 004e 2B60     		str	r3, [r5]
+  82:Src/assert.c  **** 		}
+ 261              		.loc 1 82 0
+ 262 0050 A3F5FA63 		sub	r3, r3, #2000
+ 263 0054 2360     		str	r3, [r4]
+ 264 0056 0BE0     		b	.L10
+ 265              	.L19:
+  86:Src/assert.c  **** 			*consigneDroit = 1000;
+ 266              		.loc 1 86 0
+ 267 0058 074B     		ldr	r3, .L21
+ 268 005a 2B60     		str	r3, [r5]
+  87:Src/assert.c  **** 		}
+ 269              		.loc 1 87 0
+ 270 005c 4FF47A73 		mov	r3, #1000
+ 271 0060 2360     		str	r3, [r4]
+ 272 0062 05E0     		b	.L10
+ 273              	.L18:
+  92:Src/assert.c  **** 		*consigneDroit = 0;
+ 274              		.loc 1 92 0
+ 275 0064 0023     		movs	r3, #0
+ 276 0066 2B60     		str	r3, [r5]
+  93:Src/assert.c  **** 		endOfMvt = 1;
+ 277              		.loc 1 93 0
+ 278 0068 2360     		str	r3, [r4]
+  94:Src/assert.c  ****     }
+ 279              		.loc 1 94 0
+ 280 006a 0122     		movs	r2, #1
+ 281 006c 034B     		ldr	r3, .L21+4
+ 282 006e 1A60     		str	r2, [r3]
+ 283              	.L10:
+  96:Src/assert.c  **** 
+ 284              		.loc 1 96 0
+ 285 0070 BDEC028B 		fldmfdd	sp!, {d8}
+ 286              	.LCFI6:
+ 287              		.cfi_restore 80
+ 288              		.cfi_restore 81
+ 289              		.cfi_def_cfa_offset 24
+ 290              	.LVL30:
+ 291 0074 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ARM GAS  /tmp/ccgp9pkP.s 			page 9
 
 
- 327              		.loc 1 109 0
- 328 00c0 124B     		ldr	r3, .L18+20
- 329 00c2 1C60     		str	r4, [r3]
- 112:Src/assert.c  ****     errorSumGauche += errorGauche;
- 330              		.loc 1 112 0
- 331 00c4 C5F1AA04 		rsb	r4, r5, #170
- 332              	.LVL41:
- 113:Src/assert.c  ****     int errorVariationGauche = errorGauche - oldErrorGauche;
- 333              		.loc 1 113 0
- 334 00c8 114A     		ldr	r2, .L18+24
- 335 00ca 1368     		ldr	r3, [r2]
- 336 00cc 2344     		add	r3, r3, r4
- 337 00ce 1360     		str	r3, [r2]
- 338              	.LVL42:
- 115:Src/assert.c  ****     oldErrorGauche = errorGauche;
- 339              		.loc 1 115 0
- 340 00d0 04EB8400 		add	r0, r4, r4, lsl #2
- 341 00d4 4000     		lsls	r0, r0, #1
- 342 00d6 FFF7FEFF 		bl	__aeabi_i2d
- 343              	.LVL43:
- 344 00da 3246     		mov	r2, r6
- 345 00dc 3B46     		mov	r3, r7
- 346 00de FFF7FEFF 		bl	__aeabi_dsub
- 347              	.LVL44:
- 348 00e2 FFF7FEFF 		bl	__aeabi_d2iz
- 349              	.LVL45:
- 350 00e6 C8F80000 		str	r0, [r8]
- 116:Src/assert.c  ****     
- 351              		.loc 1 116 0
- 352 00ea 0A4B     		ldr	r3, .L18+28
- 353 00ec 1C60     		str	r4, [r3]
- 118:Src/assert.c  **** 
- 354              		.loc 1 118 0
- 355 00ee BDEC048B 		fldmfdd	sp!, {d8-d9}
- 356              	.LCFI6:
- 357              		.cfi_restore 82
- 358              		.cfi_restore 83
- 359              		.cfi_restore 80
- 360              		.cfi_restore 81
- 361              		.cfi_def_cfa_offset 32
- 362              	.LVL46:
- 363 00f2 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
- 364              	.LVL47:
- 365              	.L19:
- 366 00f6 00BF     		.align	2
- 367              	.L18:
- 368 00f8 00004940 		.word	1078525952
- 369 00fc 00000000 		.word	.LANCHOR0
- 370 0100 00000000 		.word	.LANCHOR1
- 371 0104 00000000 		.word	.LANCHOR2
- 372 0108 00408F40 		.word	1083129856
- 373 010c 00000000 		.word	.LANCHOR3
- 374 0110 00000000 		.word	.LANCHOR4
- 375 0114 00000000 		.word	.LANCHOR5
- 376              		.cfi_endproc
- 377              	.LFE125:
- 379              		.section	.text.stateMachine,"ax",%progbits
-ARM GAS  /tmp/ccb54Pgm.s 			page 10
+ 292              	.LVL31:
+ 293              	.L22:
+ 294 0076 00BF     		.align	2
+ 295              	.L21:
+ 296 0078 18FCFFFF 		.word	-1000
+ 297 007c 00000000 		.word	.LANCHOR0
+ 298              		.cfi_endproc
+ 299              	.LFE125:
+ 301              		.global	__aeabi_dsub
+ 302              		.global	__aeabi_i2d
+ 303              		.global	__aeabi_d2iz
+ 304              		.section	.text.move,"ax",%progbits
+ 305              		.align	2
+ 306              		.global	move
+ 307              		.thumb
+ 308              		.thumb_func
+ 310              	move:
+ 311              	.LFB126:
+ 100:Src/assert.c  ****     static int isMvtDone = 0;
+ 312              		.loc 1 100 0
+ 313              		.cfi_startproc
+ 314              		@ args = 64, pretend = 0, frame = 0
+ 315              		@ frame_needed = 0, uses_anonymous_args = 0
+ 316              	.LVL32:
+ 317 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 318              	.LCFI7:
+ 319              		.cfi_def_cfa_offset 32
+ 320              		.cfi_offset 4, -32
+ 321              		.cfi_offset 5, -28
+ 322              		.cfi_offset 6, -24
+ 323              		.cfi_offset 7, -20
+ 324              		.cfi_offset 8, -16
+ 325              		.cfi_offset 9, -12
+ 326              		.cfi_offset 10, -8
+ 327              		.cfi_offset 14, -4
+ 328 0004 2DED068B 		fstmfdd	sp!, {d8, d9, d10}
+ 329              	.LCFI8:
+ 330              		.cfi_def_cfa_offset 56
+ 331              		.cfi_offset 80, -56
+ 332              		.cfi_offset 81, -52
+ 333              		.cfi_offset 82, -48
+ 334              		.cfi_offset 83, -44
+ 335              		.cfi_offset 84, -40
+ 336              		.cfi_offset 85, -36
+ 337 0008 8246     		mov	r10, r0
+ 338 000a 8846     		mov	r8, r1
+ 339 000c B0EE41AA 		fcpys	s20, s2
+ 340 0010 F0EE61AA 		fcpys	s21, s3
+ 341 0014 B0EE428A 		fcpys	s16, s4
+ 342 0018 F0EE628A 		fcpys	s17, s5
+ 343 001c B0EE449A 		fcpys	s18, s8
+ 344 0020 F0EE649A 		fcpys	s19, s9
+ 345 0024 1546     		mov	r5, r2
+ 346 0026 1C46     		mov	r4, r3
+ 108:Src/assert.c  ****     {
+ 347              		.loc 1 108 0
+ 348 0028 51EC100B 		fmrrd	r0, r1, d0
+ARM GAS  /tmp/ccgp9pkP.s 			page 10
 
 
- 380              		.align	2
- 381              		.global	stateMachine
- 382              		.thumb
- 383              		.thumb_func
- 385              	stateMachine:
- 386              	.LFB124:
-  40:Src/assert.c  ****     static int state = 0;
- 387              		.loc 1 40 0
- 388              		.cfi_startproc
- 389              		@ args = 64, pretend = 0, frame = 0
- 390              		@ frame_needed = 0, uses_anonymous_args = 0
- 391              	.LVL48:
- 392 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 393              	.LCFI7:
- 394              		.cfi_def_cfa_offset 20
- 395              		.cfi_offset 4, -20
- 396              		.cfi_offset 5, -16
- 397              		.cfi_offset 6, -12
- 398              		.cfi_offset 7, -8
- 399              		.cfi_offset 14, -4
- 400 0002 91B0     		sub	sp, sp, #68
- 401              	.LCFI8:
- 402              		.cfi_def_cfa_offset 88
- 403 0004 8446     		mov	ip, r0
- 404 0006 8E46     		mov	lr, r1
- 405 0008 1746     		mov	r7, r2
- 406 000a 1E46     		mov	r6, r3
-  43:Src/assert.c  ****     {
- 407              		.loc 1 43 0
- 408 000c 1C4B     		ldr	r3, .L27
- 409              	.LVL49:
- 410 000e 1B68     		ldr	r3, [r3]
- 411 0010 012B     		cmp	r3, #1
- 412 0012 06D1     		bne	.L21
-  45:Src/assert.c  ****         state += 1;
- 413              		.loc 1 45 0
- 414 0014 0022     		movs	r2, #0
- 415              	.LVL50:
- 416 0016 1A4B     		ldr	r3, .L27
- 417 0018 1A60     		str	r2, [r3]
-  46:Src/assert.c  ****     }
- 418              		.loc 1 46 0
- 419 001a 1A4A     		ldr	r2, .L27+4
- 420 001c 1368     		ldr	r3, [r2]
- 421 001e 0133     		adds	r3, r3, #1
- 422 0020 1360     		str	r3, [r2]
- 423              	.L21:
-  49:Src/assert.c  ****     {
- 424              		.loc 1 49 0
- 425 0022 184B     		ldr	r3, .L27+4
- 426 0024 1B68     		ldr	r3, [r3]
- 427 0026 184A     		ldr	r2, .L27+8
- 428 0028 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
- 429 002a 452A     		cmp	r2, #69
- 430 002c 1DD0     		beq	.L23
- 431 002e 4D2A     		cmp	r2, #77
- 432 0030 23D1     		bne	.L20
-ARM GAS  /tmp/ccb54Pgm.s 			page 11
+ 349              	.LVL33:
+ 350 002c 53EC132B 		fmrrd	r2, r3, d3
+ 351              	.LVL34:
+ 352 0030 FFF7FEFF 		bl	__aeabi_dsub
+ 353              	.LVL35:
+ 354 0034 41EC100B 		fmdrr	d0, r0, r1
+ 355 0038 FFF7FEFF 		bl	absPerso
+ 356              	.LVL36:
+ 357 003c 51EC100B 		fmrrd	r0, r1, d0
+ 358 0040 0022     		movs	r2, #0
+ 359 0042 304B     		ldr	r3, .L32
+ 360 0044 FFF7FEFF 		bl	__aeabi_dcmplt
+ 361              	.LVL37:
+ 362 0048 A0B1     		cbz	r0, .L24
+ 108:Src/assert.c  ****     {
+ 363              		.loc 1 108 0 is_stmt 0 discriminator 1
+ 364 004a 51EC1A0B 		fmrrd	r0, r1, d10
+ 365 004e 53EC192B 		fmrrd	r2, r3, d9
+ 366 0052 FFF7FEFF 		bl	__aeabi_dsub
+ 367              	.LVL38:
+ 368 0056 41EC100B 		fmdrr	d0, r0, r1
+ 369 005a FFF7FEFF 		bl	absPerso
+ 370              	.LVL39:
+ 371 005e 51EC100B 		fmrrd	r0, r1, d0
+ 372 0062 0022     		movs	r2, #0
+ 373 0064 274B     		ldr	r3, .L32
+ 374 0066 FFF7FEFF 		bl	__aeabi_dcmplt
+ 375              	.LVL40:
+ 376 006a 18B1     		cbz	r0, .L24
+ 113:Src/assert.c  ****     }
+ 377              		.loc 1 113 0 is_stmt 1
+ 378 006c 264A     		ldr	r2, .L32+4
+ 379 006e 1368     		ldr	r3, [r2]
+ 380 0070 0133     		adds	r3, r3, #1
+ 381 0072 1360     		str	r3, [r2]
+ 382              	.L24:
+ 115:Src/assert.c  ****     {
+ 383              		.loc 1 115 0
+ 384 0074 244B     		ldr	r3, .L32+4
+ 385 0076 1B68     		ldr	r3, [r3]
+ 386 0078 052B     		cmp	r3, #5
+ 387 007a 0ADD     		ble	.L27
+ 117:Src/assert.c  ****         endOfMvt = 1;
+ 388              		.loc 1 117 0
+ 389 007c 0023     		movs	r3, #0
+ 390 007e 224A     		ldr	r2, .L32+4
+ 391 0080 1360     		str	r3, [r2]
+ 118:Src/assert.c  ****         *consigneDroit = 0;
+ 392              		.loc 1 118 0
+ 393 0082 0121     		movs	r1, #1
+ 394 0084 214A     		ldr	r2, .L32+8
+ 395 0086 1160     		str	r1, [r2]
+ 119:Src/assert.c  ****         *consigneGauche = 0;
+ 396              		.loc 1 119 0
+ 397 0088 CAF80030 		str	r3, [r10]
+ 120:Src/assert.c  ****     }
+ 398              		.loc 1 120 0
+ARM GAS  /tmp/ccgp9pkP.s 			page 11
 
 
-  52:Src/assert.c  ****         //char buffer[50] = "";
- 433              		.loc 1 52 0
- 434 0032 DB00     		lsls	r3, r3, #3
- 435 0034 154A     		ldr	r2, .L27+12
- 436 0036 1A44     		add	r2, r2, r3
- 437 0038 92ED003B 		fldd	d3, [r2]
- 438 003c 144A     		ldr	r2, .L27+16
- 439 003e 1344     		add	r3, r3, r2
- 440 0040 93ED004B 		fldd	d4, [r3]
- 441 0044 6C46     		mov	r4, sp
- 442 0046 16AD     		add	r5, sp, #88
- 443 0048 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
- 444              	.LVL51:
- 445 004a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
- 446 004c 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
- 447 004e 0FC4     		stmia	r4!, {r0, r1, r2, r3}
- 448 0050 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
- 449 0052 0FC4     		stmia	r4!, {r0, r1, r2, r3}
- 450 0054 95E80F00 		ldmia	r5, {r0, r1, r2, r3}
- 451 0058 84E80F00 		stmia	r4, {r0, r1, r2, r3}
- 452 005c 6046     		mov	r0, ip
- 453 005e 7146     		mov	r1, lr
- 454 0060 3A46     		mov	r2, r7
- 455 0062 3346     		mov	r3, r6
- 456 0064 FFF7FEFF 		bl	move
- 457              	.LVL52:
-  56:Src/assert.c  **** 
- 458              		.loc 1 56 0
- 459 0068 07E0     		b	.L20
+ 399 008c C8F80030 		str	r3, [r8]
+ 400 0090 33E0     		b	.L23
+ 401              	.L27:
+ 402              	.LVL41:
+ 403              	.LBB2:
+ 130:Src/assert.c  **** 		errorSumDroite += errorDroite;
+ 404              		.loc 1 130 0
+ 405 0092 C4F1AA04 		rsb	r4, r4, #170
+ 406              	.LVL42:
+ 131:Src/assert.c  **** 		/*//circular buffer
+ 407              		.loc 1 131 0
+ 408 0096 1E4A     		ldr	r2, .L32+12
+ 409 0098 1368     		ldr	r3, [r2]
+ 410 009a 2344     		add	r3, r3, r4
+ 411 009c 1360     		str	r3, [r2]
+ 412              	.LVL43:
+ 142:Src/assert.c  **** 		oldErrorDroite = errorDroite;
+ 413              		.loc 1 142 0
+ 414 009e 04EB8409 		add	r9, r4, r4, lsl #2
+ 415 00a2 4FEA4909 		lsl	r9, r9, #1
+ 416 00a6 51EC180B 		fmrrd	r0, r1, d8
+ 417 00aa 0022     		movs	r2, #0
+ 418 00ac 194B     		ldr	r3, .L32+16
+ 419 00ae FFF7FEFF 		bl	__aeabi_dmul
+ 420              	.LVL44:
+ 421 00b2 0646     		mov	r6, r0
+ 422 00b4 0F46     		mov	r7, r1
+ 423 00b6 4846     		mov	r0, r9
+ 424 00b8 FFF7FEFF 		bl	__aeabi_i2d
+ 425              	.LVL45:
+ 426 00bc 3246     		mov	r2, r6
+ 427 00be 3B46     		mov	r3, r7
+ 428 00c0 FFF7FEFF 		bl	__aeabi_dadd
+ 429              	.LVL46:
+ 430 00c4 FFF7FEFF 		bl	__aeabi_d2iz
+ 431              	.LVL47:
+ 432 00c8 CAF80000 		str	r0, [r10]
+ 143:Src/assert.c  **** 		
+ 433              		.loc 1 143 0
+ 434 00cc 124B     		ldr	r3, .L32+20
+ 435 00ce 1C60     		str	r4, [r3]
+ 146:Src/assert.c  **** 		errorSumGauche += errorGauche;
+ 436              		.loc 1 146 0
+ 437 00d0 C5F1AA04 		rsb	r4, r5, #170
+ 438              	.LVL48:
+ 147:Src/assert.c  **** 		int errorVariationGauche = errorGauche - oldErrorGauche;
+ 439              		.loc 1 147 0
+ 440 00d4 114A     		ldr	r2, .L32+24
+ 441 00d6 1368     		ldr	r3, [r2]
+ 442 00d8 2344     		add	r3, r3, r4
+ 443 00da 1360     		str	r3, [r2]
+ 444              	.LVL49:
+ 149:Src/assert.c  **** 		oldErrorGauche = errorGauche;
+ 445              		.loc 1 149 0
+ 446 00dc 04EB8400 		add	r0, r4, r4, lsl #2
+ 447 00e0 4000     		lsls	r0, r0, #1
+ 448 00e2 FFF7FEFF 		bl	__aeabi_i2d
+ARM GAS  /tmp/ccgp9pkP.s 			page 12
+
+
+ 449              	.LVL50:
+ 450 00e6 3246     		mov	r2, r6
+ 451 00e8 3B46     		mov	r3, r7
+ 452 00ea FFF7FEFF 		bl	__aeabi_dsub
+ 453              	.LVL51:
+ 454 00ee FFF7FEFF 		bl	__aeabi_d2iz
+ 455              	.LVL52:
+ 456 00f2 C8F80000 		str	r0, [r8]
+ 150:Src/assert.c  **** 	}
+ 457              		.loc 1 150 0
+ 458 00f6 0A4B     		ldr	r3, .L32+28
+ 459 00f8 1C60     		str	r4, [r3]
  460              	.LVL53:
  461              	.L23:
-  59:Src/assert.c  ****         while(1){}
- 462              		.loc 1 59 0
- 463 006a 16A8     		add	r0, sp, #88
- 464              	.LVL54:
- 465 006c 0949     		ldr	r1, .L27+20
- 466              	.LVL55:
- 467 006e 0D22     		movs	r2, #13
- 468 0070 4FF0FF33 		mov	r3, #-1
- 469 0074 FFF7FEFF 		bl	HAL_UART_Transmit
- 470              	.LVL56:
- 471              	.L25:
-  60:Src/assert.c  ****         break;
- 472              		.loc 1 60 0 discriminator 1
- 473 0078 FEE7     		b	.L25
- 474              	.L20:
-  63:Src/assert.c  **** 
- 475              		.loc 1 63 0
- 476 007a 11B0     		add	sp, sp, #68
- 477              	.LCFI9:
- 478              		.cfi_def_cfa_offset 20
- 479              		@ sp needed
- 480 007c F0BD     		pop	{r4, r5, r6, r7, pc}
- 481              	.LVL57:
- 482              	.L28:
- 483 007e 00BF     		.align	2
- 484              	.L27:
-ARM GAS  /tmp/ccb54Pgm.s 			page 12
+ 462              	.LBE2:
+ 153:Src/assert.c  **** 
+ 463              		.loc 1 153 0
+ 464 00fa BDEC068B 		fldmfdd	sp!, {d8-d10}
+ 465              	.LCFI9:
+ 466              		.cfi_restore 84
+ 467              		.cfi_restore 85
+ 468              		.cfi_restore 82
+ 469              		.cfi_restore 83
+ 470              		.cfi_restore 80
+ 471              		.cfi_restore 81
+ 472              		.cfi_def_cfa_offset 32
+ 473              	.LVL54:
+ 474 00fe BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 475              	.LVL55:
+ 476              	.L33:
+ 477 0102 00BF     		.align	2
+ 478              	.L32:
+ 479 0104 00004940 		.word	1078525952
+ 480 0108 00000000 		.word	.LANCHOR1
+ 481 010c 00000000 		.word	.LANCHOR0
+ 482 0110 00000000 		.word	.LANCHOR2
+ 483 0114 00408F40 		.word	1083129856
+ 484 0118 00000000 		.word	.LANCHOR3
+ 485 011c 00000000 		.word	.LANCHOR4
+ 486 0120 00000000 		.word	.LANCHOR5
+ 487              		.cfi_endproc
+ 488              	.LFE126:
+ 490              		.section	.text.stateMachine,"ax",%progbits
+ 491              		.align	2
+ 492              		.global	stateMachine
+ 493              		.thumb
+ 494              		.thumb_func
+ 496              	stateMachine:
+ 497              	.LFB124:
+  40:Src/assert.c  ****     static int state = 0;
+ 498              		.loc 1 40 0
+ 499              		.cfi_startproc
+ 500              		@ args = 64, pretend = 0, frame = 0
+ 501              		@ frame_needed = 0, uses_anonymous_args = 0
+ 502              	.LVL56:
+ 503 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 504              	.LCFI10:
+ARM GAS  /tmp/ccgp9pkP.s 			page 13
 
 
- 485 0080 00000000 		.word	.LANCHOR1
- 486 0084 00000000 		.word	.LANCHOR6
- 487 0088 00000000 		.word	.LANCHOR7
- 488 008c 00000000 		.word	.LANCHOR8
- 489 0090 00000000 		.word	.LANCHOR9
- 490 0094 00000000 		.word	.LC0
- 491              		.cfi_endproc
- 492              	.LFE124:
- 494              		.global	endOfMvt
- 495              		.global	val2
- 496              		.global	val1
- 497              		.global	consignes
- 498              		.section	.bss.oldErrorDroite.7926,"aw",%nobits
- 499              		.align	2
- 500              		.set	.LANCHOR3,. + 0
- 503              	oldErrorDroite.7926:
- 504 0000 00000000 		.space	4
- 505              		.section	.data.val1,"aw",%progbits
- 506              		.align	3
- 507              		.set	.LANCHOR8,. + 0
- 510              	val1:
- 511 0000 00000000 		.word	0
- 512 0004 00409F40 		.word	1084178432
- 513 0008 00000000 		.word	0
- 514 000c 00000000 		.word	0
- 515              		.section	.bss.oldErrorGauche.7928,"aw",%nobits
- 516              		.align	2
- 517              		.set	.LANCHOR5,. + 0
- 520              	oldErrorGauche.7928:
- 521 0000 00000000 		.space	4
- 522              		.section	.bss.state.7908,"aw",%nobits
- 523              		.align	2
- 524              		.set	.LANCHOR6,. + 0
- 527              	state.7908:
- 528 0000 00000000 		.space	4
- 529              		.section	.bss.errorSumDroite.7927,"aw",%nobits
- 530              		.align	2
- 531              		.set	.LANCHOR2,. + 0
- 534              	errorSumDroite.7927:
- 535 0000 00000000 		.space	4
- 536              		.section	.bss.val2,"aw",%nobits
- 537              		.align	3
- 538              		.set	.LANCHOR9,. + 0
- 541              	val2:
- 542 0000 00000000 		.space	16
- 542      00000000 
- 542      00000000 
- 542      00000000 
- 543              		.section	.rodata.str1.4,"aMS",%progbits,1
- 544              		.align	2
- 545              	.LC0:
- 546 0000 46696E20 		.ascii	"Fin de match\000"
- 546      6465206D 
- 546      61746368 
- 546      00
- 547              		.section	.bss.isMvtDone.7925,"aw",%nobits
- 548              		.align	2
-ARM GAS  /tmp/ccb54Pgm.s 			page 13
+ 505              		.cfi_def_cfa_offset 28
+ 506              		.cfi_offset 4, -28
+ 507              		.cfi_offset 5, -24
+ 508              		.cfi_offset 6, -20
+ 509              		.cfi_offset 7, -16
+ 510              		.cfi_offset 8, -12
+ 511              		.cfi_offset 9, -8
+ 512              		.cfi_offset 14, -4
+ 513 0004 2DED068B 		fstmfdd	sp!, {d8, d9, d10}
+ 514              	.LCFI11:
+ 515              		.cfi_def_cfa_offset 52
+ 516              		.cfi_offset 80, -52
+ 517              		.cfi_offset 81, -48
+ 518              		.cfi_offset 82, -44
+ 519              		.cfi_offset 83, -40
+ 520              		.cfi_offset 84, -36
+ 521              		.cfi_offset 85, -32
+ 522 0008 91B0     		sub	sp, sp, #68
+ 523              	.LCFI12:
+ 524              		.cfi_def_cfa_offset 120
+ 525 000a 8146     		mov	r9, r0
+ 526 000c 8846     		mov	r8, r1
+ 527 000e B0EE40AA 		fcpys	s20, s0
+ 528 0012 F0EE60AA 		fcpys	s21, s1
+ 529 0016 B0EE419A 		fcpys	s18, s2
+ 530 001a F0EE619A 		fcpys	s19, s3
+ 531 001e B0EE428A 		fcpys	s16, s4
+ 532 0022 F0EE628A 		fcpys	s17, s5
+ 533 0026 1746     		mov	r7, r2
+ 534 0028 1E46     		mov	r6, r3
+  43:Src/assert.c  ****     {
+ 535              		.loc 1 43 0
+ 536 002a 3D4B     		ldr	r3, .L42
+ 537              	.LVL57:
+ 538 002c 1B68     		ldr	r3, [r3]
+ 539 002e 012B     		cmp	r3, #1
+ 540 0030 0DD1     		bne	.L35
+  45:Src/assert.c  ****         state += 1;
+ 541              		.loc 1 45 0
+ 542 0032 0022     		movs	r2, #0
+ 543              	.LVL58:
+ 544 0034 3A4B     		ldr	r3, .L42
+ 545 0036 1A60     		str	r2, [r3]
+  46:Src/assert.c  ****         HAL_UART_Transmit(&huart2, "Fin de l'action\n", sizeof("Fin de l'action\n"), HAL_MAX_DELAY)
+ 546              		.loc 1 46 0
+ 547 0038 3A4A     		ldr	r2, .L42+4
+ 548 003a 1368     		ldr	r3, [r2]
+ 549 003c 0133     		adds	r3, r3, #1
+ 550 003e 1360     		str	r3, [r2]
+  47:Src/assert.c  ****     }
+ 551              		.loc 1 47 0
+ 552 0040 1EA8     		add	r0, sp, #120
+ 553              	.LVL59:
+ 554 0042 3949     		ldr	r1, .L42+8
+ 555              	.LVL60:
+ 556 0044 1122     		movs	r2, #17
+ 557 0046 4FF0FF33 		mov	r3, #-1
+ARM GAS  /tmp/ccgp9pkP.s 			page 14
 
 
- 549              		.set	.LANCHOR0,. + 0
- 552              	isMvtDone.7925:
- 553 0000 00000000 		.space	4
- 554              		.section	.bss.endOfMvt,"aw",%nobits
- 555              		.align	2
- 556              		.set	.LANCHOR1,. + 0
- 559              	endOfMvt:
- 560 0000 00000000 		.space	4
- 561              		.section	.bss.errorSumGauche.7929,"aw",%nobits
- 562              		.align	2
- 563              		.set	.LANCHOR4,. + 0
- 566              	errorSumGauche.7929:
- 567 0000 00000000 		.space	4
- 568              		.section	.data.consignes,"aw",%progbits
- 569              		.align	2
- 570              		.set	.LANCHOR7,. + 0
- 573              	consignes:
- 574 0000 4D       		.byte	77
- 575 0001 45       		.byte	69
- 576              		.text
- 577              	.Letext0:
- 578              		.file 2 "/usr/include/newlib/machine/_default_types.h"
- 579              		.file 3 "/usr/include/newlib/sys/_stdint.h"
- 580              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 581              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 582              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 583              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 584              		.file 8 "Drivers/CMSIS/Include/core_cm4.h"
- 585              		.file 9 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccb54Pgm.s 			page 14
+ 558 004a FFF7FEFF 		bl	HAL_UART_Transmit
+ 559              	.LVL61:
+ 560              	.L35:
+  50:Src/assert.c  ****     {
+ 561              		.loc 1 50 0
+ 562 004e 354B     		ldr	r3, .L42+4
+ 563 0050 1B68     		ldr	r3, [r3]
+ 564 0052 364A     		ldr	r2, .L42+12
+ 565 0054 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+ 566 0056 452A     		cmp	r2, #69
+ 567 0058 54D0     		beq	.L37
+ 568 005a 4D2A     		cmp	r2, #77
+ 569 005c 02D0     		beq	.L38
+ 570 005e 412A     		cmp	r2, #65
+ 571 0060 58D1     		bne	.L34
+ 572 0062 27E0     		b	.L39
+ 573              	.L38:
+  53:Src/assert.c  ****         //char buffer[50] = "";
+ 574              		.loc 1 53 0
+ 575 0064 DB00     		lsls	r3, r3, #3
+ 576 0066 324A     		ldr	r2, .L42+16
+ 577 0068 1A44     		add	r2, r2, r3
+ 578 006a 92ED003B 		fldd	d3, [r2]
+ 579 006e 314A     		ldr	r2, .L42+20
+ 580 0070 1344     		add	r3, r3, r2
+ 581 0072 93ED004B 		fldd	d4, [r3]
+ 582 0076 6C46     		mov	r4, sp
+ 583 0078 1EAD     		add	r5, sp, #120
+ 584 007a 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 585 007c 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 586 007e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 587 0080 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 588 0082 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 589 0084 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 590 0086 95E80F00 		ldmia	r5, {r0, r1, r2, r3}
+ 591 008a 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 592 008e 4846     		mov	r0, r9
+ 593 0090 4146     		mov	r1, r8
+ 594 0092 B0EE4A0A 		fcpys	s0, s20
+ 595 0096 F0EE6A0A 		fcpys	s1, s21
+ 596 009a B0EE491A 		fcpys	s2, s18
+ 597 009e F0EE691A 		fcpys	s3, s19
+ 598 00a2 B0EE482A 		fcpys	s4, s16
+ 599 00a6 F0EE682A 		fcpys	s5, s17
+ 600 00aa 3A46     		mov	r2, r7
+ 601 00ac 3346     		mov	r3, r6
+ 602 00ae FFF7FEFF 		bl	move
+ 603              	.LVL62:
+  57:Src/assert.c  ****         
+ 604              		.loc 1 57 0
+ 605 00b2 2FE0     		b	.L34
+ 606              	.L39:
+  60:Src/assert.c  **** 		break;
+ 607              		.loc 1 60 0
+ 608 00b4 DB00     		lsls	r3, r3, #3
+ 609 00b6 1E4A     		ldr	r2, .L42+16
+ 610 00b8 1A44     		add	r2, r2, r3
+ARM GAS  /tmp/ccgp9pkP.s 			page 15
+
+
+ 611 00ba 92ED003B 		fldd	d3, [r2]
+ 612 00be 1D4A     		ldr	r2, .L42+20
+ 613 00c0 1344     		add	r3, r3, r2
+ 614 00c2 93ED004B 		fldd	d4, [r3]
+ 615 00c6 6C46     		mov	r4, sp
+ 616 00c8 1EAD     		add	r5, sp, #120
+ 617 00ca 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 618 00cc 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 619 00ce 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 620 00d0 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 621 00d2 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 622 00d4 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 623 00d6 95E80F00 		ldmia	r5, {r0, r1, r2, r3}
+ 624 00da 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 625 00de 4846     		mov	r0, r9
+ 626 00e0 4146     		mov	r1, r8
+ 627 00e2 B0EE4A0A 		fcpys	s0, s20
+ 628 00e6 F0EE6A0A 		fcpys	s1, s21
+ 629 00ea B0EE491A 		fcpys	s2, s18
+ 630 00ee F0EE691A 		fcpys	s3, s19
+ 631 00f2 B0EE482A 		fcpys	s4, s16
+ 632 00f6 F0EE682A 		fcpys	s5, s17
+ 633 00fa 3A46     		mov	r2, r7
+ 634 00fc 3346     		mov	r3, r6
+ 635 00fe FFF7FEFF 		bl	turn
+ 636              	.LVL63:
+  61:Src/assert.c  **** 
+ 637              		.loc 1 61 0
+ 638 0102 07E0     		b	.L34
+ 639              	.L37:
+  64:Src/assert.c  ****         while(1){}
+ 640              		.loc 1 64 0
+ 641 0104 1EA8     		add	r0, sp, #120
+ 642 0106 0C49     		ldr	r1, .L42+24
+ 643 0108 0E22     		movs	r2, #14
+ 644 010a 4FF0FF33 		mov	r3, #-1
+ 645 010e FFF7FEFF 		bl	HAL_UART_Transmit
+ 646              	.LVL64:
+ 647              	.L40:
+  65:Src/assert.c  ****         break;
+ 648              		.loc 1 65 0 discriminator 1
+ 649 0112 FEE7     		b	.L40
+ 650              	.L34:
+  68:Src/assert.c  **** 
+ 651              		.loc 1 68 0
+ 652 0114 11B0     		add	sp, sp, #68
+ 653              	.LCFI13:
+ 654              		.cfi_def_cfa_offset 52
+ 655              		@ sp needed
+ 656 0116 BDEC068B 		fldmfdd	sp!, {d8-d10}
+ 657              	.LCFI14:
+ 658              		.cfi_restore 84
+ 659              		.cfi_restore 85
+ 660              		.cfi_restore 82
+ 661              		.cfi_restore 83
+ 662              		.cfi_restore 80
+ 663              		.cfi_restore 81
+ARM GAS  /tmp/ccgp9pkP.s 			page 16
+
+
+ 664              		.cfi_def_cfa_offset 28
+ 665              	.LVL65:
+ 666 011a BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 667              	.LVL66:
+ 668              	.L43:
+ 669 011e 00BF     		.align	2
+ 670              	.L42:
+ 671 0120 00000000 		.word	.LANCHOR0
+ 672 0124 00000000 		.word	.LANCHOR6
+ 673 0128 00000000 		.word	.LC0
+ 674 012c 00000000 		.word	.LANCHOR7
+ 675 0130 00000000 		.word	.LANCHOR8
+ 676 0134 00000000 		.word	.LANCHOR9
+ 677 0138 14000000 		.word	.LC1
+ 678              		.cfi_endproc
+ 679              	.LFE124:
+ 681              		.global	endOfMvt
+ 682              		.global	val2
+ 683              		.global	val1
+ 684              		.global	consignes
+ 685              		.section	.bss.isMvtDone.7953,"aw",%nobits
+ 686              		.align	2
+ 687              		.set	.LANCHOR1,. + 0
+ 690              	isMvtDone.7953:
+ 691 0000 00000000 		.space	4
+ 692              		.section	.bss.errorSumGauche.7957,"aw",%nobits
+ 693              		.align	2
+ 694              		.set	.LANCHOR4,. + 0
+ 697              	errorSumGauche.7957:
+ 698 0000 00000000 		.space	4
+ 699              		.section	.data.val1,"aw",%progbits
+ 700              		.align	3
+ 701              		.set	.LANCHOR8,. + 0
+ 704              	val1:
+ 705 0000 00000000 		.word	0
+ 706 0004 00002440 		.word	1076101120
+ 707 0008 00000000 		.word	0
+ 708 000c 0000E03F 		.word	1071644672
+ 709 0010 00000000 		.word	0
+ 710 0014 00002440 		.word	1076101120
+ 711 0018 00000000 		.word	0
+ 712 001c 0000F0BF 		.word	-1074790400
+ 713 0020 00000000 		.word	0
+ 714 0024 00002440 		.word	1076101120
+ 715 0028 00000000 		.word	0
+ 716 002c 00000000 		.word	0
+ 717              		.section	.bss.val2,"aw",%nobits
+ 718              		.align	3
+ 719              		.set	.LANCHOR9,. + 0
+ 722              	val2:
+ 723 0000 00000000 		.space	48
+ 723      00000000 
+ 723      00000000 
+ 723      00000000 
+ 723      00000000 
+ 724              		.section	.bss.state.7923,"aw",%nobits
+ 725              		.align	2
+ARM GAS  /tmp/ccgp9pkP.s 			page 17
+
+
+ 726              		.set	.LANCHOR6,. + 0
+ 729              	state.7923:
+ 730 0000 00000000 		.space	4
+ 731              		.section	.bss.oldErrorDroite.7954,"aw",%nobits
+ 732              		.align	2
+ 733              		.set	.LANCHOR3,. + 0
+ 736              	oldErrorDroite.7954:
+ 737 0000 00000000 		.space	4
+ 738              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 739              		.align	2
+ 740              	.LC0:
+ 741 0000 46696E20 		.ascii	"Fin de l'action\012\000"
+ 741      6465206C 
+ 741      27616374 
+ 741      696F6E0A 
+ 741      00
+ 742 0011 000000   		.space	3
+ 743              	.LC1:
+ 744 0014 46696E20 		.ascii	"Fin de match\012\000"
+ 744      6465206D 
+ 744      61746368 
+ 744      0A00
+ 745              		.section	.bss.oldErrorGauche.7956,"aw",%nobits
+ 746              		.align	2
+ 747              		.set	.LANCHOR5,. + 0
+ 750              	oldErrorGauche.7956:
+ 751 0000 00000000 		.space	4
+ 752              		.section	.bss.endOfMvt,"aw",%nobits
+ 753              		.align	2
+ 754              		.set	.LANCHOR0,. + 0
+ 757              	endOfMvt:
+ 758 0000 00000000 		.space	4
+ 759              		.section	.bss.errorSumDroite.7955,"aw",%nobits
+ 760              		.align	2
+ 761              		.set	.LANCHOR2,. + 0
+ 764              	errorSumDroite.7955:
+ 765 0000 00000000 		.space	4
+ 766              		.section	.data.consignes,"aw",%progbits
+ 767              		.align	2
+ 768              		.set	.LANCHOR7,. + 0
+ 771              	consignes:
+ 772 0000 4D       		.byte	77
+ 773 0001 41       		.byte	65
+ 774 0002 4D       		.byte	77
+ 775 0003 41       		.byte	65
+ 776 0004 4D       		.byte	77
+ 777 0005 45       		.byte	69
+ 778              		.text
+ 779              	.Letext0:
+ 780              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 781              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 782              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 783              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 784              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 785              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 786              		.file 8 "Drivers/CMSIS/Include/core_cm4.h"
+ 787              		.file 9 "/usr/include/newlib/math.h"
+ARM GAS  /tmp/ccgp9pkP.s 			page 18
+
+
+ARM GAS  /tmp/ccgp9pkP.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 assert.c
-     /tmp/ccb54Pgm.s:25     .text.updatePos:0000000000000000 $t
-     /tmp/ccb54Pgm.s:30     .text.updatePos:0000000000000000 updatePos
-     /tmp/ccb54Pgm.s:155    .text.updatePos:00000000000000d8 $d
-     /tmp/ccb54Pgm.s:163    .text.absPerso:0000000000000000 $t
-     /tmp/ccb54Pgm.s:168    .text.absPerso:0000000000000000 absPerso
-     /tmp/ccb54Pgm.s:206    .text.move:0000000000000000 $t
-     /tmp/ccb54Pgm.s:211    .text.move:0000000000000000 move
-     /tmp/ccb54Pgm.s:368    .text.move:00000000000000f8 $d
-     /tmp/ccb54Pgm.s:380    .text.stateMachine:0000000000000000 $t
-     /tmp/ccb54Pgm.s:385    .text.stateMachine:0000000000000000 stateMachine
-     /tmp/ccb54Pgm.s:485    .text.stateMachine:0000000000000080 $d
-     /tmp/ccb54Pgm.s:559    .bss.endOfMvt:0000000000000000 endOfMvt
-     /tmp/ccb54Pgm.s:541    .bss.val2:0000000000000000 val2
-     /tmp/ccb54Pgm.s:510    .data.val1:0000000000000000 val1
-     /tmp/ccb54Pgm.s:573    .data.consignes:0000000000000000 consignes
-     /tmp/ccb54Pgm.s:499    .bss.oldErrorDroite.7926:0000000000000000 $d
-     /tmp/ccb54Pgm.s:503    .bss.oldErrorDroite.7926:0000000000000000 oldErrorDroite.7926
-     /tmp/ccb54Pgm.s:506    .data.val1:0000000000000000 $d
-     /tmp/ccb54Pgm.s:516    .bss.oldErrorGauche.7928:0000000000000000 $d
-     /tmp/ccb54Pgm.s:520    .bss.oldErrorGauche.7928:0000000000000000 oldErrorGauche.7928
-     /tmp/ccb54Pgm.s:523    .bss.state.7908:0000000000000000 $d
-     /tmp/ccb54Pgm.s:527    .bss.state.7908:0000000000000000 state.7908
-     /tmp/ccb54Pgm.s:530    .bss.errorSumDroite.7927:0000000000000000 $d
-     /tmp/ccb54Pgm.s:534    .bss.errorSumDroite.7927:0000000000000000 errorSumDroite.7927
-     /tmp/ccb54Pgm.s:537    .bss.val2:0000000000000000 $d
-     /tmp/ccb54Pgm.s:544    .rodata.str1.4:0000000000000000 $d
-     /tmp/ccb54Pgm.s:548    .bss.isMvtDone.7925:0000000000000000 $d
-     /tmp/ccb54Pgm.s:552    .bss.isMvtDone.7925:0000000000000000 isMvtDone.7925
-     /tmp/ccb54Pgm.s:555    .bss.endOfMvt:0000000000000000 $d
-     /tmp/ccb54Pgm.s:562    .bss.errorSumGauche.7929:0000000000000000 $d
-     /tmp/ccb54Pgm.s:566    .bss.errorSumGauche.7929:0000000000000000 errorSumGauche.7929
-     /tmp/ccb54Pgm.s:569    .data.consignes:0000000000000000 $d
+     /tmp/ccgp9pkP.s:25     .text.updatePos:0000000000000000 $t
+     /tmp/ccgp9pkP.s:30     .text.updatePos:0000000000000000 updatePos
+     /tmp/ccgp9pkP.s:155    .text.updatePos:00000000000000d8 $d
+     /tmp/ccgp9pkP.s:163    .text.absPerso:0000000000000000 $t
+     /tmp/ccgp9pkP.s:168    .text.absPerso:0000000000000000 absPerso
+     /tmp/ccgp9pkP.s:204    .text.turn:0000000000000000 $t
+     /tmp/ccgp9pkP.s:209    .text.turn:0000000000000000 turn
+     /tmp/ccgp9pkP.s:296    .text.turn:0000000000000078 $d
+     /tmp/ccgp9pkP.s:305    .text.move:0000000000000000 $t
+     /tmp/ccgp9pkP.s:310    .text.move:0000000000000000 move
+     /tmp/ccgp9pkP.s:479    .text.move:0000000000000104 $d
+     /tmp/ccgp9pkP.s:491    .text.stateMachine:0000000000000000 $t
+     /tmp/ccgp9pkP.s:496    .text.stateMachine:0000000000000000 stateMachine
+     /tmp/ccgp9pkP.s:671    .text.stateMachine:0000000000000120 $d
+     /tmp/ccgp9pkP.s:757    .bss.endOfMvt:0000000000000000 endOfMvt
+     /tmp/ccgp9pkP.s:722    .bss.val2:0000000000000000 val2
+     /tmp/ccgp9pkP.s:704    .data.val1:0000000000000000 val1
+     /tmp/ccgp9pkP.s:771    .data.consignes:0000000000000000 consignes
+     /tmp/ccgp9pkP.s:686    .bss.isMvtDone.7953:0000000000000000 $d
+     /tmp/ccgp9pkP.s:690    .bss.isMvtDone.7953:0000000000000000 isMvtDone.7953
+     /tmp/ccgp9pkP.s:693    .bss.errorSumGauche.7957:0000000000000000 $d
+     /tmp/ccgp9pkP.s:697    .bss.errorSumGauche.7957:0000000000000000 errorSumGauche.7957
+     /tmp/ccgp9pkP.s:700    .data.val1:0000000000000000 $d
+     /tmp/ccgp9pkP.s:718    .bss.val2:0000000000000000 $d
+     /tmp/ccgp9pkP.s:725    .bss.state.7923:0000000000000000 $d
+     /tmp/ccgp9pkP.s:729    .bss.state.7923:0000000000000000 state.7923
+     /tmp/ccgp9pkP.s:732    .bss.oldErrorDroite.7954:0000000000000000 $d
+     /tmp/ccgp9pkP.s:736    .bss.oldErrorDroite.7954:0000000000000000 oldErrorDroite.7954
+     /tmp/ccgp9pkP.s:739    .rodata.str1.4:0000000000000000 $d
+     /tmp/ccgp9pkP.s:746    .bss.oldErrorGauche.7956:0000000000000000 $d
+     /tmp/ccgp9pkP.s:750    .bss.oldErrorGauche.7956:0000000000000000 oldErrorGauche.7956
+     /tmp/ccgp9pkP.s:753    .bss.endOfMvt:0000000000000000 $d
+     /tmp/ccgp9pkP.s:760    .bss.errorSumDroite.7955:0000000000000000 $d
+     /tmp/ccgp9pkP.s:764    .bss.errorSumDroite.7955:0000000000000000 errorSumDroite.7955
+     /tmp/ccgp9pkP.s:767    .data.consignes:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -797,6 +1071,7 @@ __aeabi_dmul
 cos
 sin
 __aeabi_dcmplt
+__aeabi_dcmpgt
 __aeabi_dsub
 __aeabi_i2d
 __aeabi_d2iz

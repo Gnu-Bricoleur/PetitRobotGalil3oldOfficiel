@@ -86,8 +86,7 @@ static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
-void moteurDroit(int PWM);
-void moteurGauche(int PWM);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -157,7 +156,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !", sizeof("Atttenzion, zest barti !"), HAL_MAX_DELAY);
+  HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !\n", sizeof("Atttenzion, zest barti !\n"), HAL_MAX_DELAY);
   HAL_Delay(1000);
   uint32_t oldTicks = HAL_GetTick(); //init the time tracking variable for the fixed frequency PID 
 
