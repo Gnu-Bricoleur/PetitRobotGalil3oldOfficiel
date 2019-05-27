@@ -1,15 +1,15 @@
 #include "assert.h"
 
-#define Kp_Droite 50
-#define Ki_Droite 1
-#define Kd_Droite 50
+#define Kp_Droite 10
+#define Ki_Droite 0
+#define Kd_Droite 0
 
 
-#define Kp_Gauche 50
-#define Ki_Gauche 1
-#define Kd_Gauche 50
+#define Kp_Gauche 10
+#define Ki_Gauche 0
+#define Kd_Gauche 0
 
-#define Kp_Angle 0.01
+#define Kp_Angle 1000
 
 char consignes[] = {'M','E'};
 double val1[] = { 2000, 0 };
@@ -91,7 +91,7 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
     
     
     //need to modify the target sppeed for positionning
-    int targetSpeed = 10; //tick per ms
+    int targetSpeed = 170; //tick per ms
     
     int errorDroite = targetSpeed - tim5;
     errorSumDroite += errorDroite;

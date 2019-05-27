@@ -107,8 +107,8 @@ int tim5Tot=0;
 char buffer[50] = "";
 char buffer2[50] = "";
 
-int fixedFrequency = 2;//frequency of the loop in ms
-int debugMessageFrequency = 500;//in number of loop
+int fixedFrequency = 40;//frequency of the loop in ms
+int debugMessageFrequency = 10;//in number of loop
 
 /* USER CODE END 0 */
 
@@ -172,7 +172,7 @@ int main(void)
 
   while (1)
   {
-    while(HAL_GetTick() - oldTicks < 2)
+    while(HAL_GetTick() - oldTicks < fixedFrequency)
     {HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_SET);}
     HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_RESET);
     
@@ -182,7 +182,7 @@ int main(void)
     TIM4->CNT = 30000;
     TIM5->CNT = 30000;
     
-    //tim5 *= 1.0422;
+    tim5 *= 1.0422;
     
     updatePos(tim4, tim5, &positionX, &positionY, &angle);
     tim4Tot += tim4;//for debug
@@ -190,18 +190,18 @@ int main(void)
     
     stateMachine(&consigneDroit, &consigneGauche, positionX, positionY, angle, tim4, tim5, huart2);
     
-    moteurGauche(/*consigneGauche*/1500);
-    moteurDroit(/*consigneDroit*/1500);
+    moteurGauche(consigneGauche);
+    moteurDroit(consigneDroit);
     
     
     debugCounter += 1;
     if (_DEBUG == 1)
     {
-        if (debugCounter == 100)
+        if (debugCounter == debugMessageFrequency)
         {
-            //sprintf(buffer, "pos : %f / %f / %f\n",positionX, positionY, (angle*1000));
-            //HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
-            sprintf(buffer2, "tot : %d / %d / %d\n",tim4Tot, tim5Tot, tim5);
+            sprintf(buffer, "pos : %f / %f / %f\n",positionX, positionY, (angle*1000));
+            HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+            sprintf(buffer2, "tot : %d / %d / %d / %d\n",tim4Tot, tim5Tot, consigneDroit, consigneGauche);
             HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), HAL_MAX_DELAY);
             debugCounter = 0;
         }
