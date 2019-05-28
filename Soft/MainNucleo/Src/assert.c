@@ -11,9 +11,9 @@
 
 #define Kp_Angle 1000
 
-char consignes[] = {'M','A','M', 'A', 'M','E'};
-double val1[] = { 10, 0.5, 10, -1.0,10, 0 };
-double val2[] = { 0, 0, 0 ,0, 0, 0 };
+char consignes[] = {'M', 'A', 'M',  'A', 'T',   'M', 'E'};
+double val1[] = {    100, 0.5, 100, -0.5, 2000,  100, 0 };
+double val2[] = {    0,   0,   0 ,   0,   0,     0,   0 };
 
 int endOfMvt = 0;
 
@@ -59,6 +59,10 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
       case 'A':
 		turn(consigneDroit, consigneGauche, positionX, positionY, angle, val1[state], val2[state], tim4, tim5, huart2);
 		break;
+        
+      case 'T':
+        HAL_Delay(val1[state]);
+        endOfMvt = 1;
 
       case 'E':  //end of the match
         HAL_UART_Transmit(&huart2, "Fin de match\n", sizeof("Fin de match\n"), HAL_MAX_DELAY);
@@ -74,7 +78,7 @@ void turn(int* consigneDroit, int* consigneGauche, double positionX, double posi
 	//sprintf(buffer, "%g / %g / %g\n",targetX, angle, absPerso(angle - targetX));
 	//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
 	
-	if ( absPerso(angle) < absPerso(targetX))
+	if ( absPerso(angle-targetX) > 0.01/*absPerso(angle) < absPerso(targetX)*/)
     {
 		if(targetX > 0)
 		{
@@ -103,6 +107,17 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
     static int errorSumDroite = 0;
     static int oldErrorGauche = 0;
     static int errorSumGauche = 0;
+    static double angleInit = 0.0;
+    
+    static int firstLoopPass = 1;
+    
+    if (firstLoopPass == 1)
+    {
+        angleInit = angle;
+        firstLoopPass = 0;
+    }
+    
+    angle = angle-angleInit;
     
     
     if ((absPerso(positionX - targetX) < 50) && (absPerso(positionY - targetY) < 50))
@@ -118,6 +133,7 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
         endOfMvt = 1;
         *consigneDroit = 0;
         *consigneGauche = 0;
+        firstLoopPass = 1;
     }
     else
     {

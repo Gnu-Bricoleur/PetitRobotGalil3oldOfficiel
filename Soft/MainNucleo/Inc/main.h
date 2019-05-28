@@ -97,6 +97,8 @@ void moteurGauche(int PWM);
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define Tirette_Pin GPIO_PIN_12
+#define Tirette_GPIO_Port GPIOC
 #define DIR2_Pin GPIO_PIN_5
 #define DIR2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */

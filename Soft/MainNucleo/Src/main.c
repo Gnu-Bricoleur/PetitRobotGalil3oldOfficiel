@@ -155,9 +155,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
+  HAL_UART_Transmit(&huart2, "Tire moi la tirette, que ma bobinette choisse\n", sizeof("Tire moi la tirette, que ma bobinette choisse\n"), HAL_MAX_DELAY);
+  while(HAL_GPIO_ReadPin(Tirette_GPIO_Port, Tirette_Pin))
+  {}
+  uint32_t matchStartTicks = HAL_GetTick();
+    
   HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !\n", sizeof("Atttenzion, zest barti !\n"), HAL_MAX_DELAY);
-  HAL_Delay(1000);
+  //HAL_Delay(1000);
   uint32_t oldTicks = HAL_GetTick(); //init the time tracking variable for the fixed frequency PID 
 
 
@@ -174,6 +178,13 @@ int main(void)
     while(HAL_GetTick() - oldTicks < fixedFrequency)
     {HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_SET);}
     HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_RESET);
+    
+    if (HAL_GetTick() - matchStartTicks > 90000) //make sure the robot stops after 100seconds (actually 90)
+    {
+        HAL_UART_Transmit(&huart2, "Fin de match -- Timeout \n", sizeof("Fin de match -- Timeout \n"), HAL_MAX_DELAY);
+        while(1){}
+    }
+    
     
     oldTicks = HAL_GetTick();
     int tim4 = (TIM4->CNT-30000);
@@ -587,6 +598,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DebugTiming_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Tirette_Pin */
+  GPIO_InitStruct.Pin = Tirette_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(Tirette_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : DIR2_Pin */
   GPIO_InitStruct.Pin = DIR2_Pin;
