@@ -14,7 +14,7 @@ void setup() {
 
   pinMode(11, OUTPUT);
 
-  pinMode(3, OUTPUT);
+  pinMode(12, OUTPUT);
 
   pinMode(A2, OUTPUT);
 

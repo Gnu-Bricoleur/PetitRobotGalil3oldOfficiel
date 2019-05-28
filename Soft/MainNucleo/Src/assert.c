@@ -12,7 +12,7 @@
 #define Kp_Angle 1000
 
 char consignes[] = {'M', 'A', 'M',  'A', 'T',   'M', 'E'};
-double val1[] = {    100, 0.5, 100, -0.5, 2000,  100, 0 };
+double val1[] = {    200, 1, 200, -1, 2000,  200, 0 };
 double val2[] = {    0,   0,   0 ,   0,   0,     0,   0 };
 
 int endOfMvt = 0;
@@ -61,6 +61,7 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
 		break;
         
       case 'T':
+        HAL_UART_Transmit(&huart2, "Let's wait !\n", sizeof("Let's wait !\n"), HAL_MAX_DELAY);
         HAL_Delay(val1[state]);
         endOfMvt = 1;
 
@@ -78,24 +79,46 @@ void turn(int* consigneDroit, int* consigneGauche, double positionX, double posi
 	//sprintf(buffer, "%g / %g / %g\n",targetX, angle, absPerso(angle - targetX));
 	//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
 	
-	if ( absPerso(angle-targetX) > 0.01/*absPerso(angle) < absPerso(targetX)*/)
+	static double angleInit = 0.0;
+    
+    static int firstLoopPass = 1;
+    
+    if (firstLoopPass == 1)
     {
-		if(targetX > 0)
+        angleInit = angle;
+        firstLoopPass = 0;
+    }
+    
+	
+	if (targetX > angleInit /*absPerso(angle) < absPerso(targetX)*/)
+    {
+		if(targetX > angle)
 		{
 			*consigneGauche = 1000;
 			*consigneDroit = -1000;
 		}
 		else
 		{
-			*consigneGauche = -1000;
-			*consigneDroit = 1000;
+			*consigneGauche = 0;
+			*consigneDroit = 0;
+			endOfMvt = 1;
+			firstLoopPass = 1;
 		}
 	}
 	else
 	{
-		*consigneGauche = 0;
-		*consigneDroit = 0;
-		endOfMvt = 1;
+		if(targetX < angle)
+		{
+			*consigneGauche = -1000;
+			*consigneDroit = 1000;
+			}
+		else
+		{
+			*consigneGauche = 0;
+			*consigneDroit = 0;
+			endOfMvt = 1;
+			firstLoopPass = 1;
+		}
     }
 }
 

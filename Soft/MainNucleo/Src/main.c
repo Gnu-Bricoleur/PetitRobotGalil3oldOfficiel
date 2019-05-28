@@ -161,7 +161,7 @@ int main(void)
   uint32_t matchStartTicks = HAL_GetTick();
     
   HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !\n", sizeof("Atttenzion, zest barti !\n"), HAL_MAX_DELAY);
-  //HAL_Delay(1000);
+  HAL_Delay(1000);
   uint32_t oldTicks = HAL_GetTick(); //init the time tracking variable for the fixed frequency PID 
 
 
@@ -182,6 +182,8 @@ int main(void)
     if (HAL_GetTick() - matchStartTicks > 90000) //make sure the robot stops after 100seconds (actually 90)
     {
         HAL_UART_Transmit(&huart2, "Fin de match -- Timeout \n", sizeof("Fin de match -- Timeout \n"), HAL_MAX_DELAY);
+        moteurGauche(0);
+		moteurDroit(0);
         while(1){}
     }
     
@@ -584,6 +586,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ObstacleDetection_Pin */
+  GPIO_InitStruct.Pin = ObstacleDetection_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(ObstacleDetection_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LD2_Pin DIR1_Pin */
   GPIO_InitStruct.Pin = LD2_Pin|DIR1_Pin;
