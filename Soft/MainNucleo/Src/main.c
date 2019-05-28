@@ -178,6 +178,7 @@ int main(void)
     while(HAL_GetTick() - oldTicks < fixedFrequency)
     {HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_SET);}
     HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_RESET);
+    oldTicks = HAL_GetTick();
     
     if (HAL_GetTick() - matchStartTicks > 90000) //make sure the robot stops after 100seconds (actually 90)
     {
@@ -187,8 +188,15 @@ int main(void)
         while(1){}
     }
     
+    if (HAL_GPIO_ReadPin(ObstacleDetection_GPIO_Port, ObstacleDetection_Pin))
+    {
+        HAL_UART_Transmit(&huart2, "Fin de match -- Obstacle \n", sizeof("Fin de match -- Obstacle \n"), HAL_MAX_DELAY);
+        moteurGauche(0);
+		moteurDroit(0);
+        while(1){}
+    }
     
-    oldTicks = HAL_GetTick();
+    
     int tim4 = (TIM4->CNT-30000);
     int tim5 = (-TIM5->CNT+30000);
     TIM4->CNT = 30000;

@@ -131,19 +131,28 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
     static int oldErrorGauche = 0;
     static int errorSumGauche = 0;
     static double angleInit = 0.0;
+    static double positionXInit = 0.0;
+    static double positionYInit = 0.0;
+    static double distanceTravelled = 0.0;
+    static double distanceTarget = 0.0;
     
     static int firstLoopPass = 1;
     
     if (firstLoopPass == 1)
     {
         angleInit = angle;
+        positionXInit = positionX;
+        positionYInit = positionY;
+        distanceTarget = sqrt((targetX - positionX)*(targetX - positionX) + (targetY- positionY)*(targetY-positionY));
         firstLoopPass = 0;
+        distanceTravelled = 0.0;
     }
     
+    distanceTravelled = sqrt((positionX - positionXInit)*(positionX - positionXInit) + (positionY- positionYInit)*(positionY-positionYInit));
     angle = angle-angleInit;
     
     
-    if ((absPerso(positionX - targetX) < 50) && (absPerso(positionY - targetY) < 50))
+    if (distanceTravelled > distanceTarget/*(absPerso(positionX - targetX) < 50) && (absPerso(positionY - targetY) < 50)*/)
     {
 		//char buffer[50] = "";
 		//sprintf(buffer, "%d / %d\n",(int)targetX, (int)absPerso(positionY - targetY));
