@@ -79,6 +79,7 @@ void Error_Handler(void);
 void moteurDroit(int PWM);
 void moteurGauche(int PWM);
 void servoPos(int Pos);
+void resetPos();
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

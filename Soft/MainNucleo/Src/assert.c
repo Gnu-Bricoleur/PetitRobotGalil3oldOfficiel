@@ -14,13 +14,13 @@
 
 //Homo  90deg = 1.85     11cm = 100
 char consignes[] = {'M', 'A',  'M',  'A',  'M',   'E'};
-double val1[] = {   300, -1.85, 500, -3.7,  700,  0  };
-double val2[] = {   0,   0,     0 ,   0,    0,    0 };
+double val1[] = {   300, -1.85, 200, -1.85,  200,  0  };
+double val2[] = {   0,   0,     1 ,   0,    0,    0 };
 
 /*
 //cote jaune
 char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
-double val1[] = {    200, 1.7, 400, 3.2,  600, 0 };
+double val1[] = {    400, 1.85, 950, 0,  2000, 0 };
 double val2[] = {    0,   0,   0 ,   0,   0,   0 };
 */
 /*
@@ -29,7 +29,11 @@ char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
 double val1[] = {    200, 1.7, 400, 3.2,  600, 0 };
 double val2[] = {    0,   0,   0 ,   0,   0,   0 };
 */
-
+/*//test servo
+char consignes[] = {'B', 'T',  'B',  'T',  'B',   'E'};
+double val1[] = {   1000, 1000, 1500, 1000,  2500,  0  };
+double val2[] = {   0,   0,     0 ,   0,    0,    0 };
+*/
 int endOfMvt = 0;
 
 
@@ -60,6 +64,7 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
         endOfMvt = 0;
         state += 1;
         HAL_UART_Transmit(&huart2, "Fin de l'action\n", sizeof("Fin de l'action\n"), HAL_MAX_DELAY);
+        //resetPos();
     }
     
     switch(consignes[state])
@@ -92,6 +97,7 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
         break;
         
       case 'B'://Baffe sur l'accelerateur avec le servo
+        HAL_UART_Transmit(&huart2, "Cerveau\n", sizeof("Cerveau\n"), HAL_MAX_DELAY);
         servoPos(val1[state]);
         endOfMvt = 1;
         break;
@@ -121,9 +127,9 @@ void turn(int* consigneDroit, int* consigneGauche, double positionX, double posi
     }
     
 	
-	if (targetX > angleInit /*absPerso(angle) < absPerso(targetX)*/)
+	if (targetX > 0 /*absPerso(angle) < absPerso(targetX)*/)
     {
-		if(targetX > angle)
+		if(targetX + angleInit > angle)
 		{
 			*consigneGauche = 1000;
 			*consigneDroit = -1000;
@@ -138,7 +144,7 @@ void turn(int* consigneDroit, int* consigneGauche, double positionX, double posi
 	}
 	else
 	{
-		if(targetX < angle)
+		if(targetX + angleInit < angle)
 		{
 			*consigneGauche = -1000;
 			*consigneDroit = 1000;
@@ -174,7 +180,8 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
         angleInit = angle;
         positionXInit = positionX;
         positionYInit = positionY;
-        distanceTarget = sqrt((targetX - positionX)*(targetX - positionX) + (targetY- positionY)*(targetY-positionY));
+        distanceTarget = targetX;//sqrt((targetX)*(targetX) + (targetY)*(targetY));
+        //distanceTarget = sqrt((targetX - positionX)*(targetX - positionX) + (targetY- positionY)*(targetY-positionY));
         firstLoopPass = 0;
         distanceTravelled = 0.0;
     }
@@ -206,6 +213,12 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
 		//need to modify the target sppeed for positionning
 		int targetSpeed = 170; //tick per ms
 		
+		if(targetY == 0)
+		{targetSpeed = 170;}
+		else
+		{targetSpeed = -170;}
+		
+		
 		int errorDroite = targetSpeed - tim5;
 		errorSumDroite += errorDroite;
 		/*//circular buffer
@@ -218,15 +231,27 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
 		if(indexBuffer > 100){indexBuffer = 0;}
 		*/
 		int errorVariationDroite = errorDroite - oldErrorDroite;
-		*consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariationDroite + Kp_Angle * angle;
+		//*consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariationDroite + Kp_Angle * angle;
 		oldErrorDroite = errorDroite;
 		
 		
 		int errorGauche = targetSpeed - tim4;
 		errorSumGauche += errorGauche;
 		int errorVariationGauche = errorGauche - oldErrorGauche;
-		*consigneGauche = Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVariationGauche - Kp_Angle * angle;
+		//*consigneGauche = Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVariationGauche - Kp_Angle * angle;
 		oldErrorGauche = errorGauche;
+		
+		
+		/*if(targetY == 0)//si on avance
+		{*/
+			*consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariationDroite + Kp_Angle * angle;
+			*consigneGauche = Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVariationGauche - Kp_Angle * angle;
+		/*}
+		else
+		{
+			*consigneDroit = -(Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariationDroite + Kp_Angle * angle);
+			*consigneGauche = -(Kp_Gauche * errorGauche + Ki_Gauche * errorSumGauche + Kd_Gauche * errorVariationGauche - Kp_Angle * angle);
+		}*/
 	}
     
 }

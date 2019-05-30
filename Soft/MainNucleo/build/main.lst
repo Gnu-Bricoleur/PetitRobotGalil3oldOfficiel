@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccYS7Qro.s 			page 1
+ARM GAS  /tmp/ccGrxFJK.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
   29:Src/main.c    ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Src/main.c    ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   31:Src/main.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-ARM GAS  /tmp/ccYS7Qro.s 			page 2
+ARM GAS  /tmp/ccGrxFJK.s 			page 2
 
 
   32:Src/main.c    ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
   86:Src/main.c    **** static void MX_TIM5_Init(void);
   87:Src/main.c    **** static void MX_TIM1_Init(void);
   88:Src/main.c    **** /* USER CODE BEGIN PFP */
-ARM GAS  /tmp/ccYS7Qro.s 			page 3
+ARM GAS  /tmp/ccGrxFJK.s 			page 3
 
 
   89:Src/main.c    **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  143:Src/main.c    ****   MX_TIM2_Init();
  144:Src/main.c    ****   MX_TIM3_Init();
  145:Src/main.c    ****   MX_TIM4_Init();
-ARM GAS  /tmp/ccYS7Qro.s 			page 4
+ARM GAS  /tmp/ccGrxFJK.s 			page 4
 
 
  146:Src/main.c    ****   MX_TIM5_Init();
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  200:Src/main.c    ****     }
  201:Src/main.c    ****     */
  202:Src/main.c    ****     
-ARM GAS  /tmp/ccYS7Qro.s 			page 5
+ARM GAS  /tmp/ccGrxFJK.s 			page 5
 
 
  203:Src/main.c    ****     int tim4 = (TIM4->CNT-30000);
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  257:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
  258:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
  259:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-ARM GAS  /tmp/ccYS7Qro.s 			page 6
+ARM GAS  /tmp/ccGrxFJK.s 			page 6
 
 
  260:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 16;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  314:Src/main.c    ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
  315:Src/main.c    ****   {
  316:Src/main.c    ****     Error_Handler();
-ARM GAS  /tmp/ccYS7Qro.s 			page 7
+ARM GAS  /tmp/ccGrxFJK.s 			page 7
 
 
  317:Src/main.c    ****   }
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  371:Src/main.c    ****     Error_Handler();
  372:Src/main.c    ****   }
  373:Src/main.c    ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-ARM GAS  /tmp/ccYS7Qro.s 			page 8
+ARM GAS  /tmp/ccGrxFJK.s 			page 8
 
 
  374:Src/main.c    ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  428:Src/main.c    ****   sConfigOC.Pulse = 0;
  429:Src/main.c    ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
  430:Src/main.c    ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-ARM GAS  /tmp/ccYS7Qro.s 			page 9
+ARM GAS  /tmp/ccGrxFJK.s 			page 9
 
 
  431:Src/main.c    ****   if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  485:Src/main.c    **** 
  486:Src/main.c    ****   /* USER CODE END TIM4_Init 2 */
  487:Src/main.c    **** 
-ARM GAS  /tmp/ccYS7Qro.s 			page 10
+ARM GAS  /tmp/ccGrxFJK.s 			page 10
 
 
  488:Src/main.c    **** }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  542:Src/main.c    ****   */
  543:Src/main.c    **** static void MX_USART2_UART_Init(void)
  544:Src/main.c    **** {
-ARM GAS  /tmp/ccYS7Qro.s 			page 11
+ARM GAS  /tmp/ccGrxFJK.s 			page 11
 
 
  545:Src/main.c    **** 
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
   48 000c 0794     		str	r4, [sp, #28]
   49 000e 0894     		str	r4, [sp, #32]
   50 0010 0994     		str	r4, [sp, #36]
-ARM GAS  /tmp/ccYS7Qro.s 			page 12
+ARM GAS  /tmp/ccGrxFJK.s 			page 12
 
 
   51              	.LBB2:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
   96              		.loc 1 587 0
   97 0064 284D     		ldr	r5, .L3+4
   98 0066 2846     		mov	r0, r5
-ARM GAS  /tmp/ccYS7Qro.s 			page 13
+ARM GAS  /tmp/ccGrxFJK.s 			page 13
 
 
   99 0068 1121     		movs	r1, #17
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  136              		.loc 1 604 0
  137 00a8 0794     		str	r4, [sp, #28]
  605:Src/main.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  /tmp/ccYS7Qro.s 			page 14
+ARM GAS  /tmp/ccGrxFJK.s 			page 14
 
 
  138              		.loc 1 605 0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  623:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
  175              		.loc 1 623 0
  176 00e0 0694     		str	r4, [sp, #24]
-ARM GAS  /tmp/ccYS7Qro.s 			page 15
+ARM GAS  /tmp/ccGrxFJK.s 			page 15
 
 
  624:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  544:Src/main.c    **** 
  222              		.loc 1 544 0
  223              		.cfi_startproc
-ARM GAS  /tmp/ccYS7Qro.s 			page 16
+ARM GAS  /tmp/ccGrxFJK.s 			page 16
 
 
  224              		@ args = 0, pretend = 0, frame = 0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  352:Src/main.c    **** 
  271              		.loc 1 352 0
  272              		.cfi_startproc
-ARM GAS  /tmp/ccYS7Qro.s 			page 17
+ARM GAS  /tmp/ccGrxFJK.s 			page 17
 
 
  273              		@ args = 0, pretend = 0, frame = 40
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  375:Src/main.c    ****   {
  317              		.loc 1 375 0
  318 0036 2846     		mov	r0, r5
-ARM GAS  /tmp/ccYS7Qro.s 			page 18
+ARM GAS  /tmp/ccGrxFJK.s 			page 18
 
 
  319 0038 08A9     		add	r1, sp, #32
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  367              		.cfi_def_cfa_offset 12
  368              		.cfi_offset 4, -12
  369              		.cfi_offset 5, -8
-ARM GAS  /tmp/ccYS7Qro.s 			page 19
+ARM GAS  /tmp/ccGrxFJK.s 			page 19
 
 
  370              		.cfi_offset 14, -4
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  412              		.loc 1 427 0
  413 003c 6023     		movs	r3, #96
  414 003e 0193     		str	r3, [sp, #4]
-ARM GAS  /tmp/ccYS7Qro.s 			page 20
+ARM GAS  /tmp/ccGrxFJK.s 			page 20
 
 
  428:Src/main.c    ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  464              		.cfi_def_cfa_offset 64
  454:Src/main.c    ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
  465              		.loc 1 454 0
-ARM GAS  /tmp/ccYS7Qro.s 			page 21
+ARM GAS  /tmp/ccGrxFJK.s 			page 21
 
 
  466 0004 0024     		movs	r4, #0
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  506              		.loc 1 479 0
  507 003c 0294     		str	r4, [sp, #8]
  480:Src/main.c    ****   {
-ARM GAS  /tmp/ccYS7Qro.s 			page 22
+ARM GAS  /tmp/ccGrxFJK.s 			page 22
 
 
  508              		.loc 1 480 0
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  559 0016 2B60     		str	r3, [r5]
  509:Src/main.c    ****   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
  560              		.loc 1 509 0
-ARM GAS  /tmp/ccYS7Qro.s 			page 23
+ARM GAS  /tmp/ccGrxFJK.s 			page 23
 
 
  561 0018 6C60     		str	r4, [r5, #4]
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  602 004a 00BF     		.align	2
  603              	.L23:
  604 004c 00000000 		.word	htim5
-ARM GAS  /tmp/ccYS7Qro.s 			page 24
+ARM GAS  /tmp/ccGrxFJK.s 			page 24
 
 
  605 0050 000C0040 		.word	1073744896
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  655 002e 6B60     		str	r3, [r5, #4]
  304:Src/main.c    ****   htim1.Init.Period = 20000;
  656              		.loc 1 304 0
-ARM GAS  /tmp/ccYS7Qro.s 			page 25
+ARM GAS  /tmp/ccGrxFJK.s 			page 25
 
 
  657 0030 AC60     		str	r4, [r5, #8]
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  697              	.LVL24:
  328:Src/main.c    ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
  698              		.loc 1 328 0
-ARM GAS  /tmp/ccYS7Qro.s 			page 26
+ARM GAS  /tmp/ccGrxFJK.s 			page 26
 
 
  699 006a 0094     		str	r4, [sp]
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  745              		.cfi_startproc
  746              		@ args = 0, pretend = 0, frame = 80
  747              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccYS7Qro.s 			page 27
+ARM GAS  /tmp/ccGrxFJK.s 			page 27
 
 
  748 0000 30B5     		push	{r4, r5, lr}
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  798 0050 03F44043 		and	r3, r3, #49152
  799 0054 0293     		str	r3, [sp, #8]
  800 0056 029B     		ldr	r3, [sp, #8]
-ARM GAS  /tmp/ccYS7Qro.s 			page 28
+ARM GAS  /tmp/ccGrxFJK.s 			page 28
 
 
  801              	.LBE7:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  840              		.loc 1 275 0
  841 008c 0794     		str	r4, [sp, #28]
  277:Src/main.c    ****   {
-ARM GAS  /tmp/ccYS7Qro.s 			page 29
+ARM GAS  /tmp/ccGrxFJK.s 			page 29
 
 
  842              		.loc 1 277 0
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  890              	.LVL31:
  891 001a 05E0     		b	.L35
  892              	.LVL32:
-ARM GAS  /tmp/ccYS7Qro.s 			page 30
+ARM GAS  /tmp/ccGrxFJK.s 			page 30
 
 
  893              	.L34:
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  657:Src/main.c    **** 
  658:Src/main.c    **** void moteurGauche(int PWM)
  659:Src/main.c    **** {
-ARM GAS  /tmp/ccYS7Qro.s 			page 31
+ARM GAS  /tmp/ccGrxFJK.s 			page 31
 
 
  934              		.loc 1 659 0
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  977              	.L44:
  671:Src/main.c    ****     }
  672:Src/main.c    ****     else 
-ARM GAS  /tmp/ccYS7Qro.s 			page 32
+ARM GAS  /tmp/ccGrxFJK.s 			page 32
 
 
  673:Src/main.c    ****     {
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1027              	.LFB123:
  119:Src/main.c    ****   /* USER CODE BEGIN 1 */
  1028              		.loc 1 119 0
-ARM GAS  /tmp/ccYS7Qro.s 			page 33
+ARM GAS  /tmp/ccGrxFJK.s 			page 33
 
 
  1029              		.cfi_startproc
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  149:Src/main.c    ****   HAL_TIM_PWM_Start (&htim3, TIM_CHANNEL_1);
  1074              		.loc 1 149 0
  1075 002a 8348     		ldr	r0, .L60+8
-ARM GAS  /tmp/ccYS7Qro.s 			page 34
+ARM GAS  /tmp/ccGrxFJK.s 			page 34
 
 
  1076 002c 0421     		movs	r1, #4
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1122 007c 0028     		cmp	r0, #0
  1123 007e F8D1     		bne	.L53
  164:Src/main.c    ****     
-ARM GAS  /tmp/ccYS7Qro.s 			page 35
+ARM GAS  /tmp/ccGrxFJK.s 			page 35
 
 
  1124              		.loc 1 164 0
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1171 00c6 9842     		cmp	r0, r3
  1172 00c8 F3D3     		bcc	.L55
  183:Src/main.c    ****     oldTicks = HAL_GetTick();
-ARM GAS  /tmp/ccYS7Qro.s 			page 36
+ARM GAS  /tmp/ccGrxFJK.s 			page 36
 
 
  1173              		.loc 1 183 0
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1219 0110 506A     		ldr	r0, [r2, #36]
  1220 0112 47F23053 		movw	r3, #30000
  1221              	.LVL79:
-ARM GAS  /tmp/ccYS7Qro.s 			page 37
+ARM GAS  /tmp/ccGrxFJK.s 			page 37
 
 
  205:Src/main.c    ****     TIM5->CNT = 30000;
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1269 0174 BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
  1270 0178 AEE80F00 		stmia	lr!, {r0, r1, r2, r3}
  1271 017c BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
-ARM GAS  /tmp/ccYS7Qro.s 			page 38
+ARM GAS  /tmp/ccGrxFJK.s 			page 38
 
 
  1272 0180 AEE80F00 		stmia	lr!, {r0, r1, r2, r3}
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1320              		.loc 1 226 0
  1321 01ec 184D     		ldr	r5, .L60+32
  1322              	.LVL93:
-ARM GAS  /tmp/ccYS7Qro.s 			page 39
+ARM GAS  /tmp/ccGrxFJK.s 			page 39
 
 
  1323 01ee 2846     		mov	r0, r5
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1374 026c 000C0040 		.word	1073744896
  1375 0270 00000000 		.word	.LANCHOR4
  1376 0274 00000000 		.word	.LANCHOR5
-ARM GAS  /tmp/ccYS7Qro.s 			page 40
+ARM GAS  /tmp/ccGrxFJK.s 			page 40
 
 
  1377 0278 00000000 		.word	.LANCHOR6
@@ -2356,261 +2356,303 @@ ARM GAS  /tmp/ccYS7Qro.s 			page 1
  1389              	.LBE8:
  1390              		.cfi_endproc
  1391              	.LFE123:
- 1393              		.section	.text.Error_Handler,"ax",%progbits
+ 1393              		.section	.text.resetPos,"ax",%progbits
  1394              		.align	2
- 1395              		.global	Error_Handler
+ 1395              		.global	resetPos
  1396              		.thumb
  1397              		.thumb_func
- 1399              	Error_Handler:
+ 1399              	resetPos:
  1400              	.LFB135:
  682:Src/main.c    **** }
  683:Src/main.c    **** 
- 684:Src/main.c    **** 
- 685:Src/main.c    **** /* USER CODE END 4 */
- 686:Src/main.c    **** 
- 687:Src/main.c    **** /**
- 688:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 689:Src/main.c    ****   * @retval None
- 690:Src/main.c    ****   */
- 691:Src/main.c    **** void Error_Handler(void)
- 692:Src/main.c    **** {
- 1401              		.loc 1 692 0
+ 684:Src/main.c    **** void resetPos()
+ 685:Src/main.c    **** {
+ 1401              		.loc 1 685 0
  1402              		.cfi_startproc
  1403              		@ args = 0, pretend = 0, frame = 0
  1404              		@ frame_needed = 0, uses_anonymous_args = 0
  1405              		@ link register save eliminated.
- 1406 0000 7047     		bx	lr
- 1407              		.cfi_endproc
- 1408              	.LFE135:
- 1410              		.global	debugMessageFrequency
- 1411              		.global	fixedFrequency
- 1412              		.global	buffer2
- 1413              		.global	buffer
- 1414              		.global	tim5Tot
- 1415              		.global	tim4Tot
- 1416              		.global	debugCounter
- 1417              		.global	consigneGauche
- 1418              		.global	consigneDroit
- 1419              		.global	angle
- 1420              		.global	positionY
- 1421              		.global	positionX
- 1422              		.comm	huart2,64,4
- 1423              		.comm	htim5,60,4
- 1424              		.comm	htim4,60,4
- 1425              		.comm	htim3,60,4
-ARM GAS  /tmp/ccYS7Qro.s 			page 41
+ 686:Src/main.c    ****     positionX = 0.0;
+ 1406              		.loc 1 686 0
+ 1407 0000 0022     		movs	r2, #0
+ 1408 0002 0023     		movs	r3, #0
+ 1409 0004 0449     		ldr	r1, .L63
+ 1410 0006 C1E90023 		strd	r2, [r1]
+ 687:Src/main.c    ****     positionY = 0.0;
+ 1411              		.loc 1 687 0
+ 1412 000a 0449     		ldr	r1, .L63+4
+ 1413 000c C1E90023 		strd	r2, [r1]
+ 688:Src/main.c    ****     angle = 0.0;
+ 1414              		.loc 1 688 0
+ 1415 0010 0349     		ldr	r1, .L63+8
+ 1416 0012 C1E90023 		strd	r2, [r1]
+ 1417 0016 7047     		bx	lr
+ 1418              	.L64:
+ 1419              		.align	2
+ 1420              	.L63:
+ 1421 0018 00000000 		.word	.LANCHOR1
+ 1422 001c 00000000 		.word	.LANCHOR2
+ 1423 0020 00000000 		.word	.LANCHOR3
+ 1424              		.cfi_endproc
+ 1425              	.LFE135:
+ 1427              		.section	.text.Error_Handler,"ax",%progbits
+ 1428              		.align	2
+ 1429              		.global	Error_Handler
+ARM GAS  /tmp/ccGrxFJK.s 			page 41
 
 
- 1426              		.comm	htim2,60,4
- 1427              		.comm	htim1,60,4
- 1428 0002 00BF     		.section	.bss.consigneDroit,"aw",%nobits
- 1429              		.align	2
- 1430              		.set	.LANCHOR6,. + 0
- 1433              	consigneDroit:
- 1434 0000 00000000 		.space	4
- 1435              		.section	.bss.positionX,"aw",%nobits
- 1436              		.align	3
- 1437              		.set	.LANCHOR1,. + 0
- 1440              	positionX:
- 1441 0000 00000000 		.space	8
- 1441      00000000 
- 1442              		.section	.bss.positionY,"aw",%nobits
- 1443              		.align	3
- 1444              		.set	.LANCHOR2,. + 0
- 1447              	positionY:
- 1448 0000 00000000 		.space	8
- 1448      00000000 
- 1449              		.section	.data.debugMessageFrequency,"aw",%progbits
- 1450              		.align	2
- 1451              		.set	.LANCHOR9,. + 0
- 1454              	debugMessageFrequency:
- 1455 0000 0A000000 		.word	10
- 1456              		.section	.bss.tim4Tot,"aw",%nobits
- 1457              		.align	2
- 1458              		.set	.LANCHOR4,. + 0
- 1461              	tim4Tot:
- 1462 0000 00000000 		.space	4
- 1463              		.section	.bss.tim5Tot,"aw",%nobits
- 1464              		.align	2
- 1465              		.set	.LANCHOR5,. + 0
- 1468              	tim5Tot:
- 1469 0000 00000000 		.space	4
- 1470              		.section	.data.fixedFrequency,"aw",%progbits
- 1471              		.align	2
- 1472              		.set	.LANCHOR0,. + 0
- 1475              	fixedFrequency:
- 1476 0000 28000000 		.word	40
- 1477              		.section	.rodata.str1.4,"aMS",%progbits,1
- 1478              		.align	2
- 1479              	.LC0:
- 1480 0000 54697265 		.ascii	"Tire moi la tirette, que ma bobinette choisse\012\000"
- 1480      206D6F69 
- 1480      206C6120 
- 1480      74697265 
- 1480      7474652C 
- 1481 002f 00       		.space	1
- 1482              	.LC1:
- 1483 0030 41747474 		.ascii	"Atttenzion, zest barti !\012\000"
- 1483      656E7A69 
- 1483      6F6E2C20 
- 1483      7A657374 
- 1483      20626172 
- 1484 004a 0000     		.space	2
- 1485              	.LC2:
- 1486 004c 46696E20 		.ascii	"Fin de match -- Timeout \012\000"
-ARM GAS  /tmp/ccYS7Qro.s 			page 42
+ 1430              		.thumb
+ 1431              		.thumb_func
+ 1433              	Error_Handler:
+ 1434              	.LFB136:
+ 689:Src/main.c    **** }
+ 690:Src/main.c    **** 
+ 691:Src/main.c    **** 
+ 692:Src/main.c    **** /* USER CODE END 4 */
+ 693:Src/main.c    **** 
+ 694:Src/main.c    **** /**
+ 695:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 696:Src/main.c    ****   * @retval None
+ 697:Src/main.c    ****   */
+ 698:Src/main.c    **** void Error_Handler(void)
+ 699:Src/main.c    **** {
+ 1435              		.loc 1 699 0
+ 1436              		.cfi_startproc
+ 1437              		@ args = 0, pretend = 0, frame = 0
+ 1438              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1439              		@ link register save eliminated.
+ 1440 0000 7047     		bx	lr
+ 1441              		.cfi_endproc
+ 1442              	.LFE136:
+ 1444              		.global	debugMessageFrequency
+ 1445              		.global	fixedFrequency
+ 1446              		.global	buffer2
+ 1447              		.global	buffer
+ 1448              		.global	tim5Tot
+ 1449              		.global	tim4Tot
+ 1450              		.global	debugCounter
+ 1451              		.global	consigneGauche
+ 1452              		.global	consigneDroit
+ 1453              		.global	angle
+ 1454              		.global	positionY
+ 1455              		.global	positionX
+ 1456              		.comm	huart2,64,4
+ 1457              		.comm	htim5,60,4
+ 1458              		.comm	htim4,60,4
+ 1459              		.comm	htim3,60,4
+ 1460              		.comm	htim2,60,4
+ 1461              		.comm	htim1,60,4
+ 1462 0002 00BF     		.section	.bss.consigneDroit,"aw",%nobits
+ 1463              		.align	2
+ 1464              		.set	.LANCHOR6,. + 0
+ 1467              	consigneDroit:
+ 1468 0000 00000000 		.space	4
+ 1469              		.section	.bss.positionX,"aw",%nobits
+ 1470              		.align	3
+ 1471              		.set	.LANCHOR1,. + 0
+ 1474              	positionX:
+ 1475 0000 00000000 		.space	8
+ 1475      00000000 
+ 1476              		.section	.bss.positionY,"aw",%nobits
+ 1477              		.align	3
+ 1478              		.set	.LANCHOR2,. + 0
+ 1481              	positionY:
+ 1482 0000 00000000 		.space	8
+ARM GAS  /tmp/ccGrxFJK.s 			page 42
 
 
- 1486      6465206D 
- 1486      61746368 
- 1486      202D2D20 
- 1486      54696D65 
- 1487 0066 0000     		.space	2
- 1488              	.LC3:
- 1489 0068 706F7320 		.ascii	"pos : %f / %f / %f\012\000"
- 1489      3A202566 
- 1489      202F2025 
- 1489      66202F20 
- 1489      25660A00 
- 1490              	.LC4:
- 1491 007c 746F7420 		.ascii	"tot : %d / %d / %d / %d\012\000"
- 1491      3A202564 
- 1491      202F2025 
- 1491      64202F20 
- 1491      2564202F 
- 1492              		.section	.bss.buffer2,"aw",%nobits
- 1493              		.align	2
- 1494              		.set	.LANCHOR11,. + 0
- 1497              	buffer2:
- 1498 0000 00000000 		.space	50
- 1498      00000000 
- 1498      00000000 
- 1498      00000000 
- 1498      00000000 
- 1499              		.section	.bss.debugCounter,"aw",%nobits
- 1500              		.align	2
- 1501              		.set	.LANCHOR8,. + 0
- 1504              	debugCounter:
- 1505 0000 00000000 		.space	4
- 1506              		.section	.bss.buffer,"aw",%nobits
- 1507              		.align	2
- 1508              		.set	.LANCHOR10,. + 0
- 1511              	buffer:
- 1512 0000 00000000 		.space	50
- 1512      00000000 
- 1512      00000000 
- 1512      00000000 
- 1512      00000000 
- 1513              		.section	.bss.angle,"aw",%nobits
- 1514              		.align	3
- 1515              		.set	.LANCHOR3,. + 0
- 1518              	angle:
- 1519 0000 00000000 		.space	8
- 1519      00000000 
- 1520              		.section	.bss.consigneGauche,"aw",%nobits
- 1521              		.align	2
- 1522              		.set	.LANCHOR7,. + 0
- 1525              	consigneGauche:
- 1526 0000 00000000 		.space	4
- 1527              		.text
- 1528              	.Letext0:
- 1529              		.file 2 "/usr/include/newlib/machine/_default_types.h"
- 1530              		.file 3 "/usr/include/newlib/sys/_stdint.h"
- 1531              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 1532              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
-ARM GAS  /tmp/ccYS7Qro.s 			page 43
+ 1482      00000000 
+ 1483              		.section	.data.debugMessageFrequency,"aw",%progbits
+ 1484              		.align	2
+ 1485              		.set	.LANCHOR9,. + 0
+ 1488              	debugMessageFrequency:
+ 1489 0000 0A000000 		.word	10
+ 1490              		.section	.bss.tim4Tot,"aw",%nobits
+ 1491              		.align	2
+ 1492              		.set	.LANCHOR4,. + 0
+ 1495              	tim4Tot:
+ 1496 0000 00000000 		.space	4
+ 1497              		.section	.bss.tim5Tot,"aw",%nobits
+ 1498              		.align	2
+ 1499              		.set	.LANCHOR5,. + 0
+ 1502              	tim5Tot:
+ 1503 0000 00000000 		.space	4
+ 1504              		.section	.data.fixedFrequency,"aw",%progbits
+ 1505              		.align	2
+ 1506              		.set	.LANCHOR0,. + 0
+ 1509              	fixedFrequency:
+ 1510 0000 28000000 		.word	40
+ 1511              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 1512              		.align	2
+ 1513              	.LC0:
+ 1514 0000 54697265 		.ascii	"Tire moi la tirette, que ma bobinette choisse\012\000"
+ 1514      206D6F69 
+ 1514      206C6120 
+ 1514      74697265 
+ 1514      7474652C 
+ 1515 002f 00       		.space	1
+ 1516              	.LC1:
+ 1517 0030 41747474 		.ascii	"Atttenzion, zest barti !\012\000"
+ 1517      656E7A69 
+ 1517      6F6E2C20 
+ 1517      7A657374 
+ 1517      20626172 
+ 1518 004a 0000     		.space	2
+ 1519              	.LC2:
+ 1520 004c 46696E20 		.ascii	"Fin de match -- Timeout \012\000"
+ 1520      6465206D 
+ 1520      61746368 
+ 1520      202D2D20 
+ 1520      54696D65 
+ 1521 0066 0000     		.space	2
+ 1522              	.LC3:
+ 1523 0068 706F7320 		.ascii	"pos : %f / %f / %f\012\000"
+ 1523      3A202566 
+ 1523      202F2025 
+ 1523      66202F20 
+ 1523      25660A00 
+ 1524              	.LC4:
+ 1525 007c 746F7420 		.ascii	"tot : %d / %d / %d / %d\012\000"
+ 1525      3A202564 
+ 1525      202F2025 
+ 1525      64202F20 
+ 1525      2564202F 
+ 1526              		.section	.bss.buffer2,"aw",%nobits
+ARM GAS  /tmp/ccGrxFJK.s 			page 43
 
 
- 1533              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 1534              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 1535              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 1536              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 1537              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 1538              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
- 1539              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 1540              		.file 13 "<built-in>"
- 1541              		.file 14 "Drivers/CMSIS/Include/core_cm4.h"
- 1542              		.file 15 "Inc/main.h"
- 1543              		.file 16 "Inc/assert.h"
- 1544              		.file 17 "/usr/include/newlib/stdio.h"
- 1545              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /tmp/ccYS7Qro.s 			page 44
+ 1527              		.align	2
+ 1528              		.set	.LANCHOR11,. + 0
+ 1531              	buffer2:
+ 1532 0000 00000000 		.space	50
+ 1532      00000000 
+ 1532      00000000 
+ 1532      00000000 
+ 1532      00000000 
+ 1533              		.section	.bss.debugCounter,"aw",%nobits
+ 1534              		.align	2
+ 1535              		.set	.LANCHOR8,. + 0
+ 1538              	debugCounter:
+ 1539 0000 00000000 		.space	4
+ 1540              		.section	.bss.buffer,"aw",%nobits
+ 1541              		.align	2
+ 1542              		.set	.LANCHOR10,. + 0
+ 1545              	buffer:
+ 1546 0000 00000000 		.space	50
+ 1546      00000000 
+ 1546      00000000 
+ 1546      00000000 
+ 1546      00000000 
+ 1547              		.section	.bss.angle,"aw",%nobits
+ 1548              		.align	3
+ 1549              		.set	.LANCHOR3,. + 0
+ 1552              	angle:
+ 1553 0000 00000000 		.space	8
+ 1553      00000000 
+ 1554              		.section	.bss.consigneGauche,"aw",%nobits
+ 1555              		.align	2
+ 1556              		.set	.LANCHOR7,. + 0
+ 1559              	consigneGauche:
+ 1560 0000 00000000 		.space	4
+ 1561              		.text
+ 1562              	.Letext0:
+ 1563              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 1564              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 1565              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 1566              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1567              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 1568              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 1569              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1570              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1571              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 1572              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
+ 1573              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 1574              		.file 13 "<built-in>"
+ 1575              		.file 14 "Drivers/CMSIS/Include/core_cm4.h"
+ 1576              		.file 15 "Inc/main.h"
+ 1577              		.file 16 "Inc/assert.h"
+ 1578              		.file 17 "/usr/include/newlib/stdio.h"
+ 1579              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  /tmp/ccGrxFJK.s 			page 44
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccYS7Qro.s:21     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccYS7Qro.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccYS7Qro.s:207    .text.MX_GPIO_Init:0000000000000104 $d
-     /tmp/ccYS7Qro.s:216    .text.MX_USART2_UART_Init:0000000000000000 $t
-     /tmp/ccYS7Qro.s:220    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
-     /tmp/ccYS7Qro.s:259    .text.MX_USART2_UART_Init:0000000000000024 $d
+     /tmp/ccGrxFJK.s:21     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccGrxFJK.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccGrxFJK.s:207    .text.MX_GPIO_Init:0000000000000104 $d
+     /tmp/ccGrxFJK.s:216    .text.MX_USART2_UART_Init:0000000000000000 $t
+     /tmp/ccGrxFJK.s:220    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
+     /tmp/ccGrxFJK.s:259    .text.MX_USART2_UART_Init:0000000000000024 $d
                             *COM*:0000000000000040 huart2
-     /tmp/ccYS7Qro.s:265    .text.MX_TIM2_Init:0000000000000000 $t
-     /tmp/ccYS7Qro.s:269    .text.MX_TIM2_Init:0000000000000000 MX_TIM2_Init
-     /tmp/ccYS7Qro.s:350    .text.MX_TIM2_Init:000000000000005c $d
+     /tmp/ccGrxFJK.s:265    .text.MX_TIM2_Init:0000000000000000 $t
+     /tmp/ccGrxFJK.s:269    .text.MX_TIM2_Init:0000000000000000 MX_TIM2_Init
+     /tmp/ccGrxFJK.s:350    .text.MX_TIM2_Init:000000000000005c $d
                             *COM*:000000000000003c htim2
-     /tmp/ccYS7Qro.s:355    .text.MX_TIM3_Init:0000000000000000 $t
-     /tmp/ccYS7Qro.s:359    .text.MX_TIM3_Init:0000000000000000 MX_TIM3_Init
-     /tmp/ccYS7Qro.s:440    .text.MX_TIM3_Init:000000000000005c $d
+     /tmp/ccGrxFJK.s:355    .text.MX_TIM3_Init:0000000000000000 $t
+     /tmp/ccGrxFJK.s:359    .text.MX_TIM3_Init:0000000000000000 MX_TIM3_Init
+     /tmp/ccGrxFJK.s:440    .text.MX_TIM3_Init:000000000000005c $d
                             *COM*:000000000000003c htim3
-     /tmp/ccYS7Qro.s:446    .text.MX_TIM4_Init:0000000000000000 $t
-     /tmp/ccYS7Qro.s:450    .text.MX_TIM4_Init:0000000000000000 MX_TIM4_Init
-     /tmp/ccYS7Qro.s:522    .text.MX_TIM4_Init:000000000000004c $d
+     /tmp/ccGrxFJK.s:446    .text.MX_TIM4_Init:0000000000000000 $t
+     /tmp/ccGrxFJK.s:450    .text.MX_TIM4_Init:0000000000000000 MX_TIM4_Init
+     /tmp/ccGrxFJK.s:522    .text.MX_TIM4_Init:000000000000004c $d
                             *COM*:000000000000003c htim4
-     /tmp/ccYS7Qro.s:528    .text.MX_TIM5_Init:0000000000000000 $t
-     /tmp/ccYS7Qro.s:532    .text.MX_TIM5_Init:0000000000000000 MX_TIM5_Init
-     /tmp/ccYS7Qro.s:604    .text.MX_TIM5_Init:000000000000004c $d
+     /tmp/ccGrxFJK.s:528    .text.MX_TIM5_Init:0000000000000000 $t
+     /tmp/ccGrxFJK.s:532    .text.MX_TIM5_Init:0000000000000000 MX_TIM5_Init
+     /tmp/ccGrxFJK.s:604    .text.MX_TIM5_Init:000000000000004c $d
                             *COM*:000000000000003c htim5
-     /tmp/ccYS7Qro.s:610    .text.MX_TIM1_Init:0000000000000000 $t
-     /tmp/ccYS7Qro.s:614    .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
-     /tmp/ccYS7Qro.s:731    .text.MX_TIM1_Init:0000000000000090 $d
+     /tmp/ccGrxFJK.s:610    .text.MX_TIM1_Init:0000000000000000 $t
+     /tmp/ccGrxFJK.s:614    .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
+     /tmp/ccGrxFJK.s:731    .text.MX_TIM1_Init:0000000000000090 $d
                             *COM*:000000000000003c htim1
-     /tmp/ccYS7Qro.s:737    .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccYS7Qro.s:742    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccYS7Qro.s:856    .text.SystemClock_Config:000000000000009c $d
-     /tmp/ccYS7Qro.s:862    .text.moteurDroit:0000000000000000 $t
-     /tmp/ccYS7Qro.s:867    .text.moteurDroit:0000000000000000 moteurDroit
-     /tmp/ccYS7Qro.s:921    .text.moteurDroit:0000000000000044 $d
-     /tmp/ccYS7Qro.s:927    .text.moteurGauche:0000000000000000 $t
-     /tmp/ccYS7Qro.s:932    .text.moteurGauche:0000000000000000 moteurGauche
-     /tmp/ccYS7Qro.s:986    .text.moteurGauche:0000000000000040 $d
-     /tmp/ccYS7Qro.s:992    .text.servoPos:0000000000000000 $t
-     /tmp/ccYS7Qro.s:997    .text.servoPos:0000000000000000 servoPos
-     /tmp/ccYS7Qro.s:1013   .text.servoPos:0000000000000008 $d
-     /tmp/ccYS7Qro.s:1021   .text.main:0000000000000000 $t
-     /tmp/ccYS7Qro.s:1026   .text.main:0000000000000000 main
-     /tmp/ccYS7Qro.s:1359   .text.main:0000000000000230 $d
-     /tmp/ccYS7Qro.s:1394   .text.Error_Handler:0000000000000000 $t
-     /tmp/ccYS7Qro.s:1399   .text.Error_Handler:0000000000000000 Error_Handler
-     /tmp/ccYS7Qro.s:1454   .data.debugMessageFrequency:0000000000000000 debugMessageFrequency
-     /tmp/ccYS7Qro.s:1475   .data.fixedFrequency:0000000000000000 fixedFrequency
-     /tmp/ccYS7Qro.s:1497   .bss.buffer2:0000000000000000 buffer2
-     /tmp/ccYS7Qro.s:1511   .bss.buffer:0000000000000000 buffer
-     /tmp/ccYS7Qro.s:1468   .bss.tim5Tot:0000000000000000 tim5Tot
-     /tmp/ccYS7Qro.s:1461   .bss.tim4Tot:0000000000000000 tim4Tot
-     /tmp/ccYS7Qro.s:1504   .bss.debugCounter:0000000000000000 debugCounter
-     /tmp/ccYS7Qro.s:1525   .bss.consigneGauche:0000000000000000 consigneGauche
-     /tmp/ccYS7Qro.s:1433   .bss.consigneDroit:0000000000000000 consigneDroit
-     /tmp/ccYS7Qro.s:1518   .bss.angle:0000000000000000 angle
-     /tmp/ccYS7Qro.s:1447   .bss.positionY:0000000000000000 positionY
-ARM GAS  /tmp/ccYS7Qro.s 			page 45
+     /tmp/ccGrxFJK.s:737    .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccGrxFJK.s:742    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccGrxFJK.s:856    .text.SystemClock_Config:000000000000009c $d
+     /tmp/ccGrxFJK.s:862    .text.moteurDroit:0000000000000000 $t
+     /tmp/ccGrxFJK.s:867    .text.moteurDroit:0000000000000000 moteurDroit
+     /tmp/ccGrxFJK.s:921    .text.moteurDroit:0000000000000044 $d
+     /tmp/ccGrxFJK.s:927    .text.moteurGauche:0000000000000000 $t
+     /tmp/ccGrxFJK.s:932    .text.moteurGauche:0000000000000000 moteurGauche
+     /tmp/ccGrxFJK.s:986    .text.moteurGauche:0000000000000040 $d
+     /tmp/ccGrxFJK.s:992    .text.servoPos:0000000000000000 $t
+     /tmp/ccGrxFJK.s:997    .text.servoPos:0000000000000000 servoPos
+     /tmp/ccGrxFJK.s:1013   .text.servoPos:0000000000000008 $d
+     /tmp/ccGrxFJK.s:1021   .text.main:0000000000000000 $t
+     /tmp/ccGrxFJK.s:1026   .text.main:0000000000000000 main
+     /tmp/ccGrxFJK.s:1359   .text.main:0000000000000230 $d
+     /tmp/ccGrxFJK.s:1394   .text.resetPos:0000000000000000 $t
+     /tmp/ccGrxFJK.s:1399   .text.resetPos:0000000000000000 resetPos
+     /tmp/ccGrxFJK.s:1421   .text.resetPos:0000000000000018 $d
+     /tmp/ccGrxFJK.s:1428   .text.Error_Handler:0000000000000000 $t
+     /tmp/ccGrxFJK.s:1433   .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccGrxFJK.s:1488   .data.debugMessageFrequency:0000000000000000 debugMessageFrequency
+     /tmp/ccGrxFJK.s:1509   .data.fixedFrequency:0000000000000000 fixedFrequency
+     /tmp/ccGrxFJK.s:1531   .bss.buffer2:0000000000000000 buffer2
+     /tmp/ccGrxFJK.s:1545   .bss.buffer:0000000000000000 buffer
+     /tmp/ccGrxFJK.s:1502   .bss.tim5Tot:0000000000000000 tim5Tot
+     /tmp/ccGrxFJK.s:1495   .bss.tim4Tot:0000000000000000 tim4Tot
+     /tmp/ccGrxFJK.s:1538   .bss.debugCounter:0000000000000000 debugCounter
+     /tmp/ccGrxFJK.s:1559   .bss.consigneGauche:0000000000000000 consigneGauche
+ARM GAS  /tmp/ccGrxFJK.s 			page 45
 
 
-     /tmp/ccYS7Qro.s:1440   .bss.positionX:0000000000000000 positionX
-     /tmp/ccYS7Qro.s:1429   .bss.consigneDroit:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1436   .bss.positionX:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1443   .bss.positionY:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1450   .data.debugMessageFrequency:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1457   .bss.tim4Tot:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1464   .bss.tim5Tot:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1471   .data.fixedFrequency:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1478   .rodata.str1.4:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1493   .bss.buffer2:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1500   .bss.debugCounter:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1507   .bss.buffer:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1514   .bss.angle:0000000000000000 $d
-     /tmp/ccYS7Qro.s:1521   .bss.consigneGauche:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1467   .bss.consigneDroit:0000000000000000 consigneDroit
+     /tmp/ccGrxFJK.s:1552   .bss.angle:0000000000000000 angle
+     /tmp/ccGrxFJK.s:1481   .bss.positionY:0000000000000000 positionY
+     /tmp/ccGrxFJK.s:1474   .bss.positionX:0000000000000000 positionX
+     /tmp/ccGrxFJK.s:1463   .bss.consigneDroit:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1470   .bss.positionX:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1477   .bss.positionY:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1484   .data.debugMessageFrequency:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1491   .bss.tim4Tot:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1498   .bss.tim5Tot:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1505   .data.fixedFrequency:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1512   .rodata.str1.4:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1527   .bss.buffer2:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1534   .bss.debugCounter:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1541   .bss.buffer:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1548   .bss.angle:0000000000000000 $d
+     /tmp/ccGrxFJK.s:1555   .bss.consigneGauche:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

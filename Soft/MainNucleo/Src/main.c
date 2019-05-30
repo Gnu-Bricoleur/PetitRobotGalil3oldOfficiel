@@ -681,6 +681,13 @@ void servoPos(int Pos)
 	htim1.Instance->CCR4 = Pos;//servo
 }
 
+void resetPos()
+{
+    positionX = 0.0;
+    positionY = 0.0;
+    angle = 0.0;
+}
+
 
 /* USER CODE END 4 */
 
