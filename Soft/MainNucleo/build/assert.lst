@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccXSRIyM.s 			page 1
+ARM GAS  /tmp/ccB0kh1D.s 			page 1
 
 
    1              		.syntax unified
@@ -45,20 +45,20 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
   11:Src/assert.c  **** 
   12:Src/assert.c  **** #define Kp_Angle 1000
   13:Src/assert.c  **** 
-  14:Src/assert.c  **** 
+  14:Src/assert.c  **** /*
   15:Src/assert.c  **** //Homo  90deg = 1.85     11cm = 100
   16:Src/assert.c  **** char consignes[] = {'M', 'A',  'M',  'A',  'M',   'E'};
-  17:Src/assert.c  **** double val1[] = {   300, -1.85, 200, -1.85,  200,  0  };
+  17:Src/assert.c  **** double val1[] = {   300, -1.7, 200, -1.7,  200,  0  };
   18:Src/assert.c  **** double val2[] = {   0,   0,     1 ,   0,    0,    0 };
-  19:Src/assert.c  **** 
-  20:Src/assert.c  **** /*
+  19:Src/assert.c  **** */
+  20:Src/assert.c  **** 
   21:Src/assert.c  **** //cote jaune
-  22:Src/assert.c  **** char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
-  23:Src/assert.c  **** double val1[] = {    400, 1.85, 950, 0,  2000, 0 };
-  24:Src/assert.c  **** double val2[] = {    0,   0,   0 ,   0,   0,   0 };
-  25:Src/assert.c  **** */
+  22:Src/assert.c  **** char consignes[] = {'M', 'A', 'M',  'A',  'M',   'M',    'A'   , 'M',    'A', 'B',      'M' ,  'B',
+  23:Src/assert.c  **** double val1[] = {    600, 1.6, 300, -1.6,  200,   1200,  1.6,     200,    -1.6 , 2500,  360,   1500
+  24:Src/assert.c  **** double val2[] = {    0,   0,   0 ,   0,   1,      0,     0 ,       0,      0,   0,      0,     0,  
+  25:Src/assert.c  **** 
   26:Src/assert.c  **** /*
-ARM GAS  /tmp/ccXSRIyM.s 			page 2
+ARM GAS  /tmp/ccB0kh1D.s 			page 2
 
 
   27:Src/assert.c  **** //cote violet
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
   70 002e 0646     		mov	r6, r0
   71 0030 0F46     		mov	r7, r1
   72              	.LVL4:
-ARM GAS  /tmp/ccXSRIyM.s 			page 3
+ARM GAS  /tmp/ccB0kh1D.s 			page 3
 
 
   44:Src/assert.c  ****   double dTheta = (tickRight - tickGauche) / 2.0f;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  118              		.loc 1 52 0
  119 0098 4046     		mov	r0, r8
  120 009a 4946     		mov	r1, r9
-ARM GAS  /tmp/ccXSRIyM.s 			page 4
+ARM GAS  /tmp/ccB0kh1D.s 			page 4
 
 
  121 009c 0022     		movs	r2, #0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
   59:Src/assert.c  **** {
   60:Src/assert.c  ****     static int state = 0;
   61:Src/assert.c  ****     
-ARM GAS  /tmp/ccXSRIyM.s 			page 5
+ARM GAS  /tmp/ccB0kh1D.s 			page 5
 
 
   62:Src/assert.c  ****     if (endOfMvt == 1)
@@ -269,12 +269,12 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
   87:Src/assert.c  **** 		break;
   88:Src/assert.c  ****         
   89:Src/assert.c  ****       case 'S': //Suck
-  90:Src/assert.c  ****         HAL_GPIO_WritePin(VaccumPump_GPIO_Port, VaccumPump_Pin, GPIO_PIN_SET);
+  90:Src/assert.c  ****         HAL_GPIO_WritePin(VaccumPump1_GPIO_Port, VaccumPump1_Pin, GPIO_PIN_SET);
   91:Src/assert.c  ****         endOfMvt = 1;
   92:Src/assert.c  ****         break;
   93:Src/assert.c  ****       
   94:Src/assert.c  ****       case 'R': //release
-  95:Src/assert.c  ****         HAL_GPIO_WritePin(VaccumPump_GPIO_Port, VaccumPump_Pin, GPIO_PIN_RESET);
+  95:Src/assert.c  ****         HAL_GPIO_WritePin(VaccumPump1_GPIO_Port, VaccumPump1_Pin, GPIO_PIN_RESET);
   96:Src/assert.c  ****         endOfMvt = 1;
   97:Src/assert.c  ****         break;
   98:Src/assert.c  ****         
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  172              		.cfi_startproc
  173              		@ args = 64, pretend = 0, frame = 0
  174              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccXSRIyM.s 			page 6
+ARM GAS  /tmp/ccB0kh1D.s 			page 6
 
 
  175              	.LVL21:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  213 002a 0023     		movs	r3, #0
  214 002c FFF7FEFF 		bl	__aeabi_dcmpgt
  215              	.LVL27:
-ARM GAS  /tmp/ccXSRIyM.s 			page 7
+ARM GAS  /tmp/ccB0kh1D.s 			page 7
 
 
  216 0030 08B3     		cbz	r0, .L17
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  253              		.loc 1 147 0
  254 0076 2046     		mov	r0, r4
  255 0078 2946     		mov	r1, r5
-ARM GAS  /tmp/ccXSRIyM.s 			page 8
+ARM GAS  /tmp/ccB0kh1D.s 			page 8
 
 
  256 007a 104B     		ldr	r3, .L21+4
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  301              		.global	__aeabi_d2iz
  302              		.section	.text.move,"ax",%progbits
  303              		.align	2
-ARM GAS  /tmp/ccXSRIyM.s 			page 9
+ARM GAS  /tmp/ccB0kh1D.s 			page 9
 
 
  304              		.global	move
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  171:Src/assert.c  ****     static double positionXInit = 0.0;
  172:Src/assert.c  ****     static double positionYInit = 0.0;
  173:Src/assert.c  ****     static double distanceTravelled = 0.0;
-ARM GAS  /tmp/ccXSRIyM.s 			page 10
+ARM GAS  /tmp/ccB0kh1D.s 			page 10
 
 
  174:Src/assert.c  ****     static double distanceTarget = 0.0;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  384              	.LVL42:
  385 006a 0646     		mov	r6, r0
  386 006c 0F46     		mov	r7, r1
-ARM GAS  /tmp/ccXSRIyM.s 			page 11
+ARM GAS  /tmp/ccB0kh1D.s 			page 11
 
 
  387 006e 5046     		mov	r0, r10
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  432 00cc 0133     		adds	r3, r3, #1
  433 00ce 1360     		str	r3, [r2]
  434              	.L25:
-ARM GAS  /tmp/ccXSRIyM.s 			page 12
+ARM GAS  /tmp/ccB0kh1D.s 			page 12
 
 
  199:Src/assert.c  ****     }
@@ -702,7 +702,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  213:Src/assert.c  **** 		//need to modify the target sppeed for positionning
  214:Src/assert.c  **** 		int targetSpeed = 170; //tick per ms
  215:Src/assert.c  **** 		
- 216:Src/assert.c  **** 		if(targetY == 0)
+ 216:Src/assert.c  **** 		if(targetY == 0)//		avance ou recule
  459              		.loc 1 216 0
  460 00f0 51EC190B 		fmrrd	r0, r1, d9
  461 00f4 0022     		movs	r2, #0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  218:Src/assert.c  **** 		else
  219:Src/assert.c  **** 		{targetSpeed = -170;}
  470              		.loc 1 219 0
-ARM GAS  /tmp/ccXSRIyM.s 			page 13
+ARM GAS  /tmp/ccB0kh1D.s 			page 13
 
 
  471 0102 6FF0A900 		mvn	r0, #169
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  247:Src/assert.c  **** 			*consigneDroit = Kp_Droite * errorDroite + Ki_Droite * errorSumDroite + Kd_Droite * errorVariati
  498              		.loc 1 247 0
  499 0124 03EB8309 		add	r9, r3, r3, lsl #2
-ARM GAS  /tmp/ccXSRIyM.s 			page 14
+ARM GAS  /tmp/ccB0kh1D.s 			page 14
 
 
  500              	.LVL58:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  544              		.cfi_restore 81
  545              		.cfi_def_cfa_offset 40
  546              	.LVL70:
-ARM GAS  /tmp/ccXSRIyM.s 			page 15
+ARM GAS  /tmp/ccB0kh1D.s 			page 15
 
 
  547 016e BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  602              	.LCFI9:
  603              		.cfi_def_cfa_offset 120
  604 000a 8146     		mov	r9, r0
-ARM GAS  /tmp/ccXSRIyM.s 			page 16
+ARM GAS  /tmp/ccB0kh1D.s 			page 16
 
 
  605 000c 8846     		mov	r8, r1
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  654 0066 98       		.byte	(.L44-.L42)/2
  655 0067 A0       		.byte	(.L38-.L42)/2
  656 0068 A0       		.byte	(.L38-.L42)/2
-ARM GAS  /tmp/ccXSRIyM.s 			page 17
+ARM GAS  /tmp/ccB0kh1D.s 			page 17
 
 
  657 0069 A0       		.byte	(.L38-.L42)/2
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  708 00ca 1A44     		add	r2, r2, r3
  709 00cc 92ED003B 		fldd	d3, [r2]
  710 00d0 3B4A     		ldr	r2, .L51+20
-ARM GAS  /tmp/ccXSRIyM.s 			page 18
+ARM GAS  /tmp/ccB0kh1D.s 			page 18
 
 
  711 00d2 1344     		add	r3, r3, r2
@@ -1078,13 +1078,13 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  760 0140 2FE0     		b	.L38
  761              	.L47:
   90:Src/assert.c  ****         endOfMvt = 1;
-ARM GAS  /tmp/ccXSRIyM.s 			page 19
+ARM GAS  /tmp/ccB0kh1D.s 			page 19
 
 
  762              		.loc 1 90 0
  763 0142 2148     		ldr	r0, .L51+28
- 764 0144 0121     		movs	r1, #1
- 765 0146 0A46     		mov	r2, r1
+ 764 0144 0221     		movs	r1, #2
+ 765 0146 0122     		movs	r2, #1
  766 0148 FFF7FEFF 		bl	HAL_GPIO_WritePin
  767              	.LVL83:
   91:Src/assert.c  ****         break;
@@ -1099,7 +1099,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
   95:Src/assert.c  ****         endOfMvt = 1;
  775              		.loc 1 95 0
  776 0154 1C48     		ldr	r0, .L51+28
- 777 0156 0121     		movs	r1, #1
+ 777 0156 0221     		movs	r1, #2
  778 0158 0022     		movs	r2, #0
  779 015a FFF7FEFF 		bl	HAL_GPIO_WritePin
  780              	.LVL84:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  808 018e 1A60     		str	r2, [r3]
  103:Src/assert.c  **** 
  809              		.loc 1 103 0
-ARM GAS  /tmp/ccXSRIyM.s 			page 20
+ARM GAS  /tmp/ccB0kh1D.s 			page 20
 
 
  810 0190 07E0     		b	.L38
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  863              	.LFB127:
  258:Src/assert.c  **** 
  259:Src/assert.c  **** double absPerso(double x)
-ARM GAS  /tmp/ccXSRIyM.s 			page 21
+ARM GAS  /tmp/ccB0kh1D.s 			page 21
 
 
  260:Src/assert.c  **** {
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  920 0000 00000000 		.space	4
  921              		.section	.data.firstLoopPass.7949,"aw",%progbits
  922              		.align	2
-ARM GAS  /tmp/ccXSRIyM.s 			page 22
+ARM GAS  /tmp/ccB0kh1D.s 			page 22
 
 
  923              		.set	.LANCHOR0,. + 0
@@ -1269,208 +1269,304 @@ ARM GAS  /tmp/ccXSRIyM.s 			page 1
  930              		.set	.LANCHOR16,. + 0
  933              	val1:
  934 0000 00000000 		.word	0
- 935 0004 00C07240 		.word	1081262080
+ 935 0004 00C08240 		.word	1082310656
  936 0008 9A999999 		.word	2576980378
- 937 000c 9999FDBF 		.word	-1073899111
+ 937 000c 9999F93F 		.word	1073322393
  938 0010 00000000 		.word	0
- 939 0014 00006940 		.word	1080623104
+ 939 0014 00C07240 		.word	1081262080
  940 0018 9A999999 		.word	2576980378
- 941 001c 9999FDBF 		.word	-1073899111
+ 941 001c 9999F9BF 		.word	-1074161255
  942 0020 00000000 		.word	0
  943 0024 00006940 		.word	1080623104
  944 0028 00000000 		.word	0
- 945 002c 00000000 		.word	0
- 946              		.section	.data.val2,"aw",%progbits
- 947              		.align	3
- 948              		.set	.LANCHOR17,. + 0
- 951              	val2:
- 952 0000 00000000 		.word	0
- 953 0004 00000000 		.word	0
- 954 0008 00000000 		.word	0
- 955 000c 00000000 		.word	0
- 956 0010 00000000 		.word	0
- 957 0014 0000F03F 		.word	1072693248
- 958 0018 00000000 		.word	0
- 959 001c 00000000 		.word	0
- 960 0020 00000000 		.word	0
- 961 0024 00000000 		.word	0
- 962 0028 00000000 		.word	0
- 963 002c 00000000 		.word	0
- 964              		.section	.bss.angleInit.7967,"aw",%nobits
- 965              		.align	3
- 966              		.set	.LANCHOR4,. + 0
- 969              	angleInit.7967:
- 970 0000 00000000 		.space	8
- 970      00000000 
- 971              		.section	.data.firstLoopPass.7972,"aw",%progbits
- 972              		.align	2
- 973              		.set	.LANCHOR3,. + 0
- 976              	firstLoopPass.7972:
- 977 0000 01000000 		.word	1
- 978              		.section	.bss.errorSumGauche.7966,"aw",%nobits
- 979              		.align	2
- 980              		.set	.LANCHOR12,. + 0
- 983              	errorSumGauche.7966:
- 984 0000 00000000 		.space	4
- 985              		.section	.rodata.str1.4,"aMS",%progbits,1
- 986              		.align	2
- 987              	.LC0:
- 988 0000 46696E20 		.ascii	"Fin de l'action\012\000"
- 988      6465206C 
- 988      27616374 
-ARM GAS  /tmp/ccXSRIyM.s 			page 23
+ 945 002c 00C09240 		.word	1083359232
+ 946 0030 9A999999 		.word	2576980378
+ 947 0034 9999F93F 		.word	1073322393
+ 948 0038 00000000 		.word	0
+ 949 003c 00006940 		.word	1080623104
+ 950 0040 9A999999 		.word	2576980378
+ 951 0044 9999F9BF 		.word	-1074161255
+ 952 0048 00000000 		.word	0
+ 953 004c 0088A340 		.word	1084459008
+ 954 0050 00000000 		.word	0
+ 955 0054 00807640 		.word	1081507840
+ 956 0058 00000000 		.word	0
+ 957 005c 00709740 		.word	1083666432
+ 958 0060 00000000 		.word	0
+ 959 0064 00E07540 		.word	1081466880
+ 960 0068 33333333 		.word	858993459
+ 961 006c 3333FB3F 		.word	1073427251
+ 962 0070 00000000 		.word	0
+ 963 0074 00000000 		.word	0
+ 964 0078 00000000 		.word	0
+ 965 007c 00005940 		.word	1079574528
+ 966 0080 00000000 		.word	0
+ 967 0084 0070A740 		.word	1084715008
+ 968 0088 00000000 		.word	0
+ 969 008c 00006940 		.word	1080623104
+ 970 0090 33333333 		.word	858993459
+ 971 0094 3333FBBF 		.word	-1074056397
+ 972 0098 00000000 		.word	0
+ 973 009c 00805640 		.word	1079410688
+ 974 00a0 33333333 		.word	858993459
+ 975 00a4 3333FBBF 		.word	-1074056397
+ 976 00a8 00000000 		.word	0
+ 977 00ac 00309140 		.word	1083256832
+ 978 00b0 00000000 		.word	0
+ 979 00b4 00000000 		.word	0
+ 980 00b8 00000000 		.word	0
+ 981 00bc 00000000 		.word	0
+ 982              		.section	.data.val2,"aw",%progbits
+ 983              		.align	3
+ARM GAS  /tmp/ccB0kh1D.s 			page 23
 
 
- 988      696F6E0A 
- 988      00
- 989 0011 000000   		.space	3
- 990              	.LC1:
- 991 0014 4C657427 		.ascii	"Let's wait !\012\000"
- 991      73207761 
- 991      69742021 
- 991      0A00
- 992 0022 0000     		.space	2
- 993              	.LC2:
- 994 0024 43657276 		.ascii	"Cerveau\012\000"
- 994      6561750A 
- 994      00
- 995 002d 000000   		.space	3
- 996              	.LC3:
- 997 0030 46696E20 		.ascii	"Fin de match\012\000"
- 997      6465206D 
- 997      61746368 
- 997      0A00
- 998              		.section	.bss.state.7926,"aw",%nobits
- 999              		.align	2
- 1000              		.set	.LANCHOR14,. + 0
- 1003              	state.7926:
- 1004 0000 00000000 		.space	4
- 1005              		.section	.bss.distanceTarget.7971,"aw",%nobits
- 1006              		.align	3
- 1007              		.set	.LANCHOR7,. + 0
- 1010              	distanceTarget.7971:
- 1011 0000 00000000 		.space	8
- 1011      00000000 
- 1012              		.section	.bss.isMvtDone.7962,"aw",%nobits
- 1013              		.align	2
- 1014              		.set	.LANCHOR9,. + 0
- 1017              	isMvtDone.7962:
- 1018 0000 00000000 		.space	4
- 1019              		.section	.bss.endOfMvt,"aw",%nobits
- 1020              		.align	2
- 1021              		.set	.LANCHOR2,. + 0
- 1024              	endOfMvt:
- 1025 0000 00000000 		.space	4
- 1026              		.section	.bss.positionXInit.7968,"aw",%nobits
- 1027              		.align	3
- 1028              		.set	.LANCHOR5,. + 0
- 1031              	positionXInit.7968:
- 1032 0000 00000000 		.space	8
- 1032      00000000 
- 1033              		.section	.bss.positionYInit.7969,"aw",%nobits
- 1034              		.align	3
- 1035              		.set	.LANCHOR6,. + 0
- 1038              	positionYInit.7969:
- 1039 0000 00000000 		.space	8
- 1039      00000000 
- 1040              		.section	.bss.oldErrorGauche.7965,"aw",%nobits
- 1041              		.align	2
- 1042              		.set	.LANCHOR13,. + 0
- 1045              	oldErrorGauche.7965:
- 1046 0000 00000000 		.space	4
-ARM GAS  /tmp/ccXSRIyM.s 			page 24
+ 984              		.set	.LANCHOR17,. + 0
+ 987              	val2:
+ 988 0000 00000000 		.word	0
+ 989 0004 00000000 		.word	0
+ 990 0008 00000000 		.word	0
+ 991 000c 00000000 		.word	0
+ 992 0010 00000000 		.word	0
+ 993 0014 00000000 		.word	0
+ 994 0018 00000000 		.word	0
+ 995 001c 00000000 		.word	0
+ 996 0020 00000000 		.word	0
+ 997 0024 0000F03F 		.word	1072693248
+ 998 0028 00000000 		.word	0
+ 999 002c 00000000 		.word	0
+ 1000 0030 00000000 		.word	0
+ 1001 0034 00000000 		.word	0
+ 1002 0038 00000000 		.word	0
+ 1003 003c 00000000 		.word	0
+ 1004 0040 00000000 		.word	0
+ 1005 0044 00000000 		.word	0
+ 1006 0048 00000000 		.word	0
+ 1007 004c 00000000 		.word	0
+ 1008 0050 00000000 		.word	0
+ 1009 0054 00000000 		.word	0
+ 1010 0058 00000000 		.word	0
+ 1011 005c 00000000 		.word	0
+ 1012 0060 00000000 		.word	0
+ 1013 0064 00000000 		.word	0
+ 1014 0068 00000000 		.word	0
+ 1015 006c 00000000 		.word	0
+ 1016 0070 00000000 		.word	0
+ 1017 0074 00000000 		.word	0
+ 1018 0078 00000000 		.word	0
+ 1019 007c 00000000 		.word	0
+ 1020 0080 00000000 		.word	0
+ 1021 0084 00000000 		.word	0
+ 1022 0088 00000000 		.word	0
+ 1023 008c 0000F03F 		.word	1072693248
+ 1024 0090 00000000 		.word	0
+ 1025 0094 00000000 		.word	0
+ 1026 0098 00000000 		.word	0
+ 1027 009c 00000000 		.word	0
+ 1028 00a0 00000000 		.word	0
+ 1029 00a4 00000000 		.word	0
+ 1030 00a8 00000000 		.word	0
+ 1031 00ac 00000000 		.word	0
+ 1032 00b0 00000000 		.word	0
+ 1033 00b4 00000000 		.word	0
+ 1034 00b8 00000000 		.word	0
+ 1035 00bc 00000000 		.word	0
+ 1036              		.section	.bss.angleInit.7967,"aw",%nobits
+ 1037              		.align	3
+ 1038              		.set	.LANCHOR4,. + 0
+ 1041              	angleInit.7967:
+ 1042 0000 00000000 		.space	8
+ 1042      00000000 
+ 1043              		.section	.data.firstLoopPass.7972,"aw",%progbits
+ARM GAS  /tmp/ccB0kh1D.s 			page 24
 
 
- 1047              		.section	.bss.distanceTravelled.7970,"aw",%nobits
- 1048              		.align	3
- 1049              		.set	.LANCHOR8,. + 0
- 1052              	distanceTravelled.7970:
- 1053 0000 00000000 		.space	8
- 1053      00000000 
- 1054              		.section	.data.consignes,"aw",%progbits
- 1055              		.align	2
- 1056              		.set	.LANCHOR15,. + 0
- 1059              	consignes:
- 1060 0000 4D       		.byte	77
- 1061 0001 41       		.byte	65
- 1062 0002 4D       		.byte	77
- 1063 0003 41       		.byte	65
- 1064 0004 4D       		.byte	77
- 1065 0005 45       		.byte	69
- 1066              		.text
- 1067              	.Letext0:
- 1068              		.file 2 "/usr/include/newlib/machine/_default_types.h"
- 1069              		.file 3 "/usr/include/newlib/sys/_stdint.h"
- 1070              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 1071              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 1072              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 1073              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 1074              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 1075              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
- 1076              		.file 10 "/usr/include/newlib/math.h"
- 1077              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 1078              		.file 12 "Inc/main.h"
-ARM GAS  /tmp/ccXSRIyM.s 			page 25
+ 1044              		.align	2
+ 1045              		.set	.LANCHOR3,. + 0
+ 1048              	firstLoopPass.7972:
+ 1049 0000 01000000 		.word	1
+ 1050              		.section	.bss.errorSumGauche.7966,"aw",%nobits
+ 1051              		.align	2
+ 1052              		.set	.LANCHOR12,. + 0
+ 1055              	errorSumGauche.7966:
+ 1056 0000 00000000 		.space	4
+ 1057              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 1058              		.align	2
+ 1059              	.LC0:
+ 1060 0000 46696E20 		.ascii	"Fin de l'action\012\000"
+ 1060      6465206C 
+ 1060      27616374 
+ 1060      696F6E0A 
+ 1060      00
+ 1061 0011 000000   		.space	3
+ 1062              	.LC1:
+ 1063 0014 4C657427 		.ascii	"Let's wait !\012\000"
+ 1063      73207761 
+ 1063      69742021 
+ 1063      0A00
+ 1064 0022 0000     		.space	2
+ 1065              	.LC2:
+ 1066 0024 43657276 		.ascii	"Cerveau\012\000"
+ 1066      6561750A 
+ 1066      00
+ 1067 002d 000000   		.space	3
+ 1068              	.LC3:
+ 1069 0030 46696E20 		.ascii	"Fin de match\012\000"
+ 1069      6465206D 
+ 1069      61746368 
+ 1069      0A00
+ 1070              		.section	.bss.state.7926,"aw",%nobits
+ 1071              		.align	2
+ 1072              		.set	.LANCHOR14,. + 0
+ 1075              	state.7926:
+ 1076 0000 00000000 		.space	4
+ 1077              		.section	.bss.distanceTarget.7971,"aw",%nobits
+ 1078              		.align	3
+ 1079              		.set	.LANCHOR7,. + 0
+ 1082              	distanceTarget.7971:
+ 1083 0000 00000000 		.space	8
+ 1083      00000000 
+ 1084              		.section	.bss.isMvtDone.7962,"aw",%nobits
+ 1085              		.align	2
+ 1086              		.set	.LANCHOR9,. + 0
+ 1089              	isMvtDone.7962:
+ 1090 0000 00000000 		.space	4
+ 1091              		.section	.bss.endOfMvt,"aw",%nobits
+ 1092              		.align	2
+ 1093              		.set	.LANCHOR2,. + 0
+ 1096              	endOfMvt:
+ 1097 0000 00000000 		.space	4
+ 1098              		.section	.bss.positionXInit.7968,"aw",%nobits
+ 1099              		.align	3
+ARM GAS  /tmp/ccB0kh1D.s 			page 25
+
+
+ 1100              		.set	.LANCHOR5,. + 0
+ 1103              	positionXInit.7968:
+ 1104 0000 00000000 		.space	8
+ 1104      00000000 
+ 1105              		.section	.bss.positionYInit.7969,"aw",%nobits
+ 1106              		.align	3
+ 1107              		.set	.LANCHOR6,. + 0
+ 1110              	positionYInit.7969:
+ 1111 0000 00000000 		.space	8
+ 1111      00000000 
+ 1112              		.section	.bss.oldErrorGauche.7965,"aw",%nobits
+ 1113              		.align	2
+ 1114              		.set	.LANCHOR13,. + 0
+ 1117              	oldErrorGauche.7965:
+ 1118 0000 00000000 		.space	4
+ 1119              		.section	.bss.distanceTravelled.7970,"aw",%nobits
+ 1120              		.align	3
+ 1121              		.set	.LANCHOR8,. + 0
+ 1124              	distanceTravelled.7970:
+ 1125 0000 00000000 		.space	8
+ 1125      00000000 
+ 1126              		.section	.data.consignes,"aw",%progbits
+ 1127              		.align	2
+ 1128              		.set	.LANCHOR15,. + 0
+ 1131              	consignes:
+ 1132 0000 4D       		.byte	77
+ 1133 0001 41       		.byte	65
+ 1134 0002 4D       		.byte	77
+ 1135 0003 41       		.byte	65
+ 1136 0004 4D       		.byte	77
+ 1137 0005 4D       		.byte	77
+ 1138 0006 41       		.byte	65
+ 1139 0007 4D       		.byte	77
+ 1140 0008 41       		.byte	65
+ 1141 0009 42       		.byte	66
+ 1142 000a 4D       		.byte	77
+ 1143 000b 42       		.byte	66
+ 1144 000c 4D       		.byte	77
+ 1145 000d 41       		.byte	65
+ 1146 000e 53       		.byte	83
+ 1147 000f 4D       		.byte	77
+ 1148 0010 54       		.byte	84
+ 1149 0011 4D       		.byte	77
+ 1150 0012 41       		.byte	65
+ 1151 0013 4D       		.byte	77
+ 1152 0014 41       		.byte	65
+ 1153 0015 4D       		.byte	77
+ 1154 0016 52       		.byte	82
+ 1155 0017 45       		.byte	69
+ 1156              		.text
+ 1157              	.Letext0:
+ 1158              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 1159              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 1160              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 1161              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1162              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1163              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ARM GAS  /tmp/ccB0kh1D.s 			page 26
+
+
+ 1164              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 1165              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
+ 1166              		.file 10 "/usr/include/newlib/math.h"
+ 1167              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1168              		.file 12 "Inc/main.h"
+ARM GAS  /tmp/ccB0kh1D.s 			page 27
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 assert.c
-     /tmp/ccXSRIyM.s:25     .text.updatePos:0000000000000000 $t
-     /tmp/ccXSRIyM.s:30     .text.updatePos:0000000000000000 updatePos
-     /tmp/ccXSRIyM.s:155    .text.updatePos:00000000000000d8 $d
-     /tmp/ccXSRIyM.s:164    .text.turn:0000000000000000 $t
-     /tmp/ccXSRIyM.s:169    .text.turn:0000000000000000 turn
-     /tmp/ccXSRIyM.s:291    .text.turn:00000000000000b8 $d
-     /tmp/ccXSRIyM.s:303    .text.move:0000000000000000 $t
-     /tmp/ccXSRIyM.s:308    .text.move:0000000000000000 move
-     /tmp/ccXSRIyM.s:552    .text.move:0000000000000174 $d
-     /tmp/ccXSRIyM.s:570    .text.stateMachine:0000000000000000 $t
-     /tmp/ccXSRIyM.s:575    .text.stateMachine:0000000000000000 stateMachine
-     /tmp/ccXSRIyM.s:650    .text.stateMachine:0000000000000062 $d
-     /tmp/ccXSRIyM.s:670    .text.stateMachine:0000000000000076 $t
-     /tmp/ccXSRIyM.s:843    .text.stateMachine:00000000000001ac $d
-     /tmp/ccXSRIyM.s:857    .text.absPerso:0000000000000000 $t
-     /tmp/ccXSRIyM.s:862    .text.absPerso:0000000000000000 absPerso
-     /tmp/ccXSRIyM.s:1024   .bss.endOfMvt:0000000000000000 endOfMvt
-     /tmp/ccXSRIyM.s:951    .data.val2:0000000000000000 val2
-     /tmp/ccXSRIyM.s:933    .data.val1:0000000000000000 val1
-     /tmp/ccXSRIyM.s:1059   .data.consignes:0000000000000000 consignes
-     /tmp/ccXSRIyM.s:901    .bss.oldErrorDroite.7963:0000000000000000 $d
-     /tmp/ccXSRIyM.s:905    .bss.oldErrorDroite.7963:0000000000000000 oldErrorDroite.7963
-     /tmp/ccXSRIyM.s:908    .bss.angleInit.7948:0000000000000000 $d
-     /tmp/ccXSRIyM.s:912    .bss.angleInit.7948:0000000000000000 angleInit.7948
-     /tmp/ccXSRIyM.s:915    .bss.errorSumDroite.7964:0000000000000000 $d
-     /tmp/ccXSRIyM.s:919    .bss.errorSumDroite.7964:0000000000000000 errorSumDroite.7964
-     /tmp/ccXSRIyM.s:922    .data.firstLoopPass.7949:0000000000000000 $d
-     /tmp/ccXSRIyM.s:926    .data.firstLoopPass.7949:0000000000000000 firstLoopPass.7949
-     /tmp/ccXSRIyM.s:929    .data.val1:0000000000000000 $d
-     /tmp/ccXSRIyM.s:947    .data.val2:0000000000000000 $d
-     /tmp/ccXSRIyM.s:965    .bss.angleInit.7967:0000000000000000 $d
-     /tmp/ccXSRIyM.s:969    .bss.angleInit.7967:0000000000000000 angleInit.7967
-     /tmp/ccXSRIyM.s:972    .data.firstLoopPass.7972:0000000000000000 $d
-     /tmp/ccXSRIyM.s:976    .data.firstLoopPass.7972:0000000000000000 firstLoopPass.7972
-     /tmp/ccXSRIyM.s:979    .bss.errorSumGauche.7966:0000000000000000 $d
-     /tmp/ccXSRIyM.s:983    .bss.errorSumGauche.7966:0000000000000000 errorSumGauche.7966
-     /tmp/ccXSRIyM.s:986    .rodata.str1.4:0000000000000000 $d
-     /tmp/ccXSRIyM.s:999    .bss.state.7926:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1003   .bss.state.7926:0000000000000000 state.7926
-     /tmp/ccXSRIyM.s:1006   .bss.distanceTarget.7971:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1010   .bss.distanceTarget.7971:0000000000000000 distanceTarget.7971
-     /tmp/ccXSRIyM.s:1013   .bss.isMvtDone.7962:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1017   .bss.isMvtDone.7962:0000000000000000 isMvtDone.7962
-     /tmp/ccXSRIyM.s:1020   .bss.endOfMvt:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1027   .bss.positionXInit.7968:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1031   .bss.positionXInit.7968:0000000000000000 positionXInit.7968
-     /tmp/ccXSRIyM.s:1034   .bss.positionYInit.7969:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1038   .bss.positionYInit.7969:0000000000000000 positionYInit.7969
-     /tmp/ccXSRIyM.s:1041   .bss.oldErrorGauche.7965:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1045   .bss.oldErrorGauche.7965:0000000000000000 oldErrorGauche.7965
-     /tmp/ccXSRIyM.s:1048   .bss.distanceTravelled.7970:0000000000000000 $d
-     /tmp/ccXSRIyM.s:1052   .bss.distanceTravelled.7970:0000000000000000 distanceTravelled.7970
-     /tmp/ccXSRIyM.s:1055   .data.consignes:0000000000000000 $d
+     /tmp/ccB0kh1D.s:25     .text.updatePos:0000000000000000 $t
+     /tmp/ccB0kh1D.s:30     .text.updatePos:0000000000000000 updatePos
+     /tmp/ccB0kh1D.s:155    .text.updatePos:00000000000000d8 $d
+     /tmp/ccB0kh1D.s:164    .text.turn:0000000000000000 $t
+     /tmp/ccB0kh1D.s:169    .text.turn:0000000000000000 turn
+     /tmp/ccB0kh1D.s:291    .text.turn:00000000000000b8 $d
+     /tmp/ccB0kh1D.s:303    .text.move:0000000000000000 $t
+     /tmp/ccB0kh1D.s:308    .text.move:0000000000000000 move
+     /tmp/ccB0kh1D.s:552    .text.move:0000000000000174 $d
+     /tmp/ccB0kh1D.s:570    .text.stateMachine:0000000000000000 $t
+     /tmp/ccB0kh1D.s:575    .text.stateMachine:0000000000000000 stateMachine
+     /tmp/ccB0kh1D.s:650    .text.stateMachine:0000000000000062 $d
+     /tmp/ccB0kh1D.s:670    .text.stateMachine:0000000000000076 $t
+     /tmp/ccB0kh1D.s:843    .text.stateMachine:00000000000001ac $d
+     /tmp/ccB0kh1D.s:857    .text.absPerso:0000000000000000 $t
+     /tmp/ccB0kh1D.s:862    .text.absPerso:0000000000000000 absPerso
+     /tmp/ccB0kh1D.s:1096   .bss.endOfMvt:0000000000000000 endOfMvt
+     /tmp/ccB0kh1D.s:987    .data.val2:0000000000000000 val2
+     /tmp/ccB0kh1D.s:933    .data.val1:0000000000000000 val1
+     /tmp/ccB0kh1D.s:1131   .data.consignes:0000000000000000 consignes
+     /tmp/ccB0kh1D.s:901    .bss.oldErrorDroite.7963:0000000000000000 $d
+     /tmp/ccB0kh1D.s:905    .bss.oldErrorDroite.7963:0000000000000000 oldErrorDroite.7963
+     /tmp/ccB0kh1D.s:908    .bss.angleInit.7948:0000000000000000 $d
+     /tmp/ccB0kh1D.s:912    .bss.angleInit.7948:0000000000000000 angleInit.7948
+     /tmp/ccB0kh1D.s:915    .bss.errorSumDroite.7964:0000000000000000 $d
+     /tmp/ccB0kh1D.s:919    .bss.errorSumDroite.7964:0000000000000000 errorSumDroite.7964
+     /tmp/ccB0kh1D.s:922    .data.firstLoopPass.7949:0000000000000000 $d
+     /tmp/ccB0kh1D.s:926    .data.firstLoopPass.7949:0000000000000000 firstLoopPass.7949
+     /tmp/ccB0kh1D.s:929    .data.val1:0000000000000000 $d
+     /tmp/ccB0kh1D.s:983    .data.val2:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1037   .bss.angleInit.7967:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1041   .bss.angleInit.7967:0000000000000000 angleInit.7967
+     /tmp/ccB0kh1D.s:1044   .data.firstLoopPass.7972:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1048   .data.firstLoopPass.7972:0000000000000000 firstLoopPass.7972
+     /tmp/ccB0kh1D.s:1051   .bss.errorSumGauche.7966:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1055   .bss.errorSumGauche.7966:0000000000000000 errorSumGauche.7966
+     /tmp/ccB0kh1D.s:1058   .rodata.str1.4:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1071   .bss.state.7926:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1075   .bss.state.7926:0000000000000000 state.7926
+     /tmp/ccB0kh1D.s:1078   .bss.distanceTarget.7971:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1082   .bss.distanceTarget.7971:0000000000000000 distanceTarget.7971
+     /tmp/ccB0kh1D.s:1085   .bss.isMvtDone.7962:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1089   .bss.isMvtDone.7962:0000000000000000 isMvtDone.7962
+     /tmp/ccB0kh1D.s:1092   .bss.endOfMvt:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1099   .bss.positionXInit.7968:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1103   .bss.positionXInit.7968:0000000000000000 positionXInit.7968
+     /tmp/ccB0kh1D.s:1106   .bss.positionYInit.7969:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1110   .bss.positionYInit.7969:0000000000000000 positionYInit.7969
+     /tmp/ccB0kh1D.s:1113   .bss.oldErrorGauche.7965:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1117   .bss.oldErrorGauche.7965:0000000000000000 oldErrorGauche.7965
+     /tmp/ccB0kh1D.s:1120   .bss.distanceTravelled.7970:0000000000000000 $d
+     /tmp/ccB0kh1D.s:1124   .bss.distanceTravelled.7970:0000000000000000 distanceTravelled.7970
+     /tmp/ccB0kh1D.s:1127   .data.consignes:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
-ARM GAS  /tmp/ccXSRIyM.s 			page 26
+ARM GAS  /tmp/ccB0kh1D.s 			page 28
 
 
 UNDEFINED SYMBOLS

@@ -11,18 +11,18 @@
 
 #define Kp_Angle 1000
 
-
+/*
 //Homo  90deg = 1.85     11cm = 100
 char consignes[] = {'M', 'A',  'M',  'A',  'M',   'E'};
-double val1[] = {   300, -1.85, 200, -1.85,  200,  0  };
+double val1[] = {   300, -1.7, 200, -1.7,  200,  0  };
 double val2[] = {   0,   0,     1 ,   0,    0,    0 };
-
-/*
-//cote jaune
-char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
-double val1[] = {    400, 1.85, 950, 0,  2000, 0 };
-double val2[] = {    0,   0,   0 ,   0,   0,   0 };
 */
+
+//cote jaune
+char consignes[] = {'M', 'A', 'M',  'A',  'M',   'M',    'A'   , 'M',    'A', 'B',      'M' ,  'B',   'M'     ,'A'  ,  'S',  'M'  ,   'T'    ,'M' ,     'A',   'M',  'A'  ,   'M',   'R',  'E'};
+double val1[] = {    600, 1.6, 300, -1.6,  200,   1200,  1.6,     200,    -1.6 , 2500,  360,   1500,   350,     1.7,    0  ,  100,     3000   ,200,     -1.7,   90,  -1.7 ,    1100,  0,    0 };
+double val2[] = {    0,   0,   0 ,   0,   1,      0,     0 ,       0,      0,   0,      0,     0,      0   ,    0,      0  ,  0   ,    0      ,1,        0 ,    0,    0,       0    , 0 ,  0 };
+
 /*
 //cote violet
 char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
@@ -87,12 +87,12 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
 		break;
         
       case 'S': //Suck
-        HAL_GPIO_WritePin(VaccumPump_GPIO_Port, VaccumPump_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(VaccumPump1_GPIO_Port, VaccumPump1_Pin, GPIO_PIN_SET);
         endOfMvt = 1;
         break;
       
       case 'R': //release
-        HAL_GPIO_WritePin(VaccumPump_GPIO_Port, VaccumPump_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(VaccumPump1_GPIO_Port, VaccumPump1_Pin, GPIO_PIN_RESET);
         endOfMvt = 1;
         break;
         
@@ -213,7 +213,7 @@ void move(int* consigneDroit, int* consigneGauche, double positionX, double posi
 		//need to modify the target sppeed for positionning
 		int targetSpeed = 170; //tick per ms
 		
-		if(targetY == 0)
+		if(targetY == 0)//		avance ou recule
 		{targetSpeed = 170;}
 		else
 		{targetSpeed = -170;}

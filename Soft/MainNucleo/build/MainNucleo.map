@@ -1877,7 +1877,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
                 0x0000000008007040                PROVIDE (__fini_array_end, .)
                 0x0000000008007040                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000      0x128 load address 0x0000000008007040
+.data           0x0000000020000000      0x258 load address 0x0000000008007040
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -1885,156 +1885,155 @@ LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  .data.firstLoopPass.7949
                 0x0000000020000000        0x4 build/assert.o
  *fill*         0x0000000020000004        0x4 
- .data.val1     0x0000000020000008       0x30 build/assert.o
+ .data.val1     0x0000000020000008       0xc0 build/assert.o
                 0x0000000020000008                val1
- .data.val2     0x0000000020000038       0x30 build/assert.o
-                0x0000000020000038                val2
+ .data.val2     0x00000000200000c8       0xc0 build/assert.o
+                0x00000000200000c8                val2
  .data.firstLoopPass.7972
-                0x0000000020000068        0x4 build/assert.o
+                0x0000000020000188        0x4 build/assert.o
  .data.consignes
-                0x000000002000006c        0x6 build/assert.o
-                0x000000002000006c                consignes
- *fill*         0x0000000020000072        0x2 
+                0x000000002000018c       0x18 build/assert.o
+                0x000000002000018c                consignes
  .data.uwTickPrio
-                0x0000000020000074        0x4 build/stm32f4xx_hal.o
-                0x0000000020000074                uwTickPrio
+                0x00000000200001a4        0x4 build/stm32f4xx_hal.o
+                0x00000000200001a4                uwTickPrio
  .data.uwTickFreq
-                0x0000000020000078        0x1 build/stm32f4xx_hal.o
-                0x0000000020000078                uwTickFreq
- *fill*         0x0000000020000079        0x3 
+                0x00000000200001a8        0x1 build/stm32f4xx_hal.o
+                0x00000000200001a8                uwTickFreq
+ *fill*         0x00000000200001a9        0x3 
  .data.SystemCoreClock
-                0x000000002000007c        0x4 build/system_stm32f4xx.o
-                0x000000002000007c                SystemCoreClock
+                0x00000000200001ac        0x4 build/system_stm32f4xx.o
+                0x00000000200001ac                SystemCoreClock
  .data.debugMessageFrequency
-                0x0000000020000080        0x4 build/main.o
-                0x0000000020000080                debugMessageFrequency
+                0x00000000200001b0        0x4 build/main.o
+                0x00000000200001b0                debugMessageFrequency
  .data.fixedFrequency
-                0x0000000020000084        0x4 build/main.o
-                0x0000000020000084                fixedFrequency
+                0x00000000200001b4        0x4 build/main.o
+                0x00000000200001b4                fixedFrequency
  .data.impure_data
-                0x0000000020000088       0x60 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
+                0x00000000200001b8       0x60 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
  .data._impure_ptr
-                0x00000000200000e8        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
-                0x00000000200000e8                _impure_ptr
- .data.lconv    0x00000000200000ec       0x38 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-locale.o)
+                0x0000000020000218        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
+                0x0000000020000218                _impure_ptr
+ .data.lconv    0x000000002000021c       0x38 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-locale.o)
  .data.__fdlib_version
-                0x0000000020000124        0x1 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-s_lib_ver.o)
-                0x0000000020000124                __fdlib_version
-                0x0000000020000128                . = ALIGN (0x4)
- *fill*         0x0000000020000125        0x3 
-                0x0000000020000128                _edata = .
+                0x0000000020000254        0x1 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-s_lib_ver.o)
+                0x0000000020000254                __fdlib_version
+                0x0000000020000258                . = ALIGN (0x4)
+ *fill*         0x0000000020000255        0x3 
+                0x0000000020000258                _edata = .
 
-.jcr            0x0000000020000128        0x0 load address 0x0000000008007168
- .jcr           0x0000000020000128        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+.jcr            0x0000000020000258        0x0 load address 0x0000000008007298
+ .jcr           0x0000000020000258        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
 .tm_clone_table
-                0x0000000020000128        0x0 load address 0x0000000008007168
+                0x0000000020000258        0x0 load address 0x0000000008007298
  .tm_clone_table
-                0x0000000020000128        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+                0x0000000020000258        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
  .tm_clone_table
-                0x0000000020000128        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
+                0x0000000020000258        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
 
-.igot.plt       0x0000000020000128        0x0 load address 0x0000000008007168
- .igot.plt      0x0000000020000128        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
-                0x0000000020000128                . = ALIGN (0x4)
+.igot.plt       0x0000000020000258        0x0 load address 0x0000000008007298
+ .igot.plt      0x0000000020000258        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+                0x0000000020000258                . = ALIGN (0x4)
 
-.bss            0x0000000020000128      0x28c load address 0x0000000008007168
-                0x0000000020000128                _sbss = .
-                0x0000000020000128                __bss_start__ = _sbss
+.bss            0x0000000020000258      0x28c load address 0x0000000008007298
+                0x0000000020000258                _sbss = .
+                0x0000000020000258                __bss_start__ = _sbss
  *(.bss)
- .bss           0x0000000020000128       0x1c /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .bss           0x0000000020000258       0x1c /usr/lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
  *(.bss*)
  .bss.oldErrorDroite.7963
-                0x0000000020000144        0x4 build/assert.o
+                0x0000000020000274        0x4 build/assert.o
  .bss.angleInit.7948
-                0x0000000020000148        0x8 build/assert.o
+                0x0000000020000278        0x8 build/assert.o
  .bss.errorSumDroite.7964
-                0x0000000020000150        0x4 build/assert.o
- *fill*         0x0000000020000154        0x4 
+                0x0000000020000280        0x4 build/assert.o
+ *fill*         0x0000000020000284        0x4 
  .bss.angleInit.7967
-                0x0000000020000158        0x8 build/assert.o
+                0x0000000020000288        0x8 build/assert.o
  .bss.errorSumGauche.7966
-                0x0000000020000160        0x4 build/assert.o
+                0x0000000020000290        0x4 build/assert.o
  .bss.state.7926
-                0x0000000020000164        0x4 build/assert.o
+                0x0000000020000294        0x4 build/assert.o
  .bss.distanceTarget.7971
-                0x0000000020000168        0x8 build/assert.o
+                0x0000000020000298        0x8 build/assert.o
  .bss.isMvtDone.7962
-                0x0000000020000170        0x4 build/assert.o
- .bss.endOfMvt  0x0000000020000174        0x4 build/assert.o
-                0x0000000020000174                endOfMvt
+                0x00000000200002a0        0x4 build/assert.o
+ .bss.endOfMvt  0x00000000200002a4        0x4 build/assert.o
+                0x00000000200002a4                endOfMvt
  .bss.positionXInit.7968
-                0x0000000020000178        0x8 build/assert.o
+                0x00000000200002a8        0x8 build/assert.o
  .bss.positionYInit.7969
-                0x0000000020000180        0x8 build/assert.o
+                0x00000000200002b0        0x8 build/assert.o
  .bss.oldErrorGauche.7965
-                0x0000000020000188        0x4 build/assert.o
- *fill*         0x000000002000018c        0x4 
+                0x00000000200002b8        0x4 build/assert.o
+ *fill*         0x00000000200002bc        0x4 
  .bss.distanceTravelled.7970
-                0x0000000020000190        0x8 build/assert.o
+                0x00000000200002c0        0x8 build/assert.o
  .bss.consigneDroit
-                0x0000000020000198        0x4 build/main.o
-                0x0000000020000198                consigneDroit
- *fill*         0x000000002000019c        0x4 
+                0x00000000200002c8        0x4 build/main.o
+                0x00000000200002c8                consigneDroit
+ *fill*         0x00000000200002cc        0x4 
  .bss.positionX
-                0x00000000200001a0        0x8 build/main.o
-                0x00000000200001a0                positionX
+                0x00000000200002d0        0x8 build/main.o
+                0x00000000200002d0                positionX
  .bss.positionY
-                0x00000000200001a8        0x8 build/main.o
-                0x00000000200001a8                positionY
- .bss.tim4Tot   0x00000000200001b0        0x4 build/main.o
-                0x00000000200001b0                tim4Tot
- .bss.tim5Tot   0x00000000200001b4        0x4 build/main.o
-                0x00000000200001b4                tim5Tot
- .bss.buffer2   0x00000000200001b8       0x32 build/main.o
-                0x00000000200001b8                buffer2
- *fill*         0x00000000200001ea        0x2 
+                0x00000000200002d8        0x8 build/main.o
+                0x00000000200002d8                positionY
+ .bss.tim4Tot   0x00000000200002e0        0x4 build/main.o
+                0x00000000200002e0                tim4Tot
+ .bss.tim5Tot   0x00000000200002e4        0x4 build/main.o
+                0x00000000200002e4                tim5Tot
+ .bss.buffer2   0x00000000200002e8       0x32 build/main.o
+                0x00000000200002e8                buffer2
+ *fill*         0x000000002000031a        0x2 
  .bss.debugCounter
-                0x00000000200001ec        0x4 build/main.o
-                0x00000000200001ec                debugCounter
- .bss.buffer    0x00000000200001f0       0x32 build/main.o
-                0x00000000200001f0                buffer
- *fill*         0x0000000020000222        0x6 
- .bss.angle     0x0000000020000228        0x8 build/main.o
-                0x0000000020000228                angle
+                0x000000002000031c        0x4 build/main.o
+                0x000000002000031c                debugCounter
+ .bss.buffer    0x0000000020000320       0x32 build/main.o
+                0x0000000020000320                buffer
+ *fill*         0x0000000020000352        0x6 
+ .bss.angle     0x0000000020000358        0x8 build/main.o
+                0x0000000020000358                angle
  .bss.consigneGauche
-                0x0000000020000230        0x4 build/main.o
-                0x0000000020000230                consigneGauche
+                0x0000000020000360        0x4 build/main.o
+                0x0000000020000360                consigneGauche
  .bss.__malloc_sbrk_start
-                0x0000000020000234        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000020000234                __malloc_sbrk_start
+                0x0000000020000364        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000020000364                __malloc_sbrk_start
  .bss.__malloc_free_list
-                0x0000000020000238        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000020000238                __malloc_free_list
+                0x0000000020000368        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000020000368                __malloc_free_list
  .bss.heap_end.4079
-                0x000000002000023c        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(sbrk.o)
+                0x000000002000036c        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(sbrk.o)
  *(COMMON)
- COMMON         0x0000000020000240        0x4 build/stm32f4xx_hal.o
-                0x0000000020000240                uwTick
- COMMON         0x0000000020000244      0x16c build/main.o
-                0x0000000020000244                htim4
-                0x0000000020000280                htim5
-                0x00000000200002bc                htim3
-                0x00000000200002f8                htim1
-                0x0000000020000334                htim2
-                0x0000000020000370                huart2
- COMMON         0x00000000200003b0        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-reent.o)
-                0x00000000200003b0                errno
-                0x00000000200003b4                . = ALIGN (0x4)
-                0x00000000200003b4                _ebss = .
-                0x00000000200003b4                __bss_end__ = _ebss
+ COMMON         0x0000000020000370        0x4 build/stm32f4xx_hal.o
+                0x0000000020000370                uwTick
+ COMMON         0x0000000020000374      0x16c build/main.o
+                0x0000000020000374                htim4
+                0x00000000200003b0                htim5
+                0x00000000200003ec                htim3
+                0x0000000020000428                htim1
+                0x0000000020000464                htim2
+                0x00000000200004a0                huart2
+ COMMON         0x00000000200004e0        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-reent.o)
+                0x00000000200004e0                errno
+                0x00000000200004e4                . = ALIGN (0x4)
+                0x00000000200004e4                _ebss = .
+                0x00000000200004e4                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x00000000200003b4      0x604 load address 0x0000000008007168
-                0x00000000200003b8                . = ALIGN (0x8)
- *fill*         0x00000000200003b4        0x4 
-                0x00000000200003b8                PROVIDE (end, .)
+                0x00000000200004e4      0x604 load address 0x0000000008007298
+                0x00000000200004e8                . = ALIGN (0x8)
+ *fill*         0x00000000200004e4        0x4 
+                0x00000000200004e8                PROVIDE (end, .)
                 [!provide]                        PROVIDE (_end, .)
-                0x00000000200005b8                . = (. + _Min_Heap_Size)
- *fill*         0x00000000200003b8      0x200 
-                0x00000000200009b8                . = (. + _Min_Stack_Size)
- *fill*         0x00000000200005b8      0x400 
-                0x00000000200009b8                . = ALIGN (0x8)
+                0x00000000200006e8                . = (. + _Min_Heap_Size)
+ *fill*         0x00000000200004e8      0x200 
+                0x0000000020000ae8                . = (. + _Min_Stack_Size)
+ *fill*         0x00000000200006e8      0x400 
+                0x0000000020000ae8                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
