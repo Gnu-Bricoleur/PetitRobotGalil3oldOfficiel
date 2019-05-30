@@ -10,7 +10,7 @@ Adafruit_VL53L0X lox2 = Adafruit_VL53L0X();
 
 void setup() {
 
-  //Serial.begin(115200);
+  Serial.begin(115200);
 
   pinMode(11, OUTPUT);
 
@@ -58,9 +58,9 @@ void setup() {
 
   if (!lox1.begin(0x31)) {
 
-    //Serial.println(F("Failed to boot VL53L0X #1"));
+    Serial.println(F("Failed to boot VL53L0X #1"));
 
-    while(1);
+    //while(1);
 
   }
 
@@ -74,9 +74,9 @@ void setup() {
 
   if (!lox2.begin(0x32)) {
 
-    //Serial.println(F("Failed to boot VL53L0X #2"));
+    Serial.println(F("Failed to boot VL53L0X #2"));
 
-    while(1);
+    //while(1);
 
   }
 
@@ -100,7 +100,7 @@ void loop() {
 
    
 
-  //Serial.println("Reading a measurement... ");
+  Serial.println("Reading a measurement... ");
 
   lox1.rangingTest(&measure1, false); // pass in 'true' to get debug data printout!
 
@@ -110,11 +110,11 @@ void loop() {
 
   if (measure1.RangeStatus != 4) {  // phase failures have incorrect data
 
-    //Serial.print("Distance (mm): "); Serial.println(measure1.RangeMilliMeter);
+    Serial.print("Distance (mm): "); Serial.println(measure1.RangeMilliMeter);
 
   } else {
 
-    //Serial.println(" out of range ");
+    Serial.println(" out of range ");
 
   }
 
@@ -122,11 +122,11 @@ void loop() {
 
   if (measure2.RangeStatus != 4) {  // phase failures have incorrect data
 
-    //Serial.print("Distance (mm): "); Serial.println(measure2.RangeMilliMeter);
+    Serial.print("Distance (mm): "); Serial.println(measure2.RangeMilliMeter);
 
   } else {
 
-    //Serial.println(" out of range ");
+    Serial.println(" out of range ");
 
   }
 
@@ -134,7 +134,7 @@ void loop() {
 
  
 
-  if (measure1.RangeMilliMeter < 400)
+  if (measure1.RangeMilliMeter < 200)
 
   {
 
@@ -146,7 +146,7 @@ void loop() {
 
   }
 
-    if (measure2.RangeMilliMeter < 400)
+    if (measure2.RangeMilliMeter < 200)
 
   {
 

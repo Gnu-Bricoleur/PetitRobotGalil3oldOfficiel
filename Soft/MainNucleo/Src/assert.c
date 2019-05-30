@@ -11,9 +11,23 @@
 
 #define Kp_Angle 1000
 
-char consignes[] = {'M', 'A', 'M',  'A', 'T',   'M', 'E'};
-double val1[] = {    200, 1, 200, -1, 2000,  200, 0 };
-double val2[] = {    0,   0,   0 ,   0,   0,     0,   0 };
+/*
+//Homo  90deg = 1.85     11cm = 100
+char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
+double val1[] = {    200, 1.85, 400, 3.7,  600, 0 };
+double val2[] = {    0,   0,   0 ,   0,   0,   0 };
+*/
+
+//cote jaune
+char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
+double val1[] = {    200, 1.7, 400, 3.2,  600, 0 };
+double val2[] = {    0,   0,   0 ,   0,   0,   0 };
+/*
+//cote violet
+char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
+double val1[] = {    200, 1.7, 400, 3.2,  600, 0 };
+double val2[] = {    0,   0,   0 ,   0,   0,   0 };
+*/
 
 int endOfMvt = 0;
 
