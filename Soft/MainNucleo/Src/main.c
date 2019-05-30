@@ -155,6 +155,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  HAL_GPIO_WritePin(VaccumPump_GPIO_Port, VaccumPump_Pin, GPIO_PIN_SET);
+  servoPos(1500);
+  
   HAL_UART_Transmit(&huart2, "Tire moi la tirette, que ma bobinette choisse\n", sizeof("Tire moi la tirette, que ma bobinette choisse\n"), HAL_MAX_DELAY);
   while(HAL_GPIO_ReadPin(Tirette_GPIO_Port, Tirette_Pin))
   {}
@@ -170,7 +173,7 @@ int main(void)
   TIM4->CNT = 30000;
   TIM5->CNT = 30000;
   
-  htim1.Instance->CCR4 = 1500;//servo
+  
 
 
   while (1)
@@ -187,7 +190,7 @@ int main(void)
 		moteurDroit(0);
         while(1){}
     }
-    
+    /*
     if (HAL_GPIO_ReadPin(ObstacleDetection_GPIO_Port, ObstacleDetection_Pin))
     {
         HAL_UART_Transmit(&huart2, "Fin de match -- Obstacle \n", sizeof("Fin de match -- Obstacle \n"), HAL_MAX_DELAY);
@@ -195,7 +198,7 @@ int main(void)
 		moteurDroit(0);
         while(1){}
     }
-    
+    */
     
     int tim4 = (TIM4->CNT-30000);
     int tim5 = (-TIM5->CNT+30000);
@@ -581,10 +584,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LD2_Pin|DIR1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, VaccumPump_Pin|DebugTiming_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LD2_Pin|DIR1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(DIR2_GPIO_Port, DIR2_Pin, GPIO_PIN_RESET);
@@ -594,6 +597,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : VaccumPump_Pin DebugTiming_Pin */
+  GPIO_InitStruct.Pin = VaccumPump_Pin|DebugTiming_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : ObstacleDetection_Pin */
   GPIO_InitStruct.Pin = ObstacleDetection_Pin;
@@ -607,13 +617,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : DebugTiming_Pin */
-  GPIO_InitStruct.Pin = DebugTiming_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(DebugTiming_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Tirette_Pin */
   GPIO_InitStruct.Pin = Tirette_Pin;
@@ -670,6 +673,12 @@ void moteurGauche(int PWM)
     {
 		htim3.Instance->CCR1 = abs(PWM);
 	}
+}
+
+
+void servoPos(int Pos)
+{
+	htim1.Instance->CCR4 = Pos;//servo
 }
 
 

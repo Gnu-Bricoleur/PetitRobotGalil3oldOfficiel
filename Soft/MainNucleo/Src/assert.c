@@ -11,17 +11,18 @@
 
 #define Kp_Angle 1000
 
-/*
-//Homo  90deg = 1.85     11cm = 100
-char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
-double val1[] = {    200, 1.85, 400, 3.7,  600, 0 };
-double val2[] = {    0,   0,   0 ,   0,   0,   0 };
-*/
 
+//Homo  90deg = 1.85     11cm = 100
+char consignes[] = {'M', 'A',  'M',  'A',  'M',   'E'};
+double val1[] = {   300, -1.85, 500, -3.7,  700,  0  };
+double val2[] = {   0,   0,     0 ,   0,    0,    0 };
+
+/*
 //cote jaune
 char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
 double val1[] = {    200, 1.7, 400, 3.2,  600, 0 };
 double val2[] = {    0,   0,   0 ,   0,   0,   0 };
+*/
 /*
 //cote violet
 char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
@@ -78,6 +79,22 @@ void stateMachine(int* consigneDroit, int* consigneGauche, double positionX, dou
         HAL_UART_Transmit(&huart2, "Let's wait !\n", sizeof("Let's wait !\n"), HAL_MAX_DELAY);
         HAL_Delay(val1[state]);
         endOfMvt = 1;
+		break;
+        
+      case 'S': //Suck
+        HAL_GPIO_WritePin(VaccumPump_GPIO_Port, VaccumPump_Pin, GPIO_PIN_SET);
+        endOfMvt = 1;
+        break;
+      
+      case 'R': //release
+        HAL_GPIO_WritePin(VaccumPump_GPIO_Port, VaccumPump_Pin, GPIO_PIN_RESET);
+        endOfMvt = 1;
+        break;
+        
+      case 'B'://Baffe sur l'accelerateur avec le servo
+        servoPos(val1[state]);
+        endOfMvt = 1;
+        break;
 
       case 'E':  //end of the match
         HAL_UART_Transmit(&huart2, "Fin de match\n", sizeof("Fin de match\n"), HAL_MAX_DELAY);
