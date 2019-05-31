@@ -19,15 +19,24 @@ double val2[] = {   0,   0,     1 ,   0,    0,    0 };
 */
 
 //cote jaune
-char consignes[] = {'M', 'A', 'M',  'A',  'M',   'M',    'A'   , 'M',    'A', 'B',      'M' ,  'B',   'M'     ,'A'  ,  'S',  'M'  ,   'T'    ,'M' ,     'A',   'M',  'A'  ,   'M',   'R',  'E'};
-double val1[] = {    600, 1.6, 300, -1.6,  200,   1200,  1.6,     200,    -1.6 , 2500,  360,   1500,   350,     1.7,    0  ,  100,     3000   ,200,     -1.7,   90,  -1.7 ,    1100,  0,    0 };
-double val2[] = {    0,   0,   0 ,   0,   1,      0,     0 ,       0,      0,   0,      0,     0,      0   ,    0,      0  ,  0   ,    0      ,1,        0 ,    0,    0,       0    , 0 ,  0 };
+char consignes[] = {'M',	'A',	'M',	'A',	'M',	'M',	'A',	'M',	'A',	'B',	'M',	'B',	'M',	'A',	'S',	'M',	'T',	'M',	'A',	'M',	'A',	'M',	'R',	'E'};
+double val1[] = {	600,	1.75,	300,	-1.75,	200,	1300,	1.75,	200,	-1.75,	2500,	260,	1500,	350,	1.75,	0,		200,	3000,	200,	1.75,	900,	1.75,	1300,	0,		0};
+double val2[] = {	0,		0,		0,		0,		1,		0,		0 ,		0,		0,		0,		0,		0,		0,		0,		0,		0,		0,		1,		0,		0,		0,		0,		0,		0};
 
 /*
 //cote violet
-char consignes[] = {'M', 'A', 'M',  'A',  'M', 'E'};
-double val1[] = {    200, 1.7, 400, 3.2,  600, 0 };
-double val2[] = {    0,   0,   0 ,   0,   0,   0 };
+char consignes[] = {'M',	'A',	'M',	'A',	'M',	'M',	'A',	'M',	'A',	'B',	'M',	'B',	'M',	'A',	'S',	'M',	'T',	'M',	'A',	'M',	'A',	'M',	'R',	'E'};
+double val1[] = {	600,	-1.75,	300,	1.75,	200,	1300,	-1.75,	200,	1.75,	1000,	260,	1500,	350,	-1.75,	0,		200,	3000,	200,	-1.75,	900,	-1.75,	1300,	0,		0};
+double val2[] = {	0,		0,		0,		0,		1,		0,		0,		0,		0,		0,		0,		0,		0,		0,		0,		0,		0,		1,		0,		0,		0,		0,		0,		0};
+*/
+
+
+
+/*
+//test angles
+char consignes[] = {'A', 'T', 'A',  'T',  'A', 'T', 'A', 'E'};
+double val1[] = {    1.75, 1000, 1.75, 1000,  -1.75, 1000, -1.75, 0 };
+double val2[] = {    0,   0,   0 ,   0,   0,   0 , 0, 0, 0};
 */
 /*//test servo
 char consignes[] = {'B', 'T',  'B',  'T',  'B',   'E'};
@@ -131,8 +140,8 @@ void turn(int* consigneDroit, int* consigneGauche, double positionX, double posi
     {
 		if(targetX + angleInit > angle)
 		{
-			*consigneGauche = 1000;
-			*consigneDroit = -1000;
+			*consigneGauche = 800;
+			*consigneDroit = -800;
 		}
 		else
 		{
@@ -146,8 +155,8 @@ void turn(int* consigneDroit, int* consigneGauche, double positionX, double posi
 	{
 		if(targetX + angleInit < angle)
 		{
-			*consigneGauche = -1000;
-			*consigneDroit = 1000;
+			*consigneGauche = -800;
+			*consigneDroit = 800;
 			}
 		else
 		{

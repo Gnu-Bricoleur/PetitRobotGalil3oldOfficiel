@@ -165,7 +165,7 @@ int main(void)
   uint32_t matchStartTicks = HAL_GetTick();
     
   HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !\n", sizeof("Atttenzion, zest barti !\n"), HAL_MAX_DELAY);
-  HAL_Delay(1000);
+  HAL_Delay(3000);
   uint32_t oldTicks = HAL_GetTick(); //init the time tracking variable for the fixed frequency PID 
 
 
@@ -184,11 +184,12 @@ int main(void)
     HAL_GPIO_WritePin(DebugTiming_GPIO_Port, DebugTiming_Pin, GPIO_PIN_RESET);
     oldTicks = HAL_GetTick();
     
-    if (HAL_GetTick() - matchStartTicks > 90000) //make sure the robot stops after 100seconds (actually 90)
+    if (HAL_GetTick() - matchStartTicks > 80000) //make sure the robot stops after 100seconds (actually 90)
     {
         HAL_UART_Transmit(&huart2, "Fin de match -- Timeout \n", sizeof("Fin de match -- Timeout \n"), HAL_MAX_DELAY);
         moteurGauche(0);
 		moteurDroit(0);
+        HAL_GPIO_WritePin(VaccumPump1_GPIO_Port, VaccumPump1_Pin, GPIO_PIN_RESET);
         while(1){}
     }
     /*
@@ -206,7 +207,7 @@ int main(void)
     TIM4->CNT = 30000;
     TIM5->CNT = 30000;
     
-    tim5 *= 1.0422;
+    //tim5 *= 1.0422;
     
     updatePos(tim4, tim5, &positionX, &positionY, &angle);
     tim4Tot += tim4;//for debug
