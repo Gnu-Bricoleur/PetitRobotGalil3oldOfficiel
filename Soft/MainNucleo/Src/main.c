@@ -165,7 +165,7 @@ int main(void)
   uint32_t matchStartTicks = HAL_GetTick();
     
   HAL_UART_Transmit(&huart2, "Atttenzion, zest barti !\n", sizeof("Atttenzion, zest barti !\n"), HAL_MAX_DELAY);
-  HAL_Delay(3000);
+  HAL_Delay(10000);
   uint32_t oldTicks = HAL_GetTick(); //init the time tracking variable for the fixed frequency PID 
 
 
